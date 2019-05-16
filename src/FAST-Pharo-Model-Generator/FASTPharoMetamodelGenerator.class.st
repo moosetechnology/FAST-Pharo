@@ -18,7 +18,8 @@ Class {
 		'literal',
 		'behaviouralEntity',
 		'namedBehaviouralEntity',
-		'pharoExpression'
+		'pharoExpression',
+		'variableEntity'
 	],
 	#category : #'FAST-Pharo-Model-Generator'
 }
@@ -71,7 +72,8 @@ FASTPharoMetamodelGenerator >> defineClasses [
 	behaviouralEntity := self remoteEntity: #BehaviouralEntity withPrefix: #FAST.
 	expression := self remoteEntity: #Expression withPrefix: #FAST.
 	namedBehaviouralEntity := self remoteEntity: #NamedBehaviouralEntity withPrefix: #FAST.
-	entity := self remoteEntity: #Entity withPrefix: #FAST
+	entity := self remoteEntity: #Entity withPrefix: #FAST.
+	variableEntity := self remoteEntity: #VariableEntity withPrefix: #FAST.
 ]
 
 { #category : #definition }
@@ -95,9 +97,19 @@ FASTPharoMetamodelGenerator >> defineHierarchy [
 { #category : #definition }
 FASTPharoMetamodelGenerator >> defineProperties [
 	super defineProperties.
+	(messageSend property: #kind type: #String) comment: 'Tag indicating a unary, binary or keyword method'.
 ]
 
 { #category : #definition }
 FASTPharoMetamodelGenerator >> defineRelations [
 	super defineRelations.
+	(((selector property: #parentMessageSend) comment: 'An expression referencing this selector') -<> ((messageSend property: #selector) comment: 'Selector of the message')) withoutPrimaryContainer.
+	
+	(((messageSend property: #inCascade) comment: 'Optional cascade including this message') -<> ((cascade property: #messages) comment: 'Messages of cascade')) withoutPrimaryContainer.
+	(((messageSend property: #receiver) comment: 'Receiver of the message') -<> ((expression property: #messageReceived) comment: 'If used as a message receiver, this is the message')) withoutPrimaryContainer.
+	
+	(((blockExpression property: #block) comment: 'Behavioural entity that represents the block') -<> ((blockDefinition property: #blockExpression) comment: 'Expression entity that represents the block')) withoutPrimaryContainer.
+	
+	(((assignmentExpression property: #variable) comment: 'An assigned variable (lhs of assignement)') <>- ((variableEntity property: #parentAssignmentExpression) comment: 'Assignement in which this variable is lhs')) withoutPrimaryContainer.
+	
 ]
