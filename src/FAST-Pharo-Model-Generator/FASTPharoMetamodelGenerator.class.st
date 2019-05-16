@@ -1,6 +1,21 @@
 Class {
 	#name : #FASTPharoMetamodelGenerator,
 	#superclass : #FamixBasicInfrastructureGenerator,
+	#instVars : [
+		'arrayLiteral',
+		'blockDefinition',
+		'byteArrayLiteral',
+		'expression',
+		'arrayExpression',
+		'assignmentExpression',
+		'blockExpression',
+		'cascade',
+		'messageSend',
+		'methodEntity',
+		'numberLiteral',
+		'selector',
+		'symbolLiteral'
+	],
 	#category : #'FAST-Pharo-Model-Generator'
 }
 
@@ -34,6 +49,19 @@ FASTPharoMetamodelGenerator class >> submetamodels [
 { #category : #definition }
 FASTPharoMetamodelGenerator >> defineClasses [
 	super defineClasses.
+	arrayLiteral := builder newClassNamed: #ArrayLiteral.
+	blockDefinition := builder newClassNamed: #BlockDefinition.
+	byteArrayLiteral := builder newClassNamed: #ByteArrayLiteral.
+	expression := builder newClassNamed: #Expression.
+	arrayExpression := builder newClassNamed: #ArrayExpression.
+	assignmentExpression := builder newClassNamed: #AssignmentExpression.
+	blockExpression := builder newClassNamed: #BlockExpression.
+	cascade := builder newClassNamed: #Cascade.
+	messageSend := builder newClassNamed: #MessageSend.
+	methodEntity := builder newClassNamed: #MethodEntity.
+	numberLiteral := builder newClassNamed: #NumberLiteral.
+	selector := builder newClassNamed: #Selector.
+	symbolLiteral := builder newClassNamed: #SymbolLiteral.
 ]
 
 { #category : #definition }
