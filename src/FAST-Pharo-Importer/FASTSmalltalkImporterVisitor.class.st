@@ -203,10 +203,10 @@ FASTSmalltalkImporterVisitor >> putVarInScope: fastVar [
 FASTSmalltalkImporterVisitor >> runWithSource: sourceAsString and: aFamixMethod [
 	| parseTree |
 	currentFASTEntity := FASTPharoMethodEntity new
-									behaviouralName: aFamixMethod name ;
-									famixNamedEntity: aFamixMethod ;
+									name: aFamixMethod name ;
+									"famixNamedEntity: aFamixMethod ;"
 									yourself.
-	aFamixMethod fastBehaviouralEntity: currentFASTEntity.
+	"aFamixMethod fastBehaviouralEntity: currentFASTEntity."
 
 	self addToModel: currentFASTEntity.
 

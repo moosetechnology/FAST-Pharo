@@ -29,13 +29,15 @@ SmalltalkImporterTestCase >> modelClasses [
 
 { #category : #running }
 SmalltalkImporterTestCase >> setUp [
+	super setUp.
 	model := MooseModel new.
 	MoosePharoImporterTask new
-	importerClass: SmalltalkImporter;
-	model: model;
-	addClasses: self modelClasses;
-	run.
-	
+		factory: SmalltalkMetamodelFactory; 
+		importerClass: SmalltalkImporter;
+		model: model;
+		addClasses: self modelClasses;
+		run.
+
 	self setUpMethods
 ]
 
