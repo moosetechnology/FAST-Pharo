@@ -1,13 +1,21 @@
 Extension { #name : #FASTVariableEntity }
 
-{ #category : #'*FAST-Pharo-Model' }
-FASTVariableEntity >> parentAssignmentExpression [
-	<MSEProperty: #parentAssignmentExpression type: #FASTPharoAssignmentExpression opposite: #variable>
-	<MSEComment: 'Assignement in which this variable is lhs'>
-	^ self propertyNamed: #parentAssignmentExpression
+{ #category : #'*FAST-Pharo-Model-accessing' }
+FASTVariableEntity >> pharoParentAssignmentExpression [
+
+	<generated>
+	<container>
+
+	<MSEProperty: #pharoParentAssignmentExpression type: #Object>
+	<package: #'FAST-Pharo-Model'>
+	^ self privateState attributeAt: #pharoParentAssignmentExpression ifAbsent: [ nil ]
 ]
 
-{ #category : #'*FAST-Pharo-Model' }
-FASTVariableEntity >> parentAssignmentExpression: aFastExpression [
-	self propertyNamed: #parentAssignmentExpression put: aFastExpression
+{ #category : #'*FAST-Pharo-Model-accessing' }
+FASTVariableEntity >> pharoParentAssignmentExpression: anObject [
+
+	<generated>
+	(self privateState attributeAt: #pharoParentAssignmentExpression ifAbsentPut: [nil]) == anObject ifTrue: [ ^ anObject ].
+	self privateState attributeAt: #pharoParentAssignmentExpression put: anObject.
+	anObject variable: self
 ]

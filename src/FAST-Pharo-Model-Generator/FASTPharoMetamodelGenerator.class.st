@@ -50,14 +50,14 @@ FASTPharoMetamodelGenerator class >> modifyMetamodel: aMetamodel [
 FASTPharoMetamodelGenerator class >> packageName [
 
 	<ignoreForCoverage>
-	^ #'Fast-Pharo-Model'
+	^ #'FAST-Pharo-Model'
 ]
 
 { #category : #accessing }
 FASTPharoMetamodelGenerator class >> prefix [
 
 	<ignoreForCoverage>
-	^ #'FastPharo'
+	^ #'FASTPharo'
 ]
 
 { #category : #accessing }

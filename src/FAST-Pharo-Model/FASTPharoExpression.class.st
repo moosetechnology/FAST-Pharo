@@ -1,26 +1,34 @@
-"
-Introduced to implement resolvingAuthority in a unified way for all PharoExpressions
-
-Also introduce FASTStatement behavior as there is little difference between statements and expressions in Pharo (message send is an expression, assignement is an expression, ...)
-"
 Class {
 	#name : #FASTPharoExpression,
 	#superclass : #FASTExpression,
-	#category : #'FAST-Pharo-Model'
+	#category : #'FAST-Pharo-Model-Entities'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : #meta }
 FASTPharoExpression class >> annotation [
-	<MSEClass: #PharoExpression super: #FASTExpression>
-	<package: #FAST>
+
+	<MSEClass: #Expression super: #FASTExpression>
+	<package: #'FAST-Pharo-Model'>
+	<generated>
+	^self
 ]
 
-{ #category : #accessing }
-FASTPharoExpression >> statementContainer [
-	^ self parentStatement
+{ #category : #generator }
+FASTPharoExpression class >> generatedSlotNames [
+	<generated>
+	'FASTPharoExpression class>>#generatedSlotNames'.
+	^ #()
 ]
 
-{ #category : #accessing }
-FASTPharoExpression >> statementContainer: aContainer [
-	self parentStatement: aContainer
+{ #category : #generator }
+FASTPharoExpression class >> generatedTraitNames [
+	<generated>
+	^ #()
+]
+
+{ #category : #meta }
+FASTPharoExpression class >> requirements [
+
+	<generated>
+	^ {  }
 ]

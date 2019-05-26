@@ -1,41 +1,62 @@
-"
-A block expression, this is a wrapper around  PharoBlockDefinition which is the  ""real"" block.
-Note that this one in turn contains a StatementBlock (which is the one containing the statements)
-"
 Class {
 	#name : #FASTPharoBlockExpression,
 	#superclass : #FASTPharoExpression,
 	#instVars : [
-		'block'
+		'#block => FMOne type: #FASTPharoBlockDefinition opposite: #blockExpression'
 	],
-	#category : #'FAST-Pharo-Model'
+	#category : #'FAST-Pharo-Model-Entities'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : #meta }
 FASTPharoBlockExpression class >> annotation [
-	<MSEClass: #PharoBlockExpression super: #FASTPharoExpression>
-	<package: #FAST>
+
+	<MSEClass: #BlockExpression super: #FASTPharoExpression>
+	<package: #'FAST-Pharo-Model'>
+	<generated>
+	^self
+]
+
+{ #category : #generator }
+FASTPharoBlockExpression class >> generatedSlotNames [
+	<generated>
+	'FASTPharoBlockExpression class>>#generatedSlotNames'.
+	^ #(block)
+]
+
+{ #category : #generator }
+FASTPharoBlockExpression class >> generatedTraitNames [
+	<generated>
+	^ #()
+]
+
+{ #category : #meta }
+FASTPharoBlockExpression class >> requirements [
+
+	<generated>
+	^ {  }
 ]
 
 { #category : #accessing }
 FASTPharoBlockExpression >> block [
-	<MSEProperty: #block type: #FASTPharoBlockDefinition opposite: #blockExpression>
+
+	<generated>
 	<MSEComment: 'Behavioural entity that represents the block'>
 	^ block
 ]
 
 { #category : #accessing }
-FASTPharoBlockExpression >> block: aBehaviouralEntity [
-	block := aBehaviouralEntity
+FASTPharoBlockExpression >> block: anObject [
+
+	<generated>
+	block := anObject
+
 ]
 
-{ #category : #accessing }
-FASTPharoBlockExpression >> name [
-	^ 'block literal'
-]
+{ #category : #navigation }
+FASTPharoBlockExpression >> blockGroup [
 
-{ #category : #resolving }
-FASTPharoBlockExpression >> resolveAllSymbols [
-	self block resolveAllSymbols
-
+	<generated>
+	<navigation: 'Block'>
+	^ MooseGroup
+			with: (self block)
 ]

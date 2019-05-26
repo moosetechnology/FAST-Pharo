@@ -1,50 +1,69 @@
-"
-A node that represents a smalltalk cascade message.
-
-Contains a referance to a receiver variable and a collection of messages sent to it.
-"
 Class {
 	#name : #FASTPharoCascade,
 	#superclass : #FASTPharoExpression,
 	#instVars : [
-		'messages'
+		'#messages => FMMany type: #FASTPharoMessageSend opposite: #inCascade'
 	],
-	#category : #'FAST-Pharo-Model'
+	#category : #'FAST-Pharo-Model-Entities'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : #meta }
 FASTPharoCascade class >> annotation [
-	<MSEClass: #PharoCascade super: #FASTPharoExpression>
-	<package: #FAST>
+
+	<MSEClass: #Cascade super: #FASTPharoExpression>
+	<package: #'FAST-Pharo-Model'>
+	<generated>
+	^self
 ]
 
-{ #category : #accessing }
-FASTPharoCascade >> initialize [
-	super initialize.
-	messages := FMMultivalueLink on: self opposite: #inCascade:
+{ #category : #generator }
+FASTPharoCascade class >> generatedSlotNames [
+	<generated>
+	'FASTPharoCascade class>>#generatedSlotNames'.
+	^ #(messages)
+]
+
+{ #category : #generator }
+FASTPharoCascade class >> generatedTraitNames [
+	<generated>
+	^ #()
+]
+
+{ #category : #meta }
+FASTPharoCascade class >> requirements [
+
+	<generated>
+	^ {  }
+]
+
+{ #category : #adding }
+FASTPharoCascade >> addMessages: anObject [
+			
+	<generated>
+	^ self messages add: anObject
 ]
 
 { #category : #accessing }
 FASTPharoCascade >> messages [
-	<MSEProperty: #messages type: #FASTPharoMessageSend opposite: #inCascade>
-	<multivalued>
-	<MSEComment: 'Messages of cascade'>
-	^messages
+
+	<generated>
+	<MSEComment: 'The messages of the cascade'>
+	^ messages
 ]
 
 { #category : #accessing }
-FASTPharoCascade >> messages: aMessage [
-	messages value: aMessage
+FASTPharoCascade >> messages: anObject [
+
+	<generated>
+	messages value: anObject
+
 ]
 
-{ #category : #accessing }
-FASTPharoCascade >> name [
-	^ 'cascade'
-]
+{ #category : #navigation }
+FASTPharoCascade >> messagesGroup [
 
-{ #category : #resolving }
-FASTPharoCascade >> resolveAllSymbols [
-	self messages do: [:s | s resolveAllSymbols ].
-	self resolve: self receiver
-
+	<generated>
+	<navigation: 'Messages'>
+	^ MooseGroup
+			withAll: (self messages asSet)
 ]

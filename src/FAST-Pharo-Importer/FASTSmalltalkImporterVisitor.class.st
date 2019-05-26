@@ -19,11 +19,6 @@ Class {
 	#category : #'FAST-Pharo-Importer'
 }
 
-{ #category : #'as yet unclassified' }
-FASTSmalltalkImporterVisitor class >> newWithModel: aModel [
-	^ self new initializeWithModel: aModel
-]
-
 { #category : #parsing }
 FASTSmalltalkImporterVisitor >> accept: anObject [
 	^ anObject acceptVisitor: self
@@ -120,36 +115,6 @@ FASTSmalltalkImporterVisitor >> ensureStatement: aFASTNode [
 ]
 
 { #category : #accessing }
-FASTSmalltalkImporterVisitor >> famixInvocationsPool [
-	
-	^ famixInvocationsPool
-]
-
-{ #category : #accessing }
-FASTSmalltalkImporterVisitor >> famixInvocationsPool: anObject [
-	
-	famixInvocationsPool := anObject
-]
-
-{ #category : #accessing }
-FASTSmalltalkImporterVisitor >> famixPoolOfVariable [
-	
-	^ famixPoolOfVariable
-]
-
-{ #category : #accessing }
-FASTSmalltalkImporterVisitor >> famixPoolOfVariable: anObject [
-	
-	famixPoolOfVariable := anObject
-]
-
-{ #category : #'initialize-release' }
-FASTSmalltalkImporterVisitor >> initializeWithModel: aModel [
-	self initialize.
-	model := aModel
-]
-
-{ #category : #accessing }
 FASTSmalltalkImporterVisitor >> model [
 	"return a model that should be used for storing elements"
 	^ model
@@ -179,12 +144,6 @@ FASTSmalltalkImporterVisitor >> parentFASTVisitor: anObject [
 	parentFASTVisitor := anObject
 ]
 
-{ #category : #accessing }
-FASTSmalltalkImporterVisitor >> parentScope [
-	
-	^ parentFASTVisitor currentFASTScope
-]
-
 { #category : #parsing }
 FASTSmalltalkImporterVisitor >> parseTreeForSource: methodSourceString [
 	^ self parser parseMethod: methodSourceString
@@ -195,21 +154,6 @@ FASTSmalltalkImporterVisitor >> parseTreeForSource: methodSourceString [
 FASTSmalltalkImporterVisitor >> parser [
 	"ruturn a parser that should be used to parse source into tree"
 	^ PPSmalltalkParser
-]
-
-{ #category : #'entity-creation' }
-FASTSmalltalkImporterVisitor >> putVarInScope: fastVar [
-	"if the FASTVariable is found in the pool of famix variables:
-	 - put it in the scope's dictionnary
-	 - link it to the FAST variable
-	 - and remove it from the pool"
-	^ famixPoolOfVariable
-			detect: [ :v | v name = fastVar variableName ]
-			ifOne: [ :famixVar | 
-				currentFASTScope add: famixVar.
-				fastVar famixNamedEntity: famixVar.
-				famixPoolOfVariable remove: famixVar ]
-			ifNone: [ nil ]	
 ]
 
 { #category : #parsing }
@@ -246,7 +190,7 @@ FASTSmalltalkImporterVisitor >> runWithSource: sourceAsString and: aFamixMethod 
 { #category : #'visitor-double dispatching' }
 FASTSmalltalkImporterVisitor >> visitArrayNode: anArrayNode [
 
-	currentFASTEntity := self create: FastPharoArrayExpression from: anArrayNode.
+	currentFASTEntity := self create: FASTPharoArrayExpression from: anArrayNode.
 
 	anArrayNode children do: [:each |
 		currentFASTEntity addExpressions: (self clone visitNode: each).
@@ -257,7 +201,7 @@ FASTSmalltalkImporterVisitor >> visitArrayNode: anArrayNode [
 { #category : #'visitor-double dispatching' }
 FASTSmalltalkImporterVisitor >> visitAssignmentNode: anAssignmentNode [ 
 	| assignt |
-	currentFASTEntity := self create: FastPharoAssignmentExpression from: anAssignmentNode.
+	currentFASTEntity := self create: FASTPharoAssignmentExpression from: anAssignmentNode.
 	
 	currentFASTEntity variable: (self clone visitNode: anAssignmentNode variable).
 
@@ -272,8 +216,8 @@ FASTSmalltalkImporterVisitor >> visitBlockNode: aBlockNode [
 	because blocks are expressions and behavioural entities"
 
 	| blockExpression |
-	blockExpression :=  self create: FastPharoBlockExpression from: aBlockNode.
-	currentFASTEntity := self create: FastPharoBlockDefinition from: aBlockNode.
+	blockExpression :=  self create: FASTPharoBlockExpression from: aBlockNode.
+	currentFASTEntity := self create: FASTPharoBlockDefinition from: aBlockNode.
 	currentFASTEntity blockExpression: blockExpression.
 	aBlockNode arguments
 		ifNotNil: [ :parameters | 
@@ -297,7 +241,7 @@ FASTSmalltalkImporterVisitor >> visitBooleanLiteralNode: literalNode [
 { #category : #'visitor-double dispatching' }
 FASTSmalltalkImporterVisitor >> visitCascadeNode: aCascadeNode [ 
  
-	currentFASTEntity := (self create: FastPharoCascade from: aCascadeNode).
+	currentFASTEntity := (self create: FASTPharoCascade from: aCascadeNode).
 	aCascadeNode messages do: [ :each | currentFASTEntity messages add: (self clone visitNode: each) ].
 	
   	^ currentFASTEntity
@@ -312,8 +256,8 @@ FASTSmalltalkImporterVisitor >> visitCharacterLiteralNode: literalNode [
 { #category : #'visitor-literal double dispatching' }
 FASTSmalltalkImporterVisitor >> visitLiteralArrayNode: aLiteralArrayNode [
 	currentFASTEntity := self create: (aLiteralArrayNode isForByteArray
-									ifTrue: [ FastPharoByteArrayLiteral ]
-									ifFalse: [ FastPharoArrayLiteral ]) from: aLiteralArrayNode.
+									ifTrue: [ FASTPharoByteArrayLiteral ]
+									ifFalse: [ FASTPharoArrayLiteral ]) from: aLiteralArrayNode.
 	
 	aLiteralArrayNode contents do: [ :each | currentFASTEntity addExpressions: (self clone visitNode: each) ].
 
@@ -338,7 +282,7 @@ FASTSmalltalkImporterVisitor >> visitLiteralNode: literalNode [
 { #category : #'visitor-double dispatching' }
 FASTSmalltalkImporterVisitor >> visitMessageNode: aMessageNode [ 	 
 
-	currentFASTEntity := self create: FastPharoMessageSend from: aMessageNode.
+	currentFASTEntity := self create: FASTPharoMessageSend from: aMessageNode.
 	
 	currentFASTEntity kind: (
 		aMessageNode isUnary
@@ -377,7 +321,7 @@ FASTSmalltalkImporterVisitor >> visitMethodArguments: methodArguments [
 
 { #category : #'visitor-double dispatching' }
 FASTSmalltalkImporterVisitor >> visitMethodNode: aMethodNode [
-	currentFASTEntity := (self create: FastPharoMethodEntity from: aMethodNode)
+	currentFASTEntity := (self create: FASTPharoMethodEntity from: aMethodNode)
 		name: aMethodNode selector;
 		yourself.
 	aMethodNode arguments do: [ :argument | currentFASTEntity parameters add: (self clone accept: argument) ].
@@ -389,13 +333,13 @@ FASTSmalltalkImporterVisitor >> visitMethodNode: aMethodNode [
 
 { #category : #'visitor-literal double dispatching' }
 FASTSmalltalkImporterVisitor >> visitNumberLiteralNode: literalNode [
-	^ self createLiteral: FastPharoNumberLiteral from: literalNode withValue: literalNode value
+	^ self createLiteral: FASTPharoNumberLiteral from: literalNode withValue: literalNode value
 
 ]
 
 { #category : #'visitor-double dispatching' }
 FASTSmalltalkImporterVisitor >> visitPharoSelector: aMessageNode [
-	^ (self create: FastPharoSelector)
+	^ (self create: FASTPharoSelector)
 		name: aMessageNode selector;
 		yourself
 ]
@@ -437,7 +381,7 @@ FASTSmalltalkImporterVisitor >> visitStringLiteralNode: literalNode [
 
 { #category : #'visitor-literal double dispatching' }
 FASTSmalltalkImporterVisitor >> visitSymbolLiteralNode: literalNode [
-	^ self createLiteral: FastPharoSymbolLiteral from: literalNode withValue: literalNode value
+	^ self createLiteral: FASTPharoSymbolLiteral from: literalNode withValue: literalNode value
 ]
 
 { #category : #'visitor-literal double dispatching' }

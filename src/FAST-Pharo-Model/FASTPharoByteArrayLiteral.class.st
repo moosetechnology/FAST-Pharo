@@ -1,29 +1,34 @@
-"
-A byte array literal: #[...]
-"
 Class {
 	#name : #FASTPharoByteArrayLiteral,
 	#superclass : #FASTLiteral,
-	#category : #'FAST-Pharo-Model'
+	#category : #'FAST-Pharo-Model-Entities'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : #meta }
 FASTPharoByteArrayLiteral class >> annotation [
-	<MSEClass: #PharoByteArrayLiteral super: #FASTLiteral>
-	<package: #FAST>
+
+	<MSEClass: #ByteArrayLiteral super: #FASTLiteral>
+	<package: #'FAST-Pharo-Model'>
+	<generated>
+	^self
 ]
 
-{ #category : #accessing }
-FASTPharoByteArrayLiteral >> contents [
-	^ self childrenExpressions
+{ #category : #generator }
+FASTPharoByteArrayLiteral class >> generatedSlotNames [
+	<generated>
+	'FASTPharoByteArrayLiteral class>>#generatedSlotNames'.
+	^ #()
 ]
 
-{ #category : #accessing }
-FASTPharoByteArrayLiteral >> contents: newElements [
-	self childrenExpressions: newElements
+{ #category : #generator }
+FASTPharoByteArrayLiteral class >> generatedTraitNames [
+	<generated>
+	^ #()
 ]
 
-{ #category : #accessing }
-FASTPharoByteArrayLiteral >> value [
-	^ (self contents inject: '#[' into: [ :acc :each | acc , ' ' , each value ]) , ' ]'
+{ #category : #meta }
+FASTPharoByteArrayLiteral class >> requirements [
+
+	<generated>
+	^ {  }
 ]

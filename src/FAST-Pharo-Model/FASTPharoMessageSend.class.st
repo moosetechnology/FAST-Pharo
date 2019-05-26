@@ -1,155 +1,167 @@
-"
-A node representing a smalltalk message.
-
-Contains a reference to a receiver expression and a collection of parameters passed with a message.
-"
 Class {
 	#name : #FASTPharoMessageSend,
 	#superclass : #FASTExpression,
 	#instVars : [
-		'kind',
-		'selector',
-		'invocation',
-		'inCascade',
-		'concreteReceiver'
+		'#inCascade => FMOne type: #FASTPharoCascade opposite: #messages',
+		'#kind',
+		'#selector => FMOne type: #FASTPharoSelector opposite: #parentMessageSend'
 	],
-	#category : #'FAST-Pharo-Model'
+	#category : #'FAST-Pharo-Model-Entities'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : #meta }
 FASTPharoMessageSend class >> annotation [
-	<MSEClass: #PharoMessageSend super: #FASTExpression>
-	<package: #FAST>
+
+	<MSEClass: #MessageSend super: #FASTExpression>
+	<package: #'FAST-Pharo-Model'>
+	<generated>
+	^self
 ]
 
-{ #category : #accessing }
-FASTPharoMessageSend >> addArgument: anExpression [
-	self addChildExpression: anExpression
+{ #category : #generator }
+FASTPharoMessageSend class >> generatedSlotNames [
+	<generated>
+	'FASTPharoMessageSend class>>#generatedSlotNames'.
+	^ #(inCascade kind selector)
+]
+
+{ #category : #generator }
+FASTPharoMessageSend class >> generatedTraitNames [
+	<generated>
+	^ #()
+]
+
+{ #category : #meta }
+FASTPharoMessageSend class >> requirements [
+
+	<generated>
+	^ { FASTPharoCascade }
+]
+
+{ #category : #adding }
+FASTPharoMessageSend >> addArguments: anObject [
+			
+	<generated>
+	^ self arguments add: anObject
 ]
 
 { #category : #accessing }
 FASTPharoMessageSend >> arguments [
-	"first child expression is the receiver"
-	^ childrenExpressions
+
+	<generated>
+	<MSEComment: 'The arguments of the message'>
+	<MSEProperty: #arguments type: #Object>
+	^ self privateState attributeAt: #arguments ifAbsentPut: [ FMMultivalueLink on: self opposite: #pharoMessageArgumentOwner: ]
 ]
 
 { #category : #accessing }
-FASTPharoMessageSend >> arguments: aCollection [
-	self childrenExpressions: aCollection
+FASTPharoMessageSend >> arguments: anObject [
+
+	<generated>
+	self arguments value: anObject
+]
+
+{ #category : #navigation }
+FASTPharoMessageSend >> argumentsGroup [
+
+	<generated>
+	<navigation: 'Arguments'>
+	^ MooseGroup
+			withAll: (self arguments asSet)
 ]
 
 { #category : #accessing }
 FASTPharoMessageSend >> inCascade [
-	<MSEProperty: #inCascade type: #FASTPharoCascade opposite: #messages>
+
+	<generated>
 	<MSEComment: 'Optional cascade including this message'>
+	<container>
 
 	^ inCascade
 ]
 
 { #category : #accessing }
-FASTPharoMessageSend >> inCascade: aPharoCascade [
-	inCascade := aPharoCascade
+FASTPharoMessageSend >> inCascade: anObject [
+
+	<generated>
+	inCascade := anObject
+
 ]
 
-{ #category : #accessing }
-FASTPharoMessageSend >> invocation [
-	<MSEProperty: #invocation type: #FAMIXInvocation opposite: #messageSend>
-	<MSEComment: 'A Famix invocation corresponding to this message send'>
-	^ invocation
-]
+{ #category : #navigation }
+FASTPharoMessageSend >> inCascadeGroup [
 
-{ #category : #accessing }
-FASTPharoMessageSend >> invocation: anInvocation [
-	invocation := anInvocation
-]
-
-{ #category : #testing }
-FASTPharoMessageSend >> isBinary [
-	<MSEProperty: #isBinary type: #Boolean>
-	<derived>
-	<MSEComment: 'True if message is binary'>
-	
-	^self kind = #binary
-]
-
-{ #category : #testing }
-FASTPharoMessageSend >> isCascaded [
-	<MSEProperty: #isCascaded type: #Boolean>
-	<derived>
-	<MSEComment: 'Shows if message is in cascade'>
-	^ inCascade notNil
-]
-
-{ #category : #testing }
-FASTPharoMessageSend >> isKeyword [
-	<MSEProperty: #isKeyword type: #Boolean>
-	<derived>
-	<MSEComment: 'True if message is a keyword message'>
-	
-	^self kind = #keyword
-]
-
-{ #category : #testing }
-FASTPharoMessageSend >> isUnary [
-	<MSEProperty: #isUnary type: #Boolean>
-	<derived>
-	<MSEComment: 'True if message is unary'>
-	
-	^self kind = #unary
-
+	<generated>
+	<navigation: 'InCascade'>
+	^ MooseGroup
+			with: (self inCascade)
 ]
 
 { #category : #accessing }
 FASTPharoMessageSend >> kind [
+
 	<MSEProperty: #kind type: #String>
-	<MSEComment: 'Tag indicating a unary, binary or keyword method'>
-	
+	<generated>
+	<MSEComment: 'The kind of message'>
 	^ kind
 ]
 
 { #category : #accessing }
-FASTPharoMessageSend >> kind: aSymbol [
-	"Set the kind of method, one of #unary, #binary or #keyword"
+FASTPharoMessageSend >> kind: anObject [
 
-	| kindSymbol |
-	kindSymbol := aSymbol ifNotNil: [aSymbol asSymbol].
-	(#(#unary #binary #keyword) includes: kindSymbol)
-		ifTrue: [kind := kindSymbol. ^ true]
-		ifFalse: [^ false].
-	
-]
+	<generated>
+	kind := anObject
 
-{ #category : #printing }
-FASTPharoMessageSend >> mooseNameOn: aStream [
-	self selector mooseNameOn: aStream.
-	"aStream nextPutAll: ' arguments : ',self arguments asString"
-]
-
-{ #category : #accessing }
-FASTPharoMessageSend >> parentNode [
-	^ super parentNode ifNil: [ self inCascade ]
 ]
 
 { #category : #accessing }
 FASTPharoMessageSend >> receiver [
-	<MSEProperty: #receiver type: #FASTExpression  opposite: #messageReceived>
-	<MSEComment: 'Receiver of the message'>
-	^ concreteReceiver
+
+	<generated>
+	<MSEComment: 'The receiver of the selector'>
+	<MSEProperty: #receiver type: #Object>
+	^ self privateState attributeAt: #receiver ifAbsent: [ nil ]
 ]
 
 { #category : #accessing }
-FASTPharoMessageSend >> receiver: aReceiver [
-	concreteReceiver := aReceiver
+FASTPharoMessageSend >> receiver: anObject [
+
+	<generated>
+	(self privateState attributeAt: #receiver ifAbsentPut: [nil]) == anObject ifTrue: [ ^ anObject ].
+	self privateState attributeAt: #receiver put: anObject.
+	anObject pharoMessageReceiver: self
+]
+
+{ #category : #navigation }
+FASTPharoMessageSend >> receiverGroup [
+
+	<generated>
+	<navigation: 'Receiver'>
+	^ MooseGroup
+			with: (self receiver)
 ]
 
 { #category : #accessing }
 FASTPharoMessageSend >> selector [
-	<MSEProperty: #selector type: #FASTPharoSelector opposite: #parentMessageSend>
-	<MSEComment: 'Selector of the message'>
-	^selector
+
+	<generated>
+	<MSEComment: 'The sent selector'>
+	^ selector
 ]
 
 { #category : #accessing }
-FASTPharoMessageSend >> selector: aSymbol [
-	selector := aSymbol
+FASTPharoMessageSend >> selector: anObject [
+
+	<generated>
+	selector := anObject
+
+]
+
+{ #category : #navigation }
+FASTPharoMessageSend >> selectorGroup [
+
+	<generated>
+	<navigation: 'Selector'>
+	^ MooseGroup
+			with: (self selector)
 ]
