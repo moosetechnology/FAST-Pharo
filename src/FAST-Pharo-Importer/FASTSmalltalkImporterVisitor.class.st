@@ -24,6 +24,11 @@ FASTSmalltalkImporterVisitor class >> newWithModel: aModel [
 	^ self new initializeWithModel: aModel
 ]
 
+{ #category : #parsing }
+FASTSmalltalkImporterVisitor >> accept: anObject [
+	^ anObject acceptVisitor: self
+]
+
 { #category : #'entity-creation' }
 FASTSmalltalkImporterVisitor >> addToModel: anEntity [
 	self model silentlyAdd: anEntity.
@@ -200,13 +205,24 @@ FASTSmalltalkImporterVisitor >> putVarInScope: fastVar [
 ]
 
 { #category : #parsing }
+FASTSmalltalkImporterVisitor >> runWithSource: sourceAsString [
+	| parseTree |
+	self model: MooseModel new.
+	self model metamodel: FASTPharoMetamodelGenerator resetMetamodel.
+
+	parseTree := self parseTreeForSource: sourceAsString. 
+	parseTree ifNotNil: [self visitMethodNode: parseTree].
+
+	^ currentFASTEntity.
+ 
+]
+
+{ #category : #parsing }
 FASTSmalltalkImporterVisitor >> runWithSource: sourceAsString and: aFamixMethod [
 	| parseTree |
 	currentFASTEntity := FASTPharoMethodEntity new
 									name: aFamixMethod name ;
-									"famixNamedEntity: aFamixMethod ;"
 									yourself.
-	"aFamixMethod fastBehaviouralEntity: currentFASTEntity."
 
 	self addToModel: currentFASTEntity.
 
@@ -320,9 +336,8 @@ FASTSmalltalkImporterVisitor >> visitLiteralNode: literalNode [
 { #category : #'visitor-double dispatching' }
 FASTSmalltalkImporterVisitor >> visitMessageNode: aMessageNode [ 	 
 
-	currentFASTEntity := self addToModel: FASTPharoMessageSend new.
-	"self parentFASTEntity childExpression: currentFASTEntity."
-
+	currentFASTEntity := self addToModel: FastPharoMessageSend new.
+	
 	currentFASTEntity kind: (
 		aMessageNode isUnary
 			ifTrue: [ #unary ]
@@ -332,7 +347,7 @@ FASTSmalltalkImporterVisitor >> visitMessageNode: aMessageNode [
 					ifFalse: [ #keyword ] ]).
 	
  	currentFASTEntity selector:
-		(self addToModel: (FASTPharoSelector new
+		(self addToModel: (FastPharoSelector new
 									name: aMessageNode selector ;
 									parentMessageSend: currentFASTEntity ;
 									yourself )).
@@ -371,31 +386,15 @@ FASTSmalltalkImporterVisitor >> visitMethodArguments: methodArguments [
 
 { #category : #'visitor-double dispatching' }
 FASTSmalltalkImporterVisitor >> visitMethodNode: aMethodNode [
-	| theFastMethod |
-	theFastMethod := currentFASTEntity.
+	currentFASTEntity := FastPharoMethodEntity new
+		name: aMethodNode selector;
+		yourself.
 
-	currentFASTScope := FASTScope
-		newWithOwner: currentFASTEntity
-		andParents:
-			(OrderedCollection
-				with: currentFASTEntity parentNode belongsTo fastScope).
-	currentFASTEntity fastScope: currentFASTScope.
+	aMethodNode arguments do: [ :argument | currentFASTEntity parameters add: (self clone accept: argument) ].
 
-	self visitMethodArguments: aMethodNode arguments.
+	currentFASTEntity statementBlock: (self clone visitNode: aMethodNode body).
 
-	famixInvocationsPool := OrderedCollection
-		withAll: currentFASTEntity parentNode outgoingInvocations.
-	famixPoolOfVariable := OrderedCollection
-		withAll: currentFASTEntity parentNode localVariables.
-	currentFASTEntity := theFastMethod statementBlock.
-
-	self clone visitNode: aMethodNode body.
-
-	"Note: famixPools should be empty here"
-	self assert: [ famixInvocationsPool isEmpty ].
-	self assert: [ famixPoolOfVariable isEmpty ].
-
-	^ theFastMethod
+	^ currentFASTEntity
 ]
 
 { #category : #'visitor-literal double dispatching' }
@@ -459,8 +458,7 @@ FASTSmalltalkImporterVisitor >> visitUndefinedLiteralNode: literalNode [
 FASTSmalltalkImporterVisitor >> visitVariableNode: aVariableNode [ 
 
  	currentFASTEntity := self addToModel: FASTVariableExpression new.
-	currentFASTEntity parentStatement: self parentFASTEntity. "should not do that here but in the parent visit method"
- 	currentFASTEntity variableName: aVariableNode name.
+ 	currentFASTEntity name: aVariableNode name.
 
  	^ currentFASTEntity
 ]

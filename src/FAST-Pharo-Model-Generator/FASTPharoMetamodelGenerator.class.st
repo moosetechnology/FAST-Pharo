@@ -111,6 +111,7 @@ FASTPharoMetamodelGenerator >> defineHierarchy [
 { #category : #definition }
 FASTPharoMetamodelGenerator >> defineProperties [
 	super defineProperties.
+	(messageSend property: #kind type: #String) comment: 'The kind of message'.
 ]
 
 { #category : #definition }
