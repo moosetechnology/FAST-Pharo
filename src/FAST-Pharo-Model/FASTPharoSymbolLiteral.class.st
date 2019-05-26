@@ -12,9 +12,3 @@ FASTPharoSymbolLiteral class >> annotation [
 	<MSEClass: #PharoSymbolLiteral super: #FASTLiteral>
 	<package: #FAST>
 ]
-
-{ #category : #accessing }
-FASTPharoSymbolLiteral >> value [
-
-	^ '#', value asString
-]

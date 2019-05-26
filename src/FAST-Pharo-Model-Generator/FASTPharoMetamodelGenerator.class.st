@@ -1,3 +1,15 @@
+"
+TODO
+
+- FASTPharoMethodEntity
+
+DONE
+
+- FASTPharoSelector
+- FASTPharoSymbolLiteral
+- FASTPharoNumberLiteral
+- FASTPharoMessageSend
+"
 Class {
 	#name : #FASTPharoMetamodelGenerator,
 	#superclass : #FamixBasicInfrastructureGenerator,
@@ -18,7 +30,8 @@ Class {
 		'literal',
 		'behaviouralEntity',
 		'namedBehaviouralEntity',
-		'pharoExpression'
+		'pharoExpression',
+		'variableEntity'
 	],
 	#category : #'FAST-Pharo-Model-Generator'
 }
@@ -53,14 +66,14 @@ FASTPharoMetamodelGenerator class >> submetamodels [
 { #category : #definition }
 FASTPharoMetamodelGenerator >> defineClasses [
 	super defineClasses.
-	arrayLiteral := builder newClassNamed: #ArrayLiteral.
-	blockDefinition := builder newClassNamed: #BlockDefinition.
-	byteArrayLiteral := builder newClassNamed: #ByteArrayLiteral.
-	pharoExpression := builder newClassNamed: #Expression.
 	arrayExpression := builder newClassNamed: #ArrayExpression.
+	arrayLiteral := builder newClassNamed: #ArrayLiteral.
 	assignmentExpression := builder newClassNamed: #AssignmentExpression.
+	blockDefinition := builder newClassNamed: #BlockDefinition.
 	blockExpression := builder newClassNamed: #BlockExpression.
+	byteArrayLiteral := builder newClassNamed: #ByteArrayLiteral.
 	cascade := builder newClassNamed: #Cascade.
+	pharoExpression := builder newClassNamed: #Expression.
 	messageSend := builder newClassNamed: #MessageSend.
 	methodEntity := builder newClassNamed: #MethodEntity.
 	numberLiteral := builder newClassNamed: #NumberLiteral.
@@ -68,6 +81,7 @@ FASTPharoMetamodelGenerator >> defineClasses [
 	symbolLiteral := builder newClassNamed: #SymbolLiteral.
 	
 	literal := self remoteEntity: #Literal withPrefix: #FAST.
+	variableEntity := self remoteEntity: #VariableEntity withPrefix: #FAST.
 	behaviouralEntity := self remoteEntity: #BehaviouralEntity withPrefix: #FAST.
 	expression := self remoteEntity: #Expression withPrefix: #FAST.
 	namedBehaviouralEntity := self remoteEntity: #NamedBehaviouralEntity withPrefix: #FAST.
@@ -89,7 +103,9 @@ FASTPharoMetamodelGenerator >> defineHierarchy [
 	methodEntity --|> namedBehaviouralEntity.
 	numberLiteral --|> literal.
 	selector --|> entity.
-	symbolLiteral --|> literal
+	selector --|> #TNamed.
+	symbolLiteral --|> literal.
+	
 ]
 
 { #category : #definition }
@@ -100,4 +116,15 @@ FASTPharoMetamodelGenerator >> defineProperties [
 { #category : #definition }
 FASTPharoMetamodelGenerator >> defineRelations [
 	super defineRelations.
+	 
+	(((messageSend property: #selector) comment: 'The sent selector') <>- ((selector property: #parentMessageSend) comment: 'The sended of this selector')) withoutPrimaryContainer.
+	(((messageSend property: #receiver) comment: 'The receiver of the selector') <>- ((expression property: #pharoMessageReceiver) comment: 'The receiver of the pharo message')) withoutPrimaryContainer.
+	(((messageSend property: #inCascade) comment: 'Optional cascade including this message') *-<> ((cascade property: #messages) comment: 'The messages of the cascade')) withoutPrimaryContainer.	
+	
+	(((messageSend property: #arguments) comment: 'The arguments of the message') <>-* ((expression property: #pharoMessageArgumentOwner) comment: 'The message which own this argument')) withoutPrimaryContainer.	
+	
+	(((blockExpression property: #block) comment: 'Behavioural entity that represents the block') <>- ((blockDefinition property: #pharoBlockExpression) comment: 'Expression entity that represents the block')) withoutPrimaryContainer.
+	
+	(((assignmentExpression property: #variable) comment: 'An assigned variable (lhs of assignement)') <>- ((variableEntity property: #pharoParentAssignmentExpression) comment: '')) withoutPrimaryContainer.
+	(((assignmentExpression property: #expression) comment: 'Assigned expression (rhs of assignement)') <>- ((expression property: #pharoParentAssignmentExpression) comment: '')) withoutPrimaryContainer.	
 ]

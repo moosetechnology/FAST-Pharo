@@ -42,11 +42,6 @@ FASTPharoCascade >> name [
 	^ 'cascade'
 ]
 
-{ #category : #accessing }
-FASTPharoCascade >> receiver [
-	^ self messages anyOne receiver
-]
-
 { #category : #resolving }
 FASTPharoCascade >> resolveAllSymbols [
 	self messages do: [:s | s resolveAllSymbols ].
