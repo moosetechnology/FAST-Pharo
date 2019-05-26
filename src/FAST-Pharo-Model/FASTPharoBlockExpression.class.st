@@ -17,11 +17,6 @@ FASTPharoBlockExpression class >> annotation [
 	<package: #FAST>
 ]
 
-{ #category : #visiting }
-FASTPharoBlockExpression >> accept: aVisitor [
-	aVisitor visitPharoBlockExpression: self
-]
-
 { #category : #accessing }
 FASTPharoBlockExpression >> block [
 	<MSEProperty: #block type: #FASTPharoBlockDefinition opposite: #blockExpression>

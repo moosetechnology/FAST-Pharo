@@ -18,11 +18,6 @@ FASTPharoAssignmentExpression class >> annotation [
 	<package: #FAST>
 ]
 
-{ #category : #visiting }
-FASTPharoAssignmentExpression >> accept: aVisitor [
-	^ aVisitor visitPharoAssignmentExpression: self
-]
-
 { #category : #accessing }
 FASTPharoAssignmentExpression >> expression [
 	"Assigned expression (rhs of assignement)"

@@ -18,11 +18,6 @@ FASTPharoCascade class >> annotation [
 	<package: #FAST>
 ]
 
-{ #category : #visiting }
-FASTPharoCascade >> accept: aVisitor [
-	aVisitor visitCascadeNode: self
-]
-
 { #category : #accessing }
 FASTPharoCascade >> initialize [
 	super initialize.

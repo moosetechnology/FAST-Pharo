@@ -20,11 +20,6 @@ FASTPharoBlockDefinition class >> annotation [
 	<package: #FAST>
 ]
 
-{ #category : #visiting }
-FASTPharoBlockDefinition >> accept: aVisitor [
-	^ aVisitor visitPharoBlockDefinition: self
-]
-
 { #category : #accessing }
 FASTPharoBlockDefinition >> addChildExpression: anExpression [
 	| stmt |

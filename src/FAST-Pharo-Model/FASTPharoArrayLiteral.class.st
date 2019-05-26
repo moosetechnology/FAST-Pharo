@@ -13,11 +13,6 @@ FASTPharoArrayLiteral class >> annotation [
 	<package: #FAST>
 ]
 
-{ #category : #visiting }
-FASTPharoArrayLiteral >> accept: aVisitor [
-	aVisitor visitArrayLiteralNode: self
-]
-
 { #category : #accessing }
 FASTPharoArrayLiteral >> contents [
 	^ self childrenExpressions

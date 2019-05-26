@@ -13,11 +13,6 @@ FASTPharoArrayExpression class >> annotation [
 	<package: #FAST>
 ]
 
-{ #category : #visiting }
-FASTPharoArrayExpression >> accept: aVisitor [
-	^ aVisitor visitArrayExpressionNode: self
-]
-
 { #category : #initialization }
 FASTPharoArrayExpression >> contents [
 	^ self childrenExpressions

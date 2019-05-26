@@ -22,11 +22,6 @@ FASTPharoMessageSend class >> annotation [
 	<package: #FAST>
 ]
 
-{ #category : #visiting }
-FASTPharoMessageSend >> accept: aVisitor [
-	aVisitor visitPharoMessageSend: self
-]
-
 { #category : #accessing }
 FASTPharoMessageSend >> addArgument: anExpression [
 	self addChildExpression: anExpression

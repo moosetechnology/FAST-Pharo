@@ -18,11 +18,6 @@ FASTPharoSelector class >> annotation [
 	<package: #FAST>
 ]
 
-{ #category : #visiting }
-FASTPharoSelector >> accept: aVisitor [
-	^ aVisitor acceptPharoSelectorNode: self
-]
-
 { #category : #accessing }
 FASTPharoSelector >> name [
 	<MSEProperty: #name type: #String>

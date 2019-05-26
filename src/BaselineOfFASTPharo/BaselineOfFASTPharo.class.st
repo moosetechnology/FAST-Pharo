@@ -26,6 +26,11 @@ BaselineOfFASTPharo >> defineDependencies: spec [
 		with: [ spec
 				loads: #('default');
 				repository: 'github://moosetechnology/FAST:master/src' ].
+	spec
+		baseline: 'PetitParser'
+		with: [ spec
+				loads: #('Smalltalk');
+				repository: 'github://moosetechnology/PetitParser:master/src' ].
 ]
 
 { #category : #baselines }
@@ -35,6 +40,8 @@ BaselineOfFASTPharo >> defineGroups: spec [
 			with: #('FAST-Pharo-Model-Extension' 'FAST-Pharo-Model' 'FAST-Pharo-Model-Generator');
 		group: 'visitor'
 			with: #('core' 'FAST-Pharo-Visitor');
+		group: 'importer'
+			with: #('core' 'FAST-Pharo-Importer');
 		group: 'default' with: #('core')
 ]
 
@@ -44,5 +51,6 @@ BaselineOfFASTPharo >> definePackages: spec [
 		package: 'FAST-Pharo-Model' with: [ spec requires: #('FAST') ];
 		package: 'FAST-Pharo-Model-Generator';
 		package: 'FAST-Pharo-Model-Extension' with: [ spec requires: #('FAST-Pharo-Model') ];
-		package: 'FAST-Pharo-Visitor' with: [ spec requires: #('FAST-Pharo-Model') ]
+		package: 'FAST-Pharo-Visitor' with: [ spec requires: #('FAST-Pharo-Model') ];
+		package: 'FAST-Pharo-Importer' with: [ spec requires: #('PetitParser' 'FAST-Pharo-Model') ]
 ]

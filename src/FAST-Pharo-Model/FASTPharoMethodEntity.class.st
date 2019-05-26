@@ -15,11 +15,6 @@ FASTPharoMethodEntity class >> annotation [
 	<package: #FAST>
 ]
 
-{ #category : #visiting }
-FASTPharoMethodEntity >> accept: aVisitor [
-	^ aVisitor visitPharoMethodEntity: self
-]
-
 { #category : #accessing }
 FASTPharoMethodEntity >> addChildExpression: anExpression [
 	| stmt |
