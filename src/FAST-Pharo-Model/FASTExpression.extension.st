@@ -15,7 +15,7 @@ FASTExpression >> pharoArrayExpressionExpressionOwner [
 FASTExpression >> pharoArrayExpressionExpressionOwner: anObject [
 
 	<generated>
-	self privateState attributeAt: #pharoArrayExpressionExpressionOwner put: (FMMultivalueLink on: self update: #expressions from: self pharoArrayExpressionExpressionOwner to: anObject).
+	self privateState attributeAt: #pharoArrayExpressionExpressionOwner put: (FMMultivalueLink on: self update: #contents from: self pharoArrayExpressionExpressionOwner to: anObject).
 ]
 
 { #category : #'*FAST-Pharo-Model-accessing' }
@@ -33,7 +33,7 @@ FASTExpression >> pharoArrayLiteralExpressionExpressionOwner [
 FASTExpression >> pharoArrayLiteralExpressionExpressionOwner: anObject [
 
 	<generated>
-	self privateState attributeAt: #pharoArrayLiteralExpressionExpressionOwner put: (FMMultivalueLink on: self update: #expressions from: self pharoArrayLiteralExpressionExpressionOwner to: anObject).
+	self privateState attributeAt: #pharoArrayLiteralExpressionExpressionOwner put: (FMMultivalueLink on: self update: #contents from: self pharoArrayLiteralExpressionExpressionOwner to: anObject).
 ]
 
 { #category : #'*FAST-Pharo-Model-accessing' }
@@ -51,7 +51,7 @@ FASTExpression >> pharoByteArrayLiteralExpressionExpressionOwner [
 FASTExpression >> pharoByteArrayLiteralExpressionExpressionOwner: anObject [
 
 	<generated>
-	self privateState attributeAt: #pharoByteArrayLiteralExpressionExpressionOwner put: (FMMultivalueLink on: self update: #expressions from: self pharoByteArrayLiteralExpressionExpressionOwner to: anObject).
+	self privateState attributeAt: #pharoByteArrayLiteralExpressionExpressionOwner put: (FMMultivalueLink on: self update: #contents from: self pharoByteArrayLiteralExpressionExpressionOwner to: anObject).
 ]
 
 { #category : #'*FAST-Pharo-Model-accessing' }

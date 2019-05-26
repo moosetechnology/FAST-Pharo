@@ -26,7 +26,7 @@ SmalltalkSendMessageMethodTestCase >> testAsStringMessageReceiverType [
 
 { #category : #tests }
 SmalltalkSendMessageMethodTestCase >> testAsStringMessageReceiverVariableName [
-	self assert: sendMessageMethod statements first expression arguments first receiver variableName = 'super'
+	self assert: sendMessageMethod statements first expression arguments first receiver name equals: 'super'
 ]
 
 { #category : #tests }
@@ -66,7 +66,7 @@ SmalltalkSendMessageMethodTestCase >> testReturnMessageReceiverType [
 
 { #category : #tests }
 SmalltalkSendMessageMethodTestCase >> testReturnMessageReceiverVariableName [
-	self assert: sendMessageMethod statements first expression receiver variableName = 'self'
+	self assert: sendMessageMethod statements first expression receiver name equals: 'self'
 ]
 
 { #category : #tests }
@@ -86,7 +86,7 @@ SmalltalkSendMessageMethodTestCase >> testReturnMessageType [
 
 { #category : #tests }
 SmalltalkSendMessageMethodTestCase >> testStatementParent [
-	self assert: sendMessageMethod statements first parentNode equals: sendMessageMethod body
+	self assert: sendMessageMethod statements first parentNode equals: sendMessageMethod
 ]
 
 { #category : #tests }

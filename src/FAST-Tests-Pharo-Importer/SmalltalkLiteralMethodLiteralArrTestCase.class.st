@@ -30,7 +30,7 @@ SmalltalkLiteralMethodLiteralArrTestCase >> testArrayFifthElementType [
 
 { #category : #tests }
 SmalltalkLiteralMethodLiteralArrTestCase >> testArrayFifthElementValue [
-		self assert: (array contents at: 5) value equals: 'true'
+		self assert: (array contents at: 5) value equals: true
 ]
 
 { #category : #tests }
@@ -45,7 +45,7 @@ SmalltalkLiteralMethodLiteralArrTestCase >> testArrayFirstElementType [
 
 { #category : #tests }
 SmalltalkLiteralMethodLiteralArrTestCase >> testArrayFirstElementValue [
-		self assert: (array contents at: 1) value equals: '34'
+		self assert: (array contents at: 1) value equals: 34
 ]
 
 { #category : #tests }
@@ -65,9 +65,9 @@ SmalltalkLiteralMethodLiteralArrTestCase >> testArrayFourthElementContentsParent
 
 { #category : #tests }
 SmalltalkLiteralMethodLiteralArrTestCase >> testArrayFourthElementContentsValues [
-		self assert: ((array contents at: 4) contents at: 1) value equals: '$a'.
-		self assert: ((array contents at: 4) contents at: 2) value equals: '$r'.
-		self assert: ((array contents at: 4) contents at: 3) value equals: '$r'.
+		self assert: ((array contents at: 4) contents at: 1) value equals: $a.
+		self assert: ((array contents at: 4) contents at: 2) value equals: $r.
+		self assert: ((array contents at: 4) contents at: 3) value equals: $r.
 ]
 
 { #category : #tests }
@@ -82,7 +82,7 @@ SmalltalkLiteralMethodLiteralArrTestCase >> testArrayFourthElementType [
 
 { #category : #tests }
 SmalltalkLiteralMethodLiteralArrTestCase >> testArrayFourthElementValue [
-		self assert: (array contents at: 4) value equals: '#( $a $r $r )'
+		self assert: (array contents at: 4) value equals: #( $a $r $r )
 ]
 
 { #category : #tests }
@@ -92,7 +92,7 @@ SmalltalkLiteralMethodLiteralArrTestCase >> testArrayLiteralType [
 
 { #category : #tests }
 SmalltalkLiteralMethodLiteralArrTestCase >> testArrayLiteralValue [
-		self assert: array value equals: '#( 34 ''str'' #sym #( $a $r $r ) true #[ 2 5 6 ] )'
+		self assert: array value equals: #( 34 ''str'' #sym #( $a $r $r ) true #[ 2 5 6 ] )
 ]
 
 { #category : #tests }
@@ -107,7 +107,7 @@ SmalltalkLiteralMethodLiteralArrTestCase >> testArraySecondElementType [
 
 { #category : #tests }
 SmalltalkLiteralMethodLiteralArrTestCase >> testArraySecondElementValue [
-		self assert: (array contents at: 2) value equals: '''str'''
+		self assert: (array contents at: 2) value equals: 'str'
 ]
 
 { #category : #tests }
@@ -127,9 +127,9 @@ SmalltalkLiteralMethodLiteralArrTestCase >> testArraySixthElementContentsParent 
 
 { #category : #tests }
 SmalltalkLiteralMethodLiteralArrTestCase >> testArraySixthElementContentsValues [
-		self assert: ((array contents at: 6) contents at: 1) value equals: '2'.
-		self assert: ((array contents at: 6) contents at: 2) value equals: '5'.
-		self assert: ((array contents at: 6) contents at: 3) value equals: '6'.
+		self assert: ((array contents at: 6) contents at: 1) value equals: 2.
+		self assert: ((array contents at: 6) contents at: 2) value equals: 5.
+		self assert: ((array contents at: 6) contents at: 3) value equals: 6.
 ]
 
 { #category : #tests }
@@ -144,7 +144,7 @@ SmalltalkLiteralMethodLiteralArrTestCase >> testArraySixthElementType [
 
 { #category : #tests }
 SmalltalkLiteralMethodLiteralArrTestCase >> testArraySixthElementValue [
-		self assert: (array contents at: 6) value equals: '#[ 2 5 6 ]'
+		self assert: (array contents at: 6) value equals: #[ 2 5 6 ]
 ]
 
 { #category : #tests }

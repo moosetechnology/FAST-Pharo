@@ -45,7 +45,7 @@ SmalltalkCascadeMethodSecondMessageTestCase >> testSecondMessageParameterType [
 
 { #category : #tests }
 SmalltalkCascadeMethodSecondMessageTestCase >> testSecondMessageParameterVariableName [
-	self assert: message arguments first variableName equals: 'self'
+	self assert: message arguments first name equals: 'self'
 ]
 
 { #category : #tests }

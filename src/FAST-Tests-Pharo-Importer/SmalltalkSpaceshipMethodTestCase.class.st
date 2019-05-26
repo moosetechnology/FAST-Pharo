@@ -19,7 +19,7 @@ SmalltalkSpaceshipMethodTestCase >> testEqualsExpressionParameterType [
 { #category : #tests }
 SmalltalkSpaceshipMethodTestCase >> testEqualsExpressionParameterVariableName [
 	self assert: (spaceshipMethod statements first expression receiver arguments first isKindOf: FASTVariableExpression).
-	self assert: spaceshipMethod statements first expression receiver arguments first variableName equals: 'other'
+	self assert: spaceshipMethod statements first expression receiver arguments first name equals: 'other'
 ]
 
 { #category : #tests }
@@ -42,7 +42,7 @@ SmalltalkSpaceshipMethodTestCase >> testEqualsExpressionReceiverType [
 { #category : #tests }
 SmalltalkSpaceshipMethodTestCase >> testEqualsExpressionReceiverVariableName [
 	self assert: (spaceshipMethod statements first expression receiver receiver isKindOf: FASTVariableExpression).
-	self assert: spaceshipMethod statements first expression receiver receiver variableName equals: 'self'
+	self assert: spaceshipMethod statements first expression receiver receiver name equals: 'self'
 ]
 
 { #category : #tests }
@@ -112,7 +112,7 @@ SmalltalkSpaceshipMethodTestCase >> testIfExpressionType [
 
 { #category : #tests }
 SmalltalkSpaceshipMethodTestCase >> testStatementParent [
-	self assert: spaceshipMethod statements first parentNode equals: spaceshipMethod body
+	self assert: spaceshipMethod statements first parentNode equals: spaceshipMethod
 ]
 
 { #category : #tests }

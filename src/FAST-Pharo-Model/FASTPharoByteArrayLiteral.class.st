@@ -34,33 +34,33 @@ FASTPharoByteArrayLiteral class >> requirements [
 ]
 
 { #category : #adding }
-FASTPharoByteArrayLiteral >> addExpressions: anObject [
+FASTPharoByteArrayLiteral >> addContents: anObject [
 			
 	<generated>
-	^ self expressions add: anObject
+	^ self contents add: anObject
 ]
 
 { #category : #accessing }
-FASTPharoByteArrayLiteral >> expressions [
+FASTPharoByteArrayLiteral >> contents [
 
 	<generated>
 	<MSEComment: 'The expression in the array'>
-	<MSEProperty: #expressions type: #Object>
-	^ self privateState attributeAt: #expressions ifAbsentPut: [ FMMultivalueLink on: self opposite: #pharoByteArrayLiteralExpressionExpressionOwner: ]
+	<MSEProperty: #contents type: #Object>
+	^ self privateState attributeAt: #contents ifAbsentPut: [ FMMultivalueLink on: self opposite: #pharoByteArrayLiteralExpressionExpressionOwner: ]
 ]
 
 { #category : #accessing }
-FASTPharoByteArrayLiteral >> expressions: anObject [
+FASTPharoByteArrayLiteral >> contents: anObject [
 
 	<generated>
-	self expressions value: anObject
+	self contents value: anObject
 ]
 
 { #category : #navigation }
-FASTPharoByteArrayLiteral >> expressionsGroup [
+FASTPharoByteArrayLiteral >> contentsGroup [
 
 	<generated>
-	<navigation: 'Expressions'>
+	<navigation: 'Contents'>
 	^ MooseGroup
-			withAll: (self expressions asSet)
+			withAll: (self contents asSet)
 ]

@@ -35,7 +35,7 @@ SmalltalkCascadeMethodTestCase >> testAsStringMessageReceiverType [
 
 { #category : #tests }
 SmalltalkCascadeMethodTestCase >> testAsStringMessageReceiverVariableName [
-	self assert: (cascadeMethod statements first expression messages at: 1) arguments first receiver variableName equals: 'super'
+	self assert: (cascadeMethod statements first expression messages at: 1) arguments first receiver name equals: 'super'
 ]
 
 { #category : #tests }
@@ -88,7 +88,7 @@ SmalltalkCascadeMethodTestCase >> testCascadeReceiverType [
 
 { #category : #tests }
 SmalltalkCascadeMethodTestCase >> testCascadeReceiverVariableName [
-	self assert: cascadeMethod statements first expression receiver value variableName equals: 'self'
+	self assert: cascadeMethod statements first expression receiver value name equals: 'self'
 ]
 
 { #category : #tests }
@@ -116,7 +116,7 @@ SmalltalkCascadeMethodTestCase >> testSecondMessageSelectorParent [
 
 { #category : #tests }
 SmalltalkCascadeMethodTestCase >> testStatementParent [
-	self assert: cascadeMethod statements first parentNode equals: cascadeMethod body
+	self assert: cascadeMethod statements first parentNode equals: cascadeMethod
 ]
 
 { #category : #tests }

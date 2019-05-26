@@ -34,33 +34,33 @@ FASTPharoArrayExpression class >> requirements [
 ]
 
 { #category : #adding }
-FASTPharoArrayExpression >> addExpressions: anObject [
+FASTPharoArrayExpression >> addContents: anObject [
 			
 	<generated>
-	^ self expressions add: anObject
+	^ self contents add: anObject
 ]
 
 { #category : #accessing }
-FASTPharoArrayExpression >> expressions [
+FASTPharoArrayExpression >> contents [
 
 	<generated>
 	<MSEComment: 'The expression in the array'>
-	<MSEProperty: #expressions type: #Object>
-	^ self privateState attributeAt: #expressions ifAbsentPut: [ FMMultivalueLink on: self opposite: #pharoArrayExpressionExpressionOwner: ]
+	<MSEProperty: #contents type: #Object>
+	^ self privateState attributeAt: #contents ifAbsentPut: [ FMMultivalueLink on: self opposite: #pharoArrayExpressionExpressionOwner: ]
 ]
 
 { #category : #accessing }
-FASTPharoArrayExpression >> expressions: anObject [
+FASTPharoArrayExpression >> contents: anObject [
 
 	<generated>
-	self expressions value: anObject
+	self contents value: anObject
 ]
 
 { #category : #navigation }
-FASTPharoArrayExpression >> expressionsGroup [
+FASTPharoArrayExpression >> contentsGroup [
 
 	<generated>
-	<navigation: 'Expressions'>
+	<navigation: 'Contents'>
 	^ MooseGroup
-			withAll: (self expressions asSet)
+			withAll: (self contents asSet)
 ]

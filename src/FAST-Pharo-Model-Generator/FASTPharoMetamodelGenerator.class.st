@@ -142,9 +142,9 @@ FASTPharoMetamodelGenerator >> defineRelations [
 	(((blockDefinition property: #localVariables) comment: 'The local variables of the block') <>-* ((variableExpression property: #pharoBlockDefinitionVariableEntityOwner) comment: '')) withoutPrimaryContainer.	
 
 
-	(((arrayExpression property: #expressions) comment: 'The expression in the array') <>-* ((expression property: #pharoArrayExpressionExpressionOwner) comment: '')) withoutPrimaryContainer.	
+	(((arrayExpression property: #contents) comment: 'The expression in the array') <>-* ((expression property: #pharoArrayExpressionExpressionOwner) comment: '')) withoutPrimaryContainer.	
 
-	(((arrayLiteral property: #expressions) comment: 'The expression in the array') <>-* ((expression property: #pharoArrayLiteralExpressionExpressionOwner) comment: '')) withoutPrimaryContainer.	
-	(((byteArrayLiteral property: #expressions) comment: 'The expression in the array') <>-* ((expression property: #pharoByteArrayLiteralExpressionExpressionOwner) comment: '')) withoutPrimaryContainer.	
+	(((arrayLiteral property: #contents) comment: 'The expression in the array') <>-* ((expression property: #pharoArrayLiteralExpressionExpressionOwner) comment: '')) withoutPrimaryContainer.	
+	(((byteArrayLiteral property: #contents) comment: 'The expression in the array') <>-* ((expression property: #pharoByteArrayLiteralExpressionExpressionOwner) comment: '')) withoutPrimaryContainer.	
 	
 ]

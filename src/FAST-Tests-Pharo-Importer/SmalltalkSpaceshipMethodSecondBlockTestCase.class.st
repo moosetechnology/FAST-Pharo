@@ -15,17 +15,17 @@ SmalltalkSpaceshipMethodSecondBlockTestCase >> setUp [
 
 { #category : #tests }
 SmalltalkSpaceshipMethodSecondBlockTestCase >> testExpressionParent [
-	self assert: block statements first returnedExpression parentNode equals: block statements first
+	self assert: block statements first expression parentNode equals: block statements first
 ]
 
 { #category : #tests }
 SmalltalkSpaceshipMethodSecondBlockTestCase >> testExpressionType [
-	self assert: (block statements first returnedExpression isKindOf: FASTLiteral)
+	self assert: (block statements first expression isKindOf: FASTLiteral)
 ]
 
 { #category : #tests }
 SmalltalkSpaceshipMethodSecondBlockTestCase >> testLiteralValue [
-	self assert: block statements first returnedExpression value equals: '1'
+	self assert: block statements first expression value equals: 1
 ]
 
 { #category : #tests }
@@ -45,7 +45,7 @@ SmalltalkSpaceshipMethodSecondBlockTestCase >> testStatementsCount [
 
 { #category : #tests }
 SmalltalkSpaceshipMethodSecondBlockTestCase >> testStatementsParent [
-	self assert: (block statements allSatisfy: [ :statement | statement parentNode == block body ])
+	self assert: (block statements allSatisfy: [ :statement | statement parentNode == block ])
 ]
 
 { #category : #tests }
