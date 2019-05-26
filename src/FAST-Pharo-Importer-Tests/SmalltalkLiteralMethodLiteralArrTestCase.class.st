@@ -4,7 +4,7 @@ Class {
 	#instVars : [
 		'array'
 	],
-	#category : #'FAST-Tests-Pharo-Importer'
+	#category : #'FAST-Pharo-Importer-Tests'
 }
 
 { #category : #running }

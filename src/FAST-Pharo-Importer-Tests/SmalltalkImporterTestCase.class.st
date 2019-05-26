@@ -13,7 +13,7 @@ Class {
 		'scopeMethod',
 		'nestMethod'
 	],
-	#category : #'FAST-Tests-Pharo-Importer'
+	#category : #'FAST-Pharo-Importer-Tests'
 }
 
 { #category : #running }

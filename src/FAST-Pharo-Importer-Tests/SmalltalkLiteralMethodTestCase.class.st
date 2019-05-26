@@ -1,7 +1,7 @@
 Class {
 	#name : #SmalltalkLiteralMethodTestCase,
 	#superclass : #SmalltalkImporterTestCase,
-	#category : #'FAST-Tests-Pharo-Importer'
+	#category : #'FAST-Pharo-Importer-Tests'
 }
 
 { #category : #tests }
