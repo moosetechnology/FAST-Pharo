@@ -58,6 +58,15 @@ FASTSmalltalkImporterVisitor >> create: class from: aNodeEntity [
 	^ newEntity
 ]
 
+{ #category : #'visitor-double dispatching' }
+FASTSmalltalkImporterVisitor >> create: class fromFASTNode: aFASTNode [
+	| newEntity |
+	newEntity := self create: class.
+	newEntity startPos: aFASTNode startPos.
+	newEntity endPos: aFASTNode endPos.
+	^ newEntity
+]
+
 { #category : #'entity-creation' }
 FASTSmalltalkImporterVisitor >> createExpression: aFASTExp [
 	currentFASTEntity := self addToModel: aFASTExp.
@@ -76,10 +85,9 @@ FASTSmalltalkImporterVisitor >> createLiteral: aFASTLiteral withValue: aValue [
 
 { #category : #'entity-creation' }
 FASTSmalltalkImporterVisitor >> createVariable: aVariableNode [ 
- 	| fastVar |
-	fastVar := self addToModel: FASTVariableEntity new.
-	fastVar variableName: aVariableNode name.
-	^ fastVar
+ 	^ (self create: FASTVariableExpression from: aVariableNode)
+		name: aVariableNode name;
+		yourself
 
 ]
 
@@ -113,9 +121,8 @@ FASTSmalltalkImporterVisitor >> ensureStatement: aFASTNode [
 	| stmt |
 	aFASTNode isFASTStatement
 		ifFalse: [
-			stmt := FASTExpressionStatement new.
+			stmt := self create: FASTExpressionStatement fromFASTNode: aFASTNode.
 			stmt expression: aFASTNode.
-			self addToModel: stmt.
 			^ stmt
 		]
 		ifTrue: [ ^ aFASTNode ]
@@ -275,14 +282,9 @@ FASTSmalltalkImporterVisitor >> visitBlockNode: aBlockNode [
 	because blocks are expressions and behavioural entities"
 
 	| blockExpression |
-	blockExpression := self addToModel: FASTPharoBlockExpression new.
-	currentFASTEntity := self addToModel: FASTPharoBlockDefinition new.
+	blockExpression :=  self create: FastPharoBlockExpression from: aBlockNode.
+	currentFASTEntity := self create: FastPharoBlockDefinition from: aBlockNode.
 	currentFASTEntity blockExpression: blockExpression.
-	blockExpression block: currentFASTEntity.
-	currentFASTScope := FASTScope
-		newWithOwner: currentFASTEntity
-		andParents: {self parentScope}.
-	currentFASTEntity fastScope: currentFASTScope.
 	aBlockNode arguments
 		ifNotNil: [ :parameters | 
 			parameters
@@ -291,7 +293,7 @@ FASTSmalltalkImporterVisitor >> visitBlockNode: aBlockNode [
 					fastParam := self createVariable: param.
 					currentFASTEntity parameters add: fastParam.
 					"uses the method's poolOfLocalVariables"
-					self putVarInScope: fastParam ] ].
+					"self putVarInScope: fastParam" ] ].
 	self clone visitNode: aBlockNode body.
 	^ blockExpression
 ]
@@ -436,7 +438,6 @@ FASTSmalltalkImporterVisitor >> visitSequenceNode: aSequenceNode [
 	aSequenceNode statements do: [ :each |
 		self parentFASTEntity addStatements: ( self ensureStatement: (self clone visitNode: each) ).
 	].
-
 	^ currentFASTEntity
 ]
 

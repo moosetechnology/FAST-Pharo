@@ -127,11 +127,13 @@ FASTPharoMetamodelGenerator >> defineRelations [
 	
 	(((messageSend property: #arguments) comment: 'The arguments of the message') <>-* ((expression property: #pharoMessageArgumentOwner) comment: 'The message which own this argument')) withoutPrimaryContainer.	
 	
-	(((blockExpression property: #block) comment: 'Behavioural entity that represents the block') <>- ((blockDefinition property: #pharoBlockExpression) comment: 'Expression entity that represents the block')) withoutPrimaryContainer.
+	(((blockExpression property: #block) comment: 'Behavioural entity that represents the block') <>- ((blockDefinition property: #blockExpression) comment: 'Expression entity that represents the block')) withoutPrimaryContainer.
 	
 	(((assignmentExpression property: #variable) comment: 'An assigned variable (lhs of assignement)') <>- ((variableEntity property: #pharoParentAssignmentExpression) comment: '')) withoutPrimaryContainer.
 	(((assignmentExpression property: #expression) comment: 'Assigned expression (rhs of assignement)') <>- ((expression property: #pharoParentAssignmentExpression) comment: '')) withoutPrimaryContainer.	
 	
-	(((methodEntity property: #statements) comment: 'The statements of the methid') <>-* ((statement property: #pharoStatementOwner) comment: '')) withoutPrimaryContainer.	
+	(((methodEntity property: #statements) comment: 'The statements of the methid') <>-* ((statement property: #pharoMethodStatementOwner) comment: '')) withoutPrimaryContainer.	
+	
+	(((blockDefinition property: #statements) comment: 'The statements of the methid') <>-* ((statement property: #pharoBlockStatementOwner) comment: '')) withoutPrimaryContainer.	
 	
 ]
