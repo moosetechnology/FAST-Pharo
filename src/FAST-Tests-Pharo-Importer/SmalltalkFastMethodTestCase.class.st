@@ -5,13 +5,6 @@ Class {
 }
 
 { #category : #tests }
-SmalltalkFastMethodTestCase >> testMethodFamixRelation [
-	| famixMethod |
-	famixMethod := returnMethod parentNode.
-	self assert: famixMethod fastBehaviouralEntity == returnMethod
-]
-
-{ #category : #tests }
 SmalltalkFastMethodTestCase >> testMethodName [
 	self
 		assert: sendMessageMethod name	equals: 'sendMessage';
@@ -23,5 +16,5 @@ SmalltalkFastMethodTestCase >> testMethodName [
 
 { #category : #tests }
 SmalltalkFastMethodTestCase >> testMethodParent [
-	self assert: returnMethod parentNode isNotNil
+	self assert: returnMethod parentNode isNil
 ]

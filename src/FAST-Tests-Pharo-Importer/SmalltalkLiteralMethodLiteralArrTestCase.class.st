@@ -81,18 +81,8 @@ SmalltalkLiteralMethodLiteralArrTestCase >> testArrayFourthElementType [
 ]
 
 { #category : #tests }
-SmalltalkLiteralMethodLiteralArrTestCase >> testArrayFourthElementValue [
-		self assert: (array contents at: 4) value equals: #( $a $r $r )
-]
-
-{ #category : #tests }
 SmalltalkLiteralMethodLiteralArrTestCase >> testArrayLiteralType [
 		self assert: array class equals: FASTPharoArrayLiteral
-]
-
-{ #category : #tests }
-SmalltalkLiteralMethodLiteralArrTestCase >> testArrayLiteralValue [
-		self assert: array value equals: #( 34 ''str'' #sym #( $a $r $r ) true #[ 2 5 6 ] )
 ]
 
 { #category : #tests }
@@ -143,11 +133,6 @@ SmalltalkLiteralMethodLiteralArrTestCase >> testArraySixthElementType [
 ]
 
 { #category : #tests }
-SmalltalkLiteralMethodLiteralArrTestCase >> testArraySixthElementValue [
-		self assert: (array contents at: 6) value equals: #[ 2 5 6 ]
-]
-
-{ #category : #tests }
 SmalltalkLiteralMethodLiteralArrTestCase >> testArrayThirdElementParent [
 		self assert: (array contents at: 3) parentNode equals: array
 ]
@@ -159,5 +144,5 @@ SmalltalkLiteralMethodLiteralArrTestCase >> testArrayThirdElementType [
 
 { #category : #tests }
 SmalltalkLiteralMethodLiteralArrTestCase >> testArrayThirdElementValue [
-		self assert: (array contents at: 3) value equals: '#sym'
+		self assert: (array contents at: 3) value equals: #sym
 ]

@@ -11,7 +11,7 @@ Class {
 SmalltalkLiteralMethodExpressionArrTestCase >> setUp [
 	super setUp.
 
-	array := (literalMethod statements at: 9) returnedExpression
+	array := (literalMethod statements at: 9) expression
 ]
 
 { #category : #tests }
@@ -27,19 +27,19 @@ SmalltalkLiteralMethodExpressionArrTestCase >> testArrayContentsParent [
 { #category : #tests }
 SmalltalkLiteralMethodExpressionArrTestCase >> testArrayFifthVariableName [
 	self assert: ((array contents at: 5) isKindOf: FASTVariableExpression).
-	self assert: (array contents at: 5) variableName equals: 'character'
+	self assert: (array contents at: 5) name equals: 'character'
 ]
 
 { #category : #tests }
 SmalltalkLiteralMethodExpressionArrTestCase >> testArrayFirstVariableName [
 	self assert: ((array contents at: 1) isKindOf: FASTVariableExpression).
-	self assert: (array contents at: 1) variableName equals: 'undefined'
+	self assert: (array contents at: 1) name equals: 'undefined'
 ]
 
 { #category : #tests }
 SmalltalkLiteralMethodExpressionArrTestCase >> testArrayFourthVariableName [
 	self assert: ((array contents at: 4) isKindOf: FASTVariableExpression).
-	self assert: (array contents at: 4) variableName equals: 'number'
+	self assert: (array contents at: 4) name equals: 'number'
 ]
 
 { #category : #tests }
@@ -67,19 +67,19 @@ SmalltalkLiteralMethodExpressionArrTestCase >> testArrayParent [
 { #category : #tests }
 SmalltalkLiteralMethodExpressionArrTestCase >> testArraySecondVariableName [
 	self assert: ((array contents at: 2) isKindOf: FASTVariableExpression).
-	self assert: (array contents at: 2) variableName equals: 'array'
+	self assert: (array contents at: 2) name equals: 'array'
 ]
 
 { #category : #tests }
 SmalltalkLiteralMethodExpressionArrTestCase >> testArraySixthVariableName [
 	self assert: ((array contents at: 6) isKindOf: FASTVariableExpression).
-	self assert: (array contents at: 6) variableName equals: 'symbol'
+	self assert: (array contents at: 6) name equals: 'symbol'
 ]
 
 { #category : #tests }
 SmalltalkLiteralMethodExpressionArrTestCase >> testArrayThirdVariableName [
 	self assert: ((array contents at: 3) isKindOf: FASTVariableExpression).
-	self assert: (array contents at: 3) variableName equals: 'byteArr'
+	self assert: (array contents at: 3) name equals: 'byteArr'
 ]
 
 { #category : #tests }

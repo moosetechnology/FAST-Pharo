@@ -7,8 +7,8 @@ Class {
 { #category : #tests }
 SmalltalkFastMethodParametersTestCase >> testMiddleMethodParameterNames [
 	self
-		assert: middleMethod parameters first variableName = 'a';
-		assert: middleMethod parameters last variableName = 'b'
+		assert: middleMethod parameters first name equals: 'a';
+		assert: middleMethod parameters last name equals: 'b'
 ]
 
 { #category : #tests }
@@ -23,7 +23,7 @@ SmalltalkFastMethodParametersTestCase >> testMiddleMethodParametersParent [
 
 { #category : #tests }
 SmalltalkFastMethodParametersTestCase >> testReturnMethodParameterName [
-	self assert: returnMethod parameters first variableName = 'variable'
+	self assert: returnMethod parameters first name equals: 'variable'
 ]
 
 { #category : #tests }
@@ -43,7 +43,7 @@ SmalltalkFastMethodParametersTestCase >> testSendMessageMethodParametersCount [
 
 { #category : #tests }
 SmalltalkFastMethodParametersTestCase >> testSpaceshipMethodParameterNaming [
-	self assert: spaceshipMethod parameters first variableName = 'other'
+	self assert: spaceshipMethod parameters first name equals: 'other'
 ]
 
 { #category : #tests }

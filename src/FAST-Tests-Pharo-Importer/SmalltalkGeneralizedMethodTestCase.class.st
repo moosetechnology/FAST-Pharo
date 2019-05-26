@@ -5,13 +5,6 @@ Class {
 }
 
 { #category : #tests }
-SmalltalkGeneralizedMethodTestCase >> testInvocationAndMessageSendNamings [
-	allMethods do:[:method |
-		method parentNode outgoingInvocations do: [:invocation |
-			self assert: (invocation signature beginsWith: invocation messageSend selector name , '(')]]
-]
-
-{ #category : #tests }
 SmalltalkGeneralizedMethodTestCase >> testMethodImport [
 	allMethods do: [ :method | self assert: method notNil ]
 ]
@@ -24,5 +17,5 @@ SmalltalkGeneralizedMethodTestCase >> testMethodType [
 { #category : #tests }
 SmalltalkGeneralizedMethodTestCase >> testStatementsMethodReference [
 	allMethods do: [ :method |
-		self assert: (method statements allSatisfy: [ :statement | statement parentNode == method body ]) ] 
+		self assert: (method statements allSatisfy: [ :statement | statement parentNode == method ]) ] 
 ]

@@ -16,10 +16,10 @@ SmalltalkFastMethodTemporariesTestCase >> testMethodWithTemporaries [
 
 { #category : #tests }
 SmalltalkFastMethodTemporariesTestCase >> testMethodWithTemporariesName [
-	self assert: middleMethod localVariables first variableName equals: 'sum'
+	self assert: middleMethod localVariables first name equals: 'sum'
 ]
 
 { #category : #tests }
 SmalltalkFastMethodTemporariesTestCase >> testMethodWithTemporariesParent [
-	self assert: middleMethod localVariables first parentNode equals: middleMethod body
+	self assert: middleMethod localVariables first parentNode equals: middleMethod
 ]
