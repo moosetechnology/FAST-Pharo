@@ -144,4 +144,5 @@ FASTPharoMetamodelGenerator >> defineRelations [
 
 	(((arrayExpression property: #expressions) comment: 'The expression in the array') <>-* ((expression property: #pharoArrayExpressionExpressionOwner) comment: '')) withoutPrimaryContainer.	
 
+	(((arrayLiteral property: #expressions) comment: 'The expression in the array') <>-* ((expression property: #pharoArrayLiteralExpressionExpressionOwner) comment: '')) withoutPrimaryContainer.	
 ]
