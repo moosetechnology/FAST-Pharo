@@ -31,7 +31,8 @@ Class {
 		'behaviouralEntity',
 		'namedBehaviouralEntity',
 		'pharoExpression',
-		'variableEntity'
+		'variableEntity',
+		'statement'
 	],
 	#category : #'FAST-Pharo-Model-Generator'
 }
@@ -85,7 +86,8 @@ FASTPharoMetamodelGenerator >> defineClasses [
 	behaviouralEntity := self remoteEntity: #BehaviouralEntity withPrefix: #FAST.
 	expression := self remoteEntity: #Expression withPrefix: #FAST.
 	namedBehaviouralEntity := self remoteEntity: #NamedBehaviouralEntity withPrefix: #FAST.
-	entity := self remoteEntity: #Entity withPrefix: #FAST
+	entity := self remoteEntity: #Entity withPrefix: #FAST.
+	statement := self remoteEntity: #Statement withPrefix: #FAST
 ]
 
 { #category : #definition }
@@ -101,6 +103,7 @@ FASTPharoMetamodelGenerator >> defineHierarchy [
 	cascade --|> pharoExpression.
 	messageSend --|> expression.
 	methodEntity --|> namedBehaviouralEntity.
+	methodEntity --|> #TWithImmediateSource.
 	numberLiteral --|> literal.
 	selector --|> entity.
 	selector --|> #TNamed.
@@ -128,4 +131,7 @@ FASTPharoMetamodelGenerator >> defineRelations [
 	
 	(((assignmentExpression property: #variable) comment: 'An assigned variable (lhs of assignement)') <>- ((variableEntity property: #pharoParentAssignmentExpression) comment: '')) withoutPrimaryContainer.
 	(((assignmentExpression property: #expression) comment: 'Assigned expression (rhs of assignement)') <>- ((expression property: #pharoParentAssignmentExpression) comment: '')) withoutPrimaryContainer.	
+	
+	(((methodEntity property: #statements) comment: 'The statements of the methid') <>-* ((statement property: #pharoStatementOwner) comment: '')) withoutPrimaryContainer.	
+	
 ]
