@@ -6,8 +6,6 @@ should create Trait FASTImporterVisitor to factorize some of the methods
 Class {
 	#name : #FASTSmalltalkImporterVisitor,
 	#superclass : #RBProgramNodeVisitor,
-	#traits : 'TFASTImporterVisitor',
-	#classTraits : 'TFASTImporterVisitor classTrait',
 	#instVars : [
 		'model',
 		'parentFASTVisitor',
