@@ -32,7 +32,8 @@ Class {
 		'namedBehaviouralEntity',
 		'pharoExpression',
 		'variableEntity',
-		'statement'
+		'statement',
+		'variableExpression'
 	],
 	#category : #'FAST-Pharo-Model-Generator'
 }
@@ -83,6 +84,7 @@ FASTPharoMetamodelGenerator >> defineClasses [
 	
 	literal := self remoteEntity: #Literal withPrefix: #FAST.
 	variableEntity := self remoteEntity: #VariableEntity withPrefix: #FAST.
+	variableExpression := self remoteEntity: #VariableExpression withPrefix: #FAST.
 	behaviouralEntity := self remoteEntity: #BehaviouralEntity withPrefix: #FAST.
 	expression := self remoteEntity: #Expression withPrefix: #FAST.
 	namedBehaviouralEntity := self remoteEntity: #NamedBehaviouralEntity withPrefix: #FAST.
@@ -132,8 +134,11 @@ FASTPharoMetamodelGenerator >> defineRelations [
 	(((assignmentExpression property: #variable) comment: 'An assigned variable (lhs of assignement)') <>- ((variableEntity property: #pharoParentAssignmentExpression) comment: '')) withoutPrimaryContainer.
 	(((assignmentExpression property: #expression) comment: 'Assigned expression (rhs of assignement)') <>- ((expression property: #pharoParentAssignmentExpression) comment: '')) withoutPrimaryContainer.	
 	
-	(((methodEntity property: #statements) comment: 'The statements of the methid') <>-* ((statement property: #pharoMethodStatementOwner) comment: '')) withoutPrimaryContainer.	
+	(((methodEntity property: #statements) comment: 'The statements of the method') <>-* ((statement property: #pharoMethodStatementOwner) comment: '')) withoutPrimaryContainer.	
+	(((methodEntity property: #localVariables) comment: 'The local variables of the method') <>-* ((variableExpression property: #pharoMethodVariableEntityOwner) comment: '')) withoutPrimaryContainer.	
 	
-	(((blockDefinition property: #statements) comment: 'The statements of the methid') <>-* ((statement property: #pharoBlockStatementOwner) comment: '')) withoutPrimaryContainer.	
 	
+	(((blockDefinition property: #statements) comment: 'The statements of the method') <>-* ((statement property: #pharoBlockStatementOwner) comment: '')) withoutPrimaryContainer.	
+	(((blockDefinition property: #localVariables) comment: 'The local variables of the block') <>-* ((variableExpression property: #pharoBlockDefinitionVariableEntityOwner) comment: '')) withoutPrimaryContainer.	
+
 ]

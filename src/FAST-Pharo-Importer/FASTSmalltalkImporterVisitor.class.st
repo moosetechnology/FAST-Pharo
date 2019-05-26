@@ -431,8 +431,7 @@ FASTSmalltalkImporterVisitor >> visitSequenceNode: aSequenceNode [
 		do: [ :aVariableNode | 
 			| fastLocal |
 			fastLocal := self createVariable: aVariableNode.
-			currentFASTEntity addLocalEntity: fastLocal.
-			self putVarInScope: fastLocal
+			self parentFASTEntity addLocalVariables: fastLocal.
 	].
 
 	aSequenceNode statements do: [ :each |
