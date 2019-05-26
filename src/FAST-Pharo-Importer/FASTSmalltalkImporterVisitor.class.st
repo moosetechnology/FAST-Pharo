@@ -68,19 +68,10 @@ FASTSmalltalkImporterVisitor >> create: class fromFASTNode: aFASTNode [
 ]
 
 { #category : #'entity-creation' }
-FASTSmalltalkImporterVisitor >> createExpression: aFASTExp [
-	currentFASTEntity := self addToModel: aFASTExp.
-	"currentFASTEntity parentNode: self parentFASTEntity."
-	^ currentFASTEntity
-]
-
-{ #category : #'entity-creation' }
-FASTSmalltalkImporterVisitor >> createLiteral: aFASTLiteral withValue: aValue [
-
-	self createExpression: aFASTLiteral.
-	currentFASTEntity value: aValue.
-
-	^ currentFASTEntity
+FASTSmalltalkImporterVisitor >> createLiteral: aFASTLiteral from: aNode withValue: aValue [
+	^ (self create: aFASTLiteral from: aNode)
+		value: aValue;
+		yourself
 ]
 
 { #category : #'entity-creation' }
@@ -266,12 +257,11 @@ FASTSmalltalkImporterVisitor >> visitArrayNode: anArrayNode [
 { #category : #'visitor-double dispatching' }
 FASTSmalltalkImporterVisitor >> visitAssignmentNode: anAssignmentNode [ 
 	| assignt |
-	self createExpression: FASTPharoAssignmentExpression new.
+	currentFASTEntity := self create: FastPharoAssignmentExpression from: anAssignmentNode.
 	
 	currentFASTEntity variable: (self clone visitNode: anAssignmentNode variable).
 
 	currentFASTEntity expression: (self clone visitNode: anAssignmentNode value).
-	currentFASTEntity expression parentExpression: currentFASTEntity.
 
   	^ currentFASTEntity
 ]
@@ -300,7 +290,7 @@ FASTSmalltalkImporterVisitor >> visitBlockNode: aBlockNode [
 
 { #category : #'visitor-literal double dispatching' }
 FASTSmalltalkImporterVisitor >> visitBooleanLiteralNode: literalNode [
-	^ self createLiteral: FASTBooleanLiteral new withValue: literalNode value
+	^ self createLiteral: FASTBooleanLiteral from: literalNode withValue: literalNode value
 
 ]
 
@@ -315,7 +305,7 @@ FASTSmalltalkImporterVisitor >> visitCascadeNode: aCascadeNode [
 
 { #category : #'visitor-literal double dispatching' }
 FASTSmalltalkImporterVisitor >> visitCharacterLiteralNode: literalNode [
-	^ self createLiteral: FASTCharacterLiteral new withValue: literalNode value
+	^ self createLiteral: FASTCharacterLiteral from: literalNode withValue: literalNode value
 
 ]
 
@@ -337,7 +327,7 @@ FASTSmalltalkImporterVisitor >> visitLiteralNode: literalNode [
 	literalNode value isCharacter
 		ifTrue: [ ^ self visitCharacterLiteralNode: literalNode ].
 	literalNode value isSymbol
-		ifTrue: [ ^ self vsitSymbolLiteralNode: literalNode ].
+		ifTrue: [ ^ self visitSymbolLiteralNode: literalNode ].
 	literalNode value isString
 		ifTrue: [ ^ self visitStringLiteralNode: literalNode ].
 	literalNode value ifNil: [ ^ self visitUndefinedLiteralNode: literalNode ].	"there is not test method for booleans !!! Luckily that's the only one
@@ -399,7 +389,7 @@ FASTSmalltalkImporterVisitor >> visitMethodNode: aMethodNode [
 
 { #category : #'visitor-literal double dispatching' }
 FASTSmalltalkImporterVisitor >> visitNumberLiteralNode: literalNode [
-	^ self createLiteral: FASTPharoNumberLiteral new withValue: literalNode value
+	^ self createLiteral: FastPharoNumberLiteral from: literalNode withValue: literalNode value
 
 ]
 
@@ -442,16 +432,17 @@ FASTSmalltalkImporterVisitor >> visitSequenceNode: aSequenceNode [
 
 { #category : #'visitor-literal double dispatching' }
 FASTSmalltalkImporterVisitor >> visitStringLiteralNode: literalNode [
-	| literal |
-	literal := self addToModel: FASTStringLiteral new.
-	^ literal
-		value: literalNode value ;
-		yourself
+	^ self createLiteral: FASTStringLiteral from: literalNode withValue: literalNode value
+]
+
+{ #category : #'visitor-literal double dispatching' }
+FASTSmalltalkImporterVisitor >> visitSymbolLiteralNode: literalNode [
+	^ self createLiteral: FastPharoSymbolLiteral from: literalNode withValue: literalNode value
 ]
 
 { #category : #'visitor-literal double dispatching' }
 FASTSmalltalkImporterVisitor >> visitUndefinedLiteralNode: literalNode [
-	^ self createLiteral: FASTNullPointerLiteral new withValue: literalNode value
+	^ self createLiteral: FASTNullPointerLiteral from: literalNode withValue: literalNode value
 ]
 
 { #category : #'visitor-double dispatching' }
@@ -461,9 +452,4 @@ FASTSmalltalkImporterVisitor >> visitVariableNode: aVariableNode [
  	currentFASTEntity name: aVariableNode name.
 
  	^ currentFASTEntity
-]
-
-{ #category : #'visitor-literal double dispatching' }
-FASTSmalltalkImporterVisitor >> vsitSymbolLiteralNode: literalNode [
-	^ self createLiteral: FASTPharoSymbolLiteral new withValue: literalNode value
 ]
