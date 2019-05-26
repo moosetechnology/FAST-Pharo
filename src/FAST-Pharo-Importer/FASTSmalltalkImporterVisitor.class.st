@@ -315,7 +315,7 @@ FASTSmalltalkImporterVisitor >> visitLiteralArrayNode: aLiteralArrayNode [
 									ifTrue: [ FastPharoByteArrayLiteral ]
 									ifFalse: [ FastPharoArrayLiteral ]) from: aLiteralArrayNode.
 	
-	aLiteralArrayNode contents do: [ :each | currentFASTEntity addChildExpression: (self clone visitNode: each) ].
+	aLiteralArrayNode contents do: [ :each | currentFASTEntity addExpressions: (self clone visitNode: each) ].
 
 	^ currentFASTEntity
 ]
