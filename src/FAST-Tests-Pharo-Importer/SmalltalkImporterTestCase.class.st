@@ -19,7 +19,7 @@ Class {
 { #category : #running }
 SmalltalkImporterTestCase >> getFastMethodFromModelByName: methodName [
 
-	^ (model allMethods detect: [ :method | method name = methodName ]) generateFAST; fastBehaviouralEntity
+	^ (model allMethods detect: [ :method | method name = methodName ]) generateFAST
 ]
 
 { #category : #running }

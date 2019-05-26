@@ -37,6 +37,24 @@ FASTExpression >> pharoArrayLiteralExpressionExpressionOwner: anObject [
 ]
 
 { #category : #'*FAST-Pharo-Model-accessing' }
+FASTExpression >> pharoByteArrayLiteralExpressionExpressionOwner [
+
+	<generated>
+	<container>
+
+	<MSEProperty: #pharoByteArrayLiteralExpressionExpressionOwner type: #Object>
+	<package: #'FAST-Pharo-Model'>
+	^ self privateState attributeAt: #pharoByteArrayLiteralExpressionExpressionOwner ifAbsent: [ nil ]
+]
+
+{ #category : #'*FAST-Pharo-Model-accessing' }
+FASTExpression >> pharoByteArrayLiteralExpressionExpressionOwner: anObject [
+
+	<generated>
+	self privateState attributeAt: #pharoByteArrayLiteralExpressionExpressionOwner put: (FMMultivalueLink on: self update: #expressions from: self pharoByteArrayLiteralExpressionExpressionOwner to: anObject).
+]
+
+{ #category : #'*FAST-Pharo-Model-accessing' }
 FASTExpression >> pharoMessageArgumentOwner [
 
 	<generated>

@@ -41,8 +41,7 @@ BaselineOfFASTPharo >> defineGroups: spec [
 		group: 'visitor'
 			with: #('core' 'FAST-Pharo-Visitor');
 		group: 'importer'
-			with: #('core' 'FAST-Pharo-Importer');
-		group: 'default' with: #('core')
+			with: #('core' 'FAST-Pharo-Importer')
 ]
 
 { #category : #baselines }
@@ -52,5 +51,7 @@ BaselineOfFASTPharo >> definePackages: spec [
 		package: 'FAST-Pharo-Model-Generator';
 		package: 'FAST-Pharo-Model-Extension' with: [ spec requires: #('FAST-Pharo-Model') ];
 		package: 'FAST-Pharo-Visitor' with: [ spec requires: #('FAST-Pharo-Model') ];
-		package: 'FAST-Pharo-Importer' with: [ spec requires: #('PetitParser' 'FAST-Pharo-Model') ]
+		package: 'FAST-Pharo-Importer' with: [ spec requires: #('PetitParser' 'FAST-Pharo-Model') ];
+		package: 'FAST-TestResources-Pharo';
+		package: 'FAST-Tests-Pharo-Importer' with: [ spec requires: #('FAST-Pharo-Importer' 'FAST-TestResources-Pharo') ]
 ]
