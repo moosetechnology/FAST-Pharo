@@ -246,10 +246,10 @@ FASTSmalltalkImporterVisitor >> runWithSource: sourceAsString and: aFamixMethod 
 { #category : #'visitor-double dispatching' }
 FASTSmalltalkImporterVisitor >> visitArrayNode: anArrayNode [
 
-	self createExpression: FASTPharoArrayExpression new.
+	currentFASTEntity := self create: FastPharoArrayExpression from: anArrayNode.
 
 	anArrayNode children do: [:each |
-		currentFASTEntity addChildExpression: (self clone visitNode: each).
+		currentFASTEntity addExpressions: (self clone visitNode: each).
 	].
 	^ currentFASTEntity 
 ]
@@ -297,7 +297,7 @@ FASTSmalltalkImporterVisitor >> visitBooleanLiteralNode: literalNode [
 { #category : #'visitor-double dispatching' }
 FASTSmalltalkImporterVisitor >> visitCascadeNode: aCascadeNode [ 
  
-	currentFASTEntity := (self addToModel: FASTPharoCascade new).
+	currentFASTEntity := (self create: FastPharoCascade from: aCascadeNode).
 	aCascadeNode messages do: [ :each | currentFASTEntity messages add: (self clone visitNode: each) ].
 	
   	^ currentFASTEntity
@@ -311,9 +311,9 @@ FASTSmalltalkImporterVisitor >> visitCharacterLiteralNode: literalNode [
 
 { #category : #'visitor-literal double dispatching' }
 FASTSmalltalkImporterVisitor >> visitLiteralArrayNode: aLiteralArrayNode [
-	self createExpression: (aLiteralArrayNode isForByteArray
-									ifTrue: [ FASTPharoByteArrayLiteral ]
-									ifFalse: [ FASTPharoArrayLiteral ]) new.
+	currentFASTEntity := self create: (aLiteralArrayNode isForByteArray
+									ifTrue: [ FastPharoByteArrayLiteral ]
+									ifFalse: [ FastPharoArrayLiteral ]) from: aLiteralArrayNode.
 	
 	aLiteralArrayNode contents do: [ :each | currentFASTEntity addChildExpression: (self clone visitNode: each) ].
 
