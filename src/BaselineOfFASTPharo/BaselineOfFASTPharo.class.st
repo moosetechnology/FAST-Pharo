@@ -29,7 +29,7 @@ BaselineOfFASTPharo >> defineDependencies: spec [
 	spec
 		baseline: 'PetitParser'
 		with: [ spec
-				loads: #('Smalltalk');
+				loads: #('SmalltalkCore');
 				repository: 'github://moosetechnology/PetitParser:master/src' ].
 ]
 
@@ -53,5 +53,5 @@ BaselineOfFASTPharo >> definePackages: spec [
 		package: 'FAST-Pharo-Visitor' with: [ spec requires: #('FAST-Pharo-Model') ];
 		package: 'FAST-Pharo-Importer' with: [ spec requires: #('PetitParser' 'FAST-Pharo-Model') ];
 		package: 'FAST-TestResources-Pharo';
-		package: 'FAST-Tests-Pharo-Importer' with: [ spec requires: #('FAST-Pharo-Importer' 'FAST-TestResources-Pharo') ]
+		package: 'FAST-Pharo-Importer-Tests' with: [ spec requires: #('FAST-Pharo-Importer' 'FAST-TestResources-Pharo') ]
 ]
