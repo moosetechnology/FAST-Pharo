@@ -1,39 +1,66 @@
-"
-An array literal: #(...)
-"
 Class {
 	#name : #FASTPharoArrayLiteral,
 	#superclass : #FASTLiteral,
-	#category : #'FAST-Pharo-Model'
+	#category : #'FAST-Pharo-Model-Entities'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : #meta }
 FASTPharoArrayLiteral class >> annotation [
-	<MSEClass: #PharoArrayLiteral super: #FASTLiteral>
-	<package: #FAST>
+
+	<MSEClass: #ArrayLiteral super: #FASTLiteral>
+	<package: #'FAST-Pharo-Model'>
+	<generated>
+	^self
 ]
 
-{ #category : #visiting }
-FASTPharoArrayLiteral >> accept: aVisitor [
-	aVisitor visitArrayLiteralNode: self
+{ #category : #generator }
+FASTPharoArrayLiteral class >> generatedSlotNames [
+	<generated>
+	'FASTPharoArrayLiteral class>>#generatedSlotNames'.
+	^ #()
+]
+
+{ #category : #generator }
+FASTPharoArrayLiteral class >> generatedTraitNames [
+	<generated>
+	^ #()
+]
+
+{ #category : #meta }
+FASTPharoArrayLiteral class >> requirements [
+
+	<generated>
+	^ {  }
+]
+
+{ #category : #adding }
+FASTPharoArrayLiteral >> addContents: anObject [
+			
+	<generated>
+	^ self contents add: anObject
 ]
 
 { #category : #accessing }
 FASTPharoArrayLiteral >> contents [
-	^ self childrenExpressions
+
+	<generated>
+	<MSEComment: 'The expression in the array'>
+	<MSEProperty: #contents type: #Object>
+	^ self privateState attributeAt: #contents ifAbsentPut: [ FMMultivalueLink on: self opposite: #pharoArrayLiteralExpressionExpressionOwner: ]
 ]
 
 { #category : #accessing }
-FASTPharoArrayLiteral >> contents: newElements [
-	self childrenExpressions: newElements
+FASTPharoArrayLiteral >> contents: anObject [
+
+	<generated>
+	self contents value: anObject
 ]
 
-{ #category : #accessing }
-FASTPharoArrayLiteral >> value [
-	^ (self childrenExpressions inject: '#(' into: [ :acc :each | acc , ' ' , each value ]) , ' )'
-]
+{ #category : #navigation }
+FASTPharoArrayLiteral >> contentsGroup [
 
-{ #category : #accessing }
-FASTPharoArrayLiteral >> value: aLiteral [
-	self childrenExpressions: aLiteral
+	<generated>
+	<navigation: 'Contents'>
+	^ MooseGroup
+			withAll: (self contents asSet)
 ]

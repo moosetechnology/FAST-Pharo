@@ -1,89 +1,128 @@
-"
-An entity dedicated to represent a block node as defined.
-It will often be wrapped in a PharoBlockExpression when used.
-It contains a StatementBlock to store the statements and local variables
-
-"
 Class {
 	#name : #FASTPharoBlockDefinition,
 	#superclass : #FASTBehaviouralEntity,
 	#instVars : [
-		'statements',
-		'parentExpr'
+		'#blockExpression => FMOne type: #FASTPharoBlockExpression opposite: #block'
 	],
-	#category : #'FAST-Pharo-Model'
+	#category : #'FAST-Pharo-Model-Entities'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : #meta }
 FASTPharoBlockDefinition class >> annotation [
-	<MSEClass: #PharoBlockDefinition super: #FASTBehaviouralEntity>
-	<package: #FAST>
+
+	<MSEClass: #BlockDefinition super: #FASTBehaviouralEntity>
+	<package: #'FAST-Pharo-Model'>
+	<generated>
+	^self
 ]
 
-{ #category : #visiting }
-FASTPharoBlockDefinition >> accept: aVisitor [
-	^ aVisitor visitPharoBlockDefinition: self
+{ #category : #generator }
+FASTPharoBlockDefinition class >> generatedSlotNames [
+	<generated>
+	'FASTPharoBlockDefinition class>>#generatedSlotNames'.
+	^ #(blockExpression)
 ]
 
-{ #category : #accessing }
-FASTPharoBlockDefinition >> addChildExpression: anExpression [
-	| stmt |
-	stmt := FASTExpressionStatement new
-									expression: anExpression ;
-									yourself.
-	anExpression parentStatement: stmt.
-	self mooseModel add: stmt.
-	self addStatement: stmt.
+{ #category : #generator }
+FASTPharoBlockDefinition class >> generatedTraitNames [
+	<generated>
+	^ #()
+]
 
+{ #category : #meta }
+FASTPharoBlockDefinition class >> requirements [
 
+	<generated>
+	^ { FASTPharoBlockExpression }
+]
+
+{ #category : #adding }
+FASTPharoBlockDefinition >> addLocalVariables: anObject [
+			
+	<generated>
+	^ self localVariables add: anObject
+]
+
+{ #category : #adding }
+FASTPharoBlockDefinition >> addStatements: anObject [
+			
+	<generated>
+	^ self statements add: anObject
 ]
 
 { #category : #accessing }
 FASTPharoBlockDefinition >> blockExpression [
-	<MSEProperty: #blockExpression type: #FASTPharoBlockExpression opposite: #block>
+
+	<generated>
 	<MSEComment: 'Expression entity that represents the block'>
-	^ parentExpr
+	<container>
+
+	^ blockExpression
 ]
 
 { #category : #accessing }
-FASTPharoBlockDefinition >> blockExpression: aFastBlockExpression [
-	parentExpr := aFastBlockExpression
+FASTPharoBlockDefinition >> blockExpression: anObject [
+
+	<generated>
+	blockExpression := anObject
+
+]
+
+{ #category : #navigation }
+FASTPharoBlockDefinition >> blockExpressionGroup [
+
+	<generated>
+	<navigation: 'BlockExpression'>
+	^ MooseGroup
+			with: (self blockExpression)
 ]
 
 { #category : #accessing }
-FASTPharoBlockDefinition >> childExpression: anExpression [
-	| stmt |
-	stmt := FASTExpressionStatement new
-									expression: anExpression ;
-									yourself.
-	anExpression parentStatement: stmt.
-	self mooseModel add: stmt.
-	self addStatement: stmt.
+FASTPharoBlockDefinition >> localVariables [
 
-
-]
-
-{ #category : #testing }
-FASTPharoBlockDefinition >> isFASTExpression [
-	^ true
-]
-
-{ #category : #testing }
-FASTPharoBlockDefinition >> isFASTStatement [
-	^ false
+	<generated>
+	<MSEComment: 'The local variables of the block'>
+	<MSEProperty: #localVariables type: #Object>
+	^ self privateState attributeAt: #localVariables ifAbsentPut: [ FMMultivalueLink on: self opposite: #pharoBlockDefinitionVariableEntityOwner: ]
 ]
 
 { #category : #accessing }
-FASTPharoBlockDefinition >> name [
-	^ 'blockDefinition'
+FASTPharoBlockDefinition >> localVariables: anObject [
+
+	<generated>
+	self localVariables value: anObject
+]
+
+{ #category : #navigation }
+FASTPharoBlockDefinition >> localVariablesGroup [
+
+	<generated>
+	<navigation: 'LocalVariables'>
+	^ MooseGroup
+			withAll: (self localVariables asSet)
 ]
 
 { #category : #accessing }
-FASTPharoBlockDefinition >> parentNode [
-	^ parentExpr
+FASTPharoBlockDefinition >> statements [
+
+	<generated>
+	<MSEComment: 'The statements of the method'>
+	<MSEProperty: #statements type: #Object>
+	^ self privateState attributeAt: #statements ifAbsentPut: [ FMMultivalueLink on: self opposite: #pharoBlockStatementOwner: ]
 ]
 
 { #category : #accessing }
-FASTPharoBlockDefinition >> parentScopableEntity [
-	^ parentExpr ifNil: [ nil ] ifNotNil: [ :parent | parent parentScopableEntity]
+FASTPharoBlockDefinition >> statements: anObject [
+
+	<generated>
+	self statements value: anObject
+]
+
+{ #category : #navigation }
+FASTPharoBlockDefinition >> statementsGroup [
+
+	<generated>
+	<navigation: 'Statements'>
+	^ MooseGroup
+			withAll: (self statements asSet)
 ]

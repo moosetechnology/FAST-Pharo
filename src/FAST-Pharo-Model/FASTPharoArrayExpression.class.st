@@ -1,35 +1,66 @@
-"
-A representation of a dynamic array expression eg: {expr . expr. expr}
-"
 Class {
 	#name : #FASTPharoArrayExpression,
 	#superclass : #FASTPharoExpression,
-	#category : #'FAST-Pharo-Model'
+	#category : #'FAST-Pharo-Model-Entities'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : #meta }
 FASTPharoArrayExpression class >> annotation [
-	<MSEClass: #PharoArrayExpression super: #FASTPharoExpression>
-	<package: #FAST>
+
+	<MSEClass: #ArrayExpression super: #FASTPharoExpression>
+	<package: #'FAST-Pharo-Model'>
+	<generated>
+	^self
 ]
 
-{ #category : #visiting }
-FASTPharoArrayExpression >> accept: aVisitor [
-	^ aVisitor visitArrayExpressionNode: self
+{ #category : #generator }
+FASTPharoArrayExpression class >> generatedSlotNames [
+	<generated>
+	'FASTPharoArrayExpression class>>#generatedSlotNames'.
+	^ #()
 ]
 
-{ #category : #initialization }
+{ #category : #generator }
+FASTPharoArrayExpression class >> generatedTraitNames [
+	<generated>
+	^ #()
+]
+
+{ #category : #meta }
+FASTPharoArrayExpression class >> requirements [
+
+	<generated>
+	^ {  }
+]
+
+{ #category : #adding }
+FASTPharoArrayExpression >> addContents: anObject [
+			
+	<generated>
+	^ self contents add: anObject
+]
+
+{ #category : #accessing }
 FASTPharoArrayExpression >> contents [
-	^ self childrenExpressions
+
+	<generated>
+	<MSEComment: 'The expression in the array'>
+	<MSEProperty: #contents type: #Object>
+	^ self privateState attributeAt: #contents ifAbsentPut: [ FMMultivalueLink on: self opposite: #pharoArrayExpressionExpressionOwner: ]
 ]
 
-{ #category : #initialization }
-FASTPharoArrayExpression >> contents: elements [
-	self childrenExpressions: elements
+{ #category : #accessing }
+FASTPharoArrayExpression >> contents: anObject [
+
+	<generated>
+	self contents value: anObject
 ]
 
-{ #category : #resolving }
-FASTPharoArrayExpression >> resolveAllSymbols [
-	self childrenExpressions do: [:s | s resolveAllSymbols ]
+{ #category : #navigation }
+FASTPharoArrayExpression >> contentsGroup [
 
+	<generated>
+	<navigation: 'Contents'>
+	^ MooseGroup
+			withAll: (self contents asSet)
 ]

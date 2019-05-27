@@ -1,34 +1,66 @@
-"
-A byte array literal: #[...]
-"
 Class {
 	#name : #FASTPharoByteArrayLiteral,
 	#superclass : #FASTLiteral,
-	#category : #'FAST-Pharo-Model'
+	#category : #'FAST-Pharo-Model-Entities'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : #meta }
 FASTPharoByteArrayLiteral class >> annotation [
-	<MSEClass: #PharoByteArrayLiteral super: #FASTLiteral>
-	<package: #FAST>
+
+	<MSEClass: #ByteArrayLiteral super: #FASTLiteral>
+	<package: #'FAST-Pharo-Model'>
+	<generated>
+	^self
 ]
 
-{ #category : #visiting }
-FASTPharoByteArrayLiteral >> accept: aVisitor [
-	aVisitor visitArrayLiteralNode: self
+{ #category : #generator }
+FASTPharoByteArrayLiteral class >> generatedSlotNames [
+	<generated>
+	'FASTPharoByteArrayLiteral class>>#generatedSlotNames'.
+	^ #()
+]
+
+{ #category : #generator }
+FASTPharoByteArrayLiteral class >> generatedTraitNames [
+	<generated>
+	^ #()
+]
+
+{ #category : #meta }
+FASTPharoByteArrayLiteral class >> requirements [
+
+	<generated>
+	^ {  }
+]
+
+{ #category : #adding }
+FASTPharoByteArrayLiteral >> addContents: anObject [
+			
+	<generated>
+	^ self contents add: anObject
 ]
 
 { #category : #accessing }
 FASTPharoByteArrayLiteral >> contents [
-	^ self childrenExpressions
+
+	<generated>
+	<MSEComment: 'The expression in the array'>
+	<MSEProperty: #contents type: #Object>
+	^ self privateState attributeAt: #contents ifAbsentPut: [ FMMultivalueLink on: self opposite: #pharoByteArrayLiteralExpressionExpressionOwner: ]
 ]
 
 { #category : #accessing }
-FASTPharoByteArrayLiteral >> contents: newElements [
-	self childrenExpressions: newElements
+FASTPharoByteArrayLiteral >> contents: anObject [
+
+	<generated>
+	self contents value: anObject
 ]
 
-{ #category : #accessing }
-FASTPharoByteArrayLiteral >> value [
-	^ (self contents inject: '#[' into: [ :acc :each | acc , ' ' , each value ]) , ' ]'
+{ #category : #navigation }
+FASTPharoByteArrayLiteral >> contentsGroup [
+
+	<generated>
+	<navigation: 'Contents'>
+	^ MooseGroup
+			withAll: (self contents asSet)
 ]

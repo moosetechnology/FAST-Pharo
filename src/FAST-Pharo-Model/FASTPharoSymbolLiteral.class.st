@@ -1,20 +1,34 @@
-"
-A symbol literal
-"
 Class {
 	#name : #FASTPharoSymbolLiteral,
 	#superclass : #FASTLiteral,
-	#category : #'FAST-Pharo-Model'
+	#category : #'FAST-Pharo-Model-Entities'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : #meta }
 FASTPharoSymbolLiteral class >> annotation [
-	<MSEClass: #PharoSymbolLiteral super: #FASTLiteral>
-	<package: #FAST>
+
+	<MSEClass: #SymbolLiteral super: #FASTLiteral>
+	<package: #'FAST-Pharo-Model'>
+	<generated>
+	^self
 ]
 
-{ #category : #accessing }
-FASTPharoSymbolLiteral >> value [
+{ #category : #generator }
+FASTPharoSymbolLiteral class >> generatedSlotNames [
+	<generated>
+	'FASTPharoSymbolLiteral class>>#generatedSlotNames'.
+	^ #()
+]
 
-	^ '#', value asString
+{ #category : #generator }
+FASTPharoSymbolLiteral class >> generatedTraitNames [
+	<generated>
+	^ #()
+]
+
+{ #category : #meta }
+FASTPharoSymbolLiteral class >> requirements [
+
+	<generated>
+	^ {  }
 ]

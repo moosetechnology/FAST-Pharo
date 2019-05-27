@@ -11,7 +11,7 @@ PrintingVisitorTestCase >> printMethod: aMethod [
 
 { #category : #tests }
 PrintingVisitorTestCase >> printSourceText: aMethod [
-	^ aMethod parentNode formattedSourceText withSeparatorsCompacted
+	^ aMethod sourceText
 ]
 
 { #category : #tests }

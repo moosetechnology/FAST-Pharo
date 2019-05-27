@@ -1,7 +1,7 @@
 Extension { #name : #FASTPharoMessageSend }
 
 { #category : #'*FAST-Pharo-Tools' }
-FASTPharoMessageSend class >> branchSelectors [
+FASTPharoMessageSend classSide >> branchSelectors [
 	^ #(
 		ifTrue:
 		ifFalse:
@@ -29,7 +29,7 @@ FASTPharoMessageSend >> cycloComplexityDonation [
 ]
 
 { #category : #'*FAST-Pharo-Tools' }
-FASTPharoMessageSend class >> loopSelectors [
+FASTPharoMessageSend classSide >> loopSelectors [
 	^ #(
 		whileTrue:
 		whileTrue

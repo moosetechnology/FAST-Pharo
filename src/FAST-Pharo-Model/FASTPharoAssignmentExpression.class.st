@@ -1,52 +1,88 @@
-"
-An assignment expression mode.
-
-Contains a referances to an assignee (a variable) and the expression that's being assigned.
-"
 Class {
 	#name : #FASTPharoAssignmentExpression,
 	#superclass : #FASTPharoExpression,
-	#instVars : [
-		'variable'
-	],
-	#category : #'FAST-Pharo-Model'
+	#category : #'FAST-Pharo-Model-Entities'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : #meta }
 FASTPharoAssignmentExpression class >> annotation [
-	<MSEClass: #PharoAssignmentExpression super: #FASTPharoExpression>
-	<package: #FAST>
+
+	<MSEClass: #AssignmentExpression super: #FASTPharoExpression>
+	<package: #'FAST-Pharo-Model'>
+	<generated>
+	^self
 ]
 
-{ #category : #visiting }
-FASTPharoAssignmentExpression >> accept: aVisitor [
-	^ aVisitor visitPharoAssignmentExpression: self
+{ #category : #generator }
+FASTPharoAssignmentExpression class >> generatedSlotNames [
+	<generated>
+	'FASTPharoAssignmentExpression class>>#generatedSlotNames'.
+	^ #()
+]
+
+{ #category : #generator }
+FASTPharoAssignmentExpression class >> generatedTraitNames [
+	<generated>
+	^ #()
+]
+
+{ #category : #meta }
+FASTPharoAssignmentExpression class >> requirements [
+
+	<generated>
+	^ {  }
 ]
 
 { #category : #accessing }
 FASTPharoAssignmentExpression >> expression [
-	"Assigned expression (rhs of assignement)"
-	^ self childrenExpressions ifEmpty: [ nil ] ifNotEmpty: [ :exps | exps anyOne ]
+
+	<generated>
+	<MSEComment: 'Assigned expression (rhs of assignement)'>
+	<MSEProperty: #expression type: #Object>
+	^ self privateState attributeAt: #expression ifAbsent: [ nil ]
 ]
 
 { #category : #accessing }
-FASTPharoAssignmentExpression >> expression: anExpression [
-	self childrenExpressions: { anExpression }
+FASTPharoAssignmentExpression >> expression: anObject [
+
+	<generated>
+	(self privateState attributeAt: #expression ifAbsentPut: [nil]) == anObject ifTrue: [ ^ anObject ].
+	self privateState attributeAt: #expression put: anObject.
+	anObject pharoParentAssignmentExpression: self
 ]
 
-{ #category : #accessing }
-FASTPharoAssignmentExpression >> name [
-	^ 'assignment expression'
+{ #category : #navigation }
+FASTPharoAssignmentExpression >> expressionGroup [
+
+	<generated>
+	<navigation: 'Expression'>
+	^ MooseGroup
+			with: (self expression)
 ]
 
 { #category : #accessing }
 FASTPharoAssignmentExpression >> variable [
-	<MSEProperty: #variable type: #FASTVariableEntity opposite: #parentAssignmentExpression>
+
+	<generated>
 	<MSEComment: 'An assigned variable (lhs of assignement)'>
-	^variable
+	<MSEProperty: #variable type: #Object>
+	^ self privateState attributeAt: #variable ifAbsent: [ nil ]
 ]
 
 { #category : #accessing }
-FASTPharoAssignmentExpression >> variable: aStructuralEntity [
-	variable := aStructuralEntity
+FASTPharoAssignmentExpression >> variable: anObject [
+
+	<generated>
+	(self privateState attributeAt: #variable ifAbsentPut: [nil]) == anObject ifTrue: [ ^ anObject ].
+	self privateState attributeAt: #variable put: anObject.
+	anObject pharoParentAssignmentExpression: self
+]
+
+{ #category : #navigation }
+FASTPharoAssignmentExpression >> variableGroup [
+
+	<generated>
+	<navigation: 'Variable'>
+	^ MooseGroup
+			with: (self variable)
 ]

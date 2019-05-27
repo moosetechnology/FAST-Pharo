@@ -1,47 +1,100 @@
-"
-@FLAG: May be could be removed???
-A FASTMethodEntity represents a method
-It is useful to create the scope of the method and its parent scope (scope of the class) correctly, on the fly
-"
 Class {
 	#name : #FASTPharoMethodEntity,
 	#superclass : #FASTNamedBehaviouralEntity,
-	#category : #'FAST-Pharo-Model'
+	#traits : 'FamixTWithImmediateSource',
+	#classTraits : 'FamixTWithImmediateSource classTrait',
+	#category : #'FAST-Pharo-Model-Entities'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : #meta }
 FASTPharoMethodEntity class >> annotation [
-	<MSEClass: #PharoMethodEntity super: #FASTNamedBehaviouralEntity>
-	<package: #FAST>
+
+	<MSEClass: #MethodEntity super: #FASTNamedBehaviouralEntity>
+	<package: #'FAST-Pharo-Model'>
+	<generated>
+	^self
 ]
 
-{ #category : #visiting }
-FASTPharoMethodEntity >> accept: aVisitor [
-	^ aVisitor visitPharoMethodEntity: self
+{ #category : #generator }
+FASTPharoMethodEntity class >> generatedSlotNames [
+	<generated>
+	'FASTPharoMethodEntity class>>#generatedSlotNames'.
+	^ #()
+]
+
+{ #category : #generator }
+FASTPharoMethodEntity class >> generatedTraitNames [
+	<generated>
+	^ #(FamixTWithImmediateSource)
+]
+
+{ #category : #meta }
+FASTPharoMethodEntity class >> requirements [
+
+	<generated>
+	^ {  }
+]
+
+{ #category : #adding }
+FASTPharoMethodEntity >> addLocalVariables: anObject [
+			
+	<generated>
+	^ self localVariables add: anObject
+]
+
+{ #category : #adding }
+FASTPharoMethodEntity >> addStatements: anObject [
+			
+	<generated>
+	^ self statements add: anObject
 ]
 
 { #category : #accessing }
-FASTPharoMethodEntity >> addChildExpression: anExpression [
-	| stmt |
-	"in Smalltalk, there is little difference between a statement and an expression (see also FASTPharoExpression)"
-	stmt := FASTExpressionStatement new
-									expression: anExpression ;
-									yourself.
-	anExpression parentStatement: stmt.
-	self mooseModel add: stmt.
-	self addStatement: stmt.
+FASTPharoMethodEntity >> localVariables [
 
-
-]
-
-{ #category : #printing }
-FASTPharoMethodEntity >> mooseNameOn: aStream [
-	self famixNamedEntity
-		ifNil: [ aStream nextPutAll: name ]
-		ifNotNil: [ :fmx | fmx mooseNameOn: aStream ]
+	<generated>
+	<MSEComment: 'The local variables of the method'>
+	<MSEProperty: #localVariables type: #Object>
+	^ self privateState attributeAt: #localVariables ifAbsentPut: [ FMMultivalueLink on: self opposite: #pharoMethodVariableEntityOwner: ]
 ]
 
 { #category : #accessing }
-FASTPharoMethodEntity >> parentScopableEntity [
-	^ nil
+FASTPharoMethodEntity >> localVariables: anObject [
+
+	<generated>
+	self localVariables value: anObject
+]
+
+{ #category : #navigation }
+FASTPharoMethodEntity >> localVariablesGroup [
+
+	<generated>
+	<navigation: 'LocalVariables'>
+	^ MooseGroup
+			withAll: (self localVariables asSet)
+]
+
+{ #category : #accessing }
+FASTPharoMethodEntity >> statements [
+
+	<generated>
+	<MSEComment: 'The statements of the method'>
+	<MSEProperty: #statements type: #Object>
+	^ self privateState attributeAt: #statements ifAbsentPut: [ FMMultivalueLink on: self opposite: #pharoMethodStatementOwner: ]
+]
+
+{ #category : #accessing }
+FASTPharoMethodEntity >> statements: anObject [
+
+	<generated>
+	self statements value: anObject
+]
+
+{ #category : #navigation }
+FASTPharoMethodEntity >> statementsGroup [
+
+	<generated>
+	<navigation: 'Statements'>
+	^ MooseGroup
+			withAll: (self statements asSet)
 ]

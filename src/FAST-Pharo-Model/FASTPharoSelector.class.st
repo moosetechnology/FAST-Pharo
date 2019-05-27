@@ -1,53 +1,66 @@
-"
-A FAST node representing the selector in a MessageSend
-"
 Class {
 	#name : #FASTPharoSelector,
 	#superclass : #FASTEntity,
+	#traits : 'FamixTNamed',
+	#classTraits : 'FamixTNamed classTrait',
 	#instVars : [
-		'name',
-		'parentExpression',
-		'parentMessageSend'
+		'#parentMessageSend => FMOne type: #FASTPharoMessageSend opposite: #selector'
 	],
-	#category : #'FAST-Pharo-Model'
+	#category : #'FAST-Pharo-Model-Entities'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : #meta }
 FASTPharoSelector class >> annotation [
-	<MSEClass: #PharoSelector super: #FASTEntity>
-	<package: #FAST>
+
+	<MSEClass: #Selector super: #FASTEntity>
+	<package: #'FAST-Pharo-Model'>
+	<generated>
+	^self
 ]
 
-{ #category : #visiting }
-FASTPharoSelector >> accept: aVisitor [
-	^ aVisitor acceptPharoSelectorNode: self
+{ #category : #generator }
+FASTPharoSelector class >> generatedSlotNames [
+	<generated>
+	'FASTPharoSelector class>>#generatedSlotNames'.
+	^ #(parentMessageSend)
 ]
 
-{ #category : #accessing }
-FASTPharoSelector >> name [
-	<MSEProperty: #name type: #String>
-	<MSEComment: 'Name of the method'>
-	^ name
+{ #category : #generator }
+FASTPharoSelector class >> generatedTraitNames [
+	<generated>
+	^ #(FamixTNamed)
 ]
 
-{ #category : #accessing }
-FASTPharoSelector >> name: aName [
-	name := aName
+{ #category : #meta }
+FASTPharoSelector class >> requirements [
+
+	<generated>
+	^ { FASTPharoMessageSend }
 ]
 
 { #category : #accessing }
 FASTPharoSelector >> parentMessageSend [
-	<MSEProperty: #parentMessageSend type: #FASTPharoMessageSend opposite: #selector>
-	<MSEComment: 'An expression referencing this selector'>
+
+	<generated>
+	<MSEComment: 'The sended of this selector'>
+	<container>
+
 	^ parentMessageSend
 ]
 
 { #category : #accessing }
-FASTPharoSelector >> parentMessageSend: aMessageSend [
-	parentMessageSend := aMessageSend
+FASTPharoSelector >> parentMessageSend: anObject [
+
+	<generated>
+	parentMessageSend := anObject
+
 ]
 
-{ #category : #accessing }
-FASTPharoSelector >> parentNode [
-	^ self parentMessageSend
+{ #category : #navigation }
+FASTPharoSelector >> parentMessageSendGroup [
+
+	<generated>
+	<navigation: 'ParentMessageSend'>
+	^ MooseGroup
+			with: (self parentMessageSend)
 ]
