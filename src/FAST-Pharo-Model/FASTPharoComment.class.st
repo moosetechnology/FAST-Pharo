@@ -9,28 +9,8 @@ Class {
 { #category : #meta }
 FASTPharoComment class >> annotation [
 
-	<MSEClass: #Comment super: #FASTPharoSourcedEntity>
+	<FMClass: #Comment super: #FASTPharoSourcedEntity>
 	<package: #'FAST-Pharo-Model'>
 	<generated>
 	^self
-]
-
-{ #category : #generator }
-FASTPharoComment class >> generatedSlotNames [
-	<generated>
-	'FASTPharoComment class>>#generatedSlotNames'.
-	^ #()
-]
-
-{ #category : #generator }
-FASTPharoComment class >> generatedTraitNames [
-	<generated>
-	^ #(FamixTComment)
-]
-
-{ #category : #meta }
-FASTPharoComment class >> requirements [
-
-	<generated>
-	^ {  }
 ]

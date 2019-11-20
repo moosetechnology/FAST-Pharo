@@ -2,11 +2,11 @@ Extension { #name : #FASTExpression }
 
 { #category : #'*FAST-Pharo-Model-accessing' }
 FASTExpression >> pharoArrayExpressionExpressionOwner [
+	"Relation named: #pharoArrayExpressionExpressionOwner type: #FASTPharoArrayExpression opposite: #contents"
 
 	<generated>
 	<container>
-
-	<MSEProperty: #pharoArrayExpressionExpressionOwner type: #Object>
+	<FMProperty: #pharoArrayExpressionExpressionOwner type: #FASTPharoArrayExpression opposite: #contents>
 	<package: #'FAST-Pharo-Model'>
 	^ self privateState attributeAt: #pharoArrayExpressionExpressionOwner ifAbsent: [ nil ]
 ]
@@ -20,11 +20,11 @@ FASTExpression >> pharoArrayExpressionExpressionOwner: anObject [
 
 { #category : #'*FAST-Pharo-Model-accessing' }
 FASTExpression >> pharoArrayLiteralExpressionExpressionOwner [
+	"Relation named: #pharoArrayLiteralExpressionExpressionOwner type: #FASTPharoArrayLiteral opposite: #contents"
 
 	<generated>
 	<container>
-
-	<MSEProperty: #pharoArrayLiteralExpressionExpressionOwner type: #Object>
+	<FMProperty: #pharoArrayLiteralExpressionExpressionOwner type: #FASTPharoArrayLiteral opposite: #contents>
 	<package: #'FAST-Pharo-Model'>
 	^ self privateState attributeAt: #pharoArrayLiteralExpressionExpressionOwner ifAbsent: [ nil ]
 ]
@@ -38,11 +38,11 @@ FASTExpression >> pharoArrayLiteralExpressionExpressionOwner: anObject [
 
 { #category : #'*FAST-Pharo-Model-accessing' }
 FASTExpression >> pharoByteArrayLiteralExpressionExpressionOwner [
+	"Relation named: #pharoByteArrayLiteralExpressionExpressionOwner type: #FASTPharoByteArrayLiteral opposite: #contents"
 
 	<generated>
 	<container>
-
-	<MSEProperty: #pharoByteArrayLiteralExpressionExpressionOwner type: #Object>
+	<FMProperty: #pharoByteArrayLiteralExpressionExpressionOwner type: #FASTPharoByteArrayLiteral opposite: #contents>
 	<package: #'FAST-Pharo-Model'>
 	^ self privateState attributeAt: #pharoByteArrayLiteralExpressionExpressionOwner ifAbsent: [ nil ]
 ]
@@ -56,12 +56,12 @@ FASTExpression >> pharoByteArrayLiteralExpressionExpressionOwner: anObject [
 
 { #category : #'*FAST-Pharo-Model-accessing' }
 FASTExpression >> pharoMessageArgumentOwner [
+	"Relation named: #pharoMessageArgumentOwner type: #FASTPharoMessageSend opposite: #arguments"
 
 	<generated>
-	<MSEComment: 'The message which own this argument'>
+	<FMComment: 'The message which own this argument'>
 	<container>
-
-	<MSEProperty: #pharoMessageArgumentOwner type: #Object>
+	<FMProperty: #pharoMessageArgumentOwner type: #FASTPharoMessageSend opposite: #arguments>
 	<package: #'FAST-Pharo-Model'>
 	^ self privateState attributeAt: #pharoMessageArgumentOwner ifAbsent: [ nil ]
 ]
@@ -75,12 +75,13 @@ FASTExpression >> pharoMessageArgumentOwner: anObject [
 
 { #category : #'*FAST-Pharo-Model-accessing' }
 FASTExpression >> pharoMessageReceiver [
+	"Relation named: #pharoMessageReceiver type: #FASTPharoMessageSend opposite: #receiver"
 
 	<generated>
-	<MSEComment: 'The receiver of the pharo message'>
+	<FMComment: 'The receiver of the pharo message'>
 	<container>
-
-	<MSEProperty: #pharoMessageReceiver type: #Object>
+	<derived>
+	<FMProperty: #pharoMessageReceiver type: #FASTPharoMessageSend opposite: #receiver>
 	<package: #'FAST-Pharo-Model'>
 	^ self privateState attributeAt: #pharoMessageReceiver ifAbsent: [ nil ]
 ]
@@ -90,17 +91,23 @@ FASTExpression >> pharoMessageReceiver: anObject [
 
 	<generated>
 	(self privateState attributeAt: #pharoMessageReceiver ifAbsentPut: [nil]) == anObject ifTrue: [ ^ anObject ].
-	self privateState attributeAt: #pharoMessageReceiver put: anObject.
-	anObject receiver: self
+	anObject ifNil: [ | otherSide |
+		otherSide :=  self pharoMessageReceiver.
+		self privateState attributeAt: #pharoMessageReceiver put: anObject.
+		otherSide receiver: nil ]
+	ifNotNil: [ 
+		self privateState attributeAt: #pharoMessageReceiver put: anObject.
+		anObject receiver: self ]
 ]
 
 { #category : #'*FAST-Pharo-Model-accessing' }
 FASTExpression >> pharoParentAssignmentExpression [
+	"Relation named: #pharoParentAssignmentExpression type: #FASTPharoAssignmentExpression opposite: #expression"
 
 	<generated>
 	<container>
-
-	<MSEProperty: #pharoParentAssignmentExpression type: #Object>
+	<derived>
+	<FMProperty: #pharoParentAssignmentExpression type: #FASTPharoAssignmentExpression opposite: #expression>
 	<package: #'FAST-Pharo-Model'>
 	^ self privateState attributeAt: #pharoParentAssignmentExpression ifAbsent: [ nil ]
 ]
@@ -110,6 +117,11 @@ FASTExpression >> pharoParentAssignmentExpression: anObject [
 
 	<generated>
 	(self privateState attributeAt: #pharoParentAssignmentExpression ifAbsentPut: [nil]) == anObject ifTrue: [ ^ anObject ].
-	self privateState attributeAt: #pharoParentAssignmentExpression put: anObject.
-	anObject expression: self
+	anObject ifNil: [ | otherSide |
+		otherSide :=  self pharoParentAssignmentExpression.
+		self privateState attributeAt: #pharoParentAssignmentExpression put: anObject.
+		otherSide expression: nil ]
+	ifNotNil: [ 
+		self privateState attributeAt: #pharoParentAssignmentExpression put: anObject.
+		anObject expression: self ]
 ]

@@ -12,39 +12,20 @@ Class {
 { #category : #meta }
 FASTPharoSelector class >> annotation [
 
-	<MSEClass: #Selector super: #FASTEntity>
+	<FMClass: #Selector super: #FASTEntity>
 	<package: #'FAST-Pharo-Model'>
 	<generated>
 	^self
 ]
 
-{ #category : #generator }
-FASTPharoSelector class >> generatedSlotNames [
-	<generated>
-	'FASTPharoSelector class>>#generatedSlotNames'.
-	^ #(parentMessageSend)
-]
-
-{ #category : #generator }
-FASTPharoSelector class >> generatedTraitNames [
-	<generated>
-	^ #(FamixTNamed)
-]
-
-{ #category : #meta }
-FASTPharoSelector class >> requirements [
-
-	<generated>
-	^ { FASTPharoMessageSend }
-]
-
 { #category : #accessing }
 FASTPharoSelector >> parentMessageSend [
+	"Relation named: #parentMessageSend type: #FASTPharoMessageSend opposite: #selector"
 
 	<generated>
-	<MSEComment: 'The sended of this selector'>
+	<FMComment: 'The sended of this selector'>
 	<container>
-
+	<derived>
 	^ parentMessageSend
 ]
 
@@ -53,14 +34,11 @@ FASTPharoSelector >> parentMessageSend: anObject [
 
 	<generated>
 	parentMessageSend := anObject
-
 ]
 
 { #category : #navigation }
 FASTPharoSelector >> parentMessageSendGroup [
-
 	<generated>
 	<navigation: 'ParentMessageSend'>
-	^ MooseGroup
-			with: (self parentMessageSend)
+	^ MooseGroup with: self parentMessageSend
 ]

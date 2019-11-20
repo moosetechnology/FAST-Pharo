@@ -9,52 +9,32 @@ Class {
 { #category : #meta }
 FASTPharoMethodEntity class >> annotation [
 
-	<MSEClass: #MethodEntity super: #FASTNamedBehaviouralEntity>
+	<FMClass: #MethodEntity super: #FASTNamedBehaviouralEntity>
 	<package: #'FAST-Pharo-Model'>
 	<generated>
 	^self
 ]
 
-{ #category : #generator }
-FASTPharoMethodEntity class >> generatedSlotNames [
-	<generated>
-	'FASTPharoMethodEntity class>>#generatedSlotNames'.
-	^ #()
-]
-
-{ #category : #generator }
-FASTPharoMethodEntity class >> generatedTraitNames [
-	<generated>
-	^ #(FamixTWithImmediateSource)
-]
-
-{ #category : #meta }
-FASTPharoMethodEntity class >> requirements [
-
-	<generated>
-	^ {  }
-]
-
 { #category : #adding }
-FASTPharoMethodEntity >> addLocalVariables: anObject [
-			
+FASTPharoMethodEntity >> addLocalVariable: anObject [
 	<generated>
 	^ self localVariables add: anObject
 ]
 
 { #category : #adding }
-FASTPharoMethodEntity >> addStatements: anObject [
-			
+FASTPharoMethodEntity >> addStatement: anObject [
 	<generated>
 	^ self statements add: anObject
 ]
 
 { #category : #accessing }
 FASTPharoMethodEntity >> localVariables [
+	"Relation named: #localVariables type: #FASTVariableExpression opposite: #pharoMethodVariableEntityOwner"
 
 	<generated>
-	<MSEComment: 'The local variables of the method'>
-	<MSEProperty: #localVariables type: #Object>
+	<FMComment: 'The local variables of the method'>
+	<derived>
+	<FMProperty: #localVariables type: #FASTVariableExpression opposite: #pharoMethodVariableEntityOwner>
 	^ self privateState attributeAt: #localVariables ifAbsentPut: [ FMMultivalueLink on: self opposite: #pharoMethodVariableEntityOwner: ]
 ]
 
@@ -67,19 +47,19 @@ FASTPharoMethodEntity >> localVariables: anObject [
 
 { #category : #navigation }
 FASTPharoMethodEntity >> localVariablesGroup [
-
 	<generated>
 	<navigation: 'LocalVariables'>
-	^ MooseGroup
-			withAll: (self localVariables asSet)
+	^ MooseGroup withAll: self localVariables asSet
 ]
 
 { #category : #accessing }
 FASTPharoMethodEntity >> statements [
+	"Relation named: #statements type: #FASTStatement opposite: #pharoMethodStatementOwner"
 
 	<generated>
-	<MSEComment: 'The statements of the method'>
-	<MSEProperty: #statements type: #Object>
+	<FMComment: 'The statements of the method'>
+	<derived>
+	<FMProperty: #statements type: #FASTStatement opposite: #pharoMethodStatementOwner>
 	^ self privateState attributeAt: #statements ifAbsentPut: [ FMMultivalueLink on: self opposite: #pharoMethodStatementOwner: ]
 ]
 
@@ -92,9 +72,7 @@ FASTPharoMethodEntity >> statements: anObject [
 
 { #category : #navigation }
 FASTPharoMethodEntity >> statementsGroup [
-
 	<generated>
 	<navigation: 'Statements'>
-	^ MooseGroup
-			withAll: (self statements asSet)
+	^ MooseGroup withAll: self statements asSet
 ]

@@ -12,45 +12,26 @@ Class {
 { #category : #meta }
 FASTPharoMessageSend class >> annotation [
 
-	<MSEClass: #MessageSend super: #FASTExpression>
+	<FMClass: #MessageSend super: #FASTExpression>
 	<package: #'FAST-Pharo-Model'>
 	<generated>
 	^self
 ]
 
-{ #category : #generator }
-FASTPharoMessageSend class >> generatedSlotNames [
-	<generated>
-	'FASTPharoMessageSend class>>#generatedSlotNames'.
-	^ #(inCascade kind selector)
-]
-
-{ #category : #generator }
-FASTPharoMessageSend class >> generatedTraitNames [
-	<generated>
-	^ #()
-]
-
-{ #category : #meta }
-FASTPharoMessageSend class >> requirements [
-
-	<generated>
-	^ { FASTPharoCascade }
-]
-
 { #category : #adding }
-FASTPharoMessageSend >> addArguments: anObject [
-			
+FASTPharoMessageSend >> addArgument: anObject [
 	<generated>
 	^ self arguments add: anObject
 ]
 
 { #category : #accessing }
 FASTPharoMessageSend >> arguments [
+	"Relation named: #arguments type: #FASTExpression opposite: #pharoMessageArgumentOwner"
 
 	<generated>
-	<MSEComment: 'The arguments of the message'>
-	<MSEProperty: #arguments type: #Object>
+	<FMComment: 'The arguments of the message'>
+	<derived>
+	<FMProperty: #arguments type: #FASTExpression opposite: #pharoMessageArgumentOwner>
 	^ self privateState attributeAt: #arguments ifAbsentPut: [ FMMultivalueLink on: self opposite: #pharoMessageArgumentOwner: ]
 ]
 
@@ -63,20 +44,18 @@ FASTPharoMessageSend >> arguments: anObject [
 
 { #category : #navigation }
 FASTPharoMessageSend >> argumentsGroup [
-
 	<generated>
 	<navigation: 'Arguments'>
-	^ MooseGroup
-			withAll: (self arguments asSet)
+	^ MooseGroup withAll: self arguments asSet
 ]
 
 { #category : #accessing }
 FASTPharoMessageSend >> inCascade [
+	"Relation named: #inCascade type: #FASTPharoCascade opposite: #messages"
 
 	<generated>
-	<MSEComment: 'Optional cascade including this message'>
+	<FMComment: 'Optional cascade including this message'>
 	<container>
-
 	^ inCascade
 ]
 
@@ -85,41 +64,37 @@ FASTPharoMessageSend >> inCascade: anObject [
 
 	<generated>
 	inCascade := anObject
-
 ]
 
 { #category : #navigation }
 FASTPharoMessageSend >> inCascadeGroup [
-
 	<generated>
 	<navigation: 'InCascade'>
-	^ MooseGroup
-			with: (self inCascade)
+	^ MooseGroup with: self inCascade
 ]
 
 { #category : #accessing }
 FASTPharoMessageSend >> kind [
 
-	<MSEProperty: #kind type: #String>
+	<FMProperty: #kind type: #String>
 	<generated>
-	<MSEComment: 'The kind of message'>
+	<FMComment: 'The kind of message'>
 	^ kind
 ]
 
 { #category : #accessing }
 FASTPharoMessageSend >> kind: anObject [
-
 	<generated>
 	kind := anObject
-
 ]
 
 { #category : #accessing }
 FASTPharoMessageSend >> receiver [
+	"Relation named: #receiver type: #FASTExpression opposite: #pharoMessageReceiver"
 
 	<generated>
-	<MSEComment: 'The receiver of the selector'>
-	<MSEProperty: #receiver type: #Object>
+	<FMComment: 'The receiver of the selector'>
+	<FMProperty: #receiver type: #FASTExpression opposite: #pharoMessageReceiver>
 	^ self privateState attributeAt: #receiver ifAbsent: [ nil ]
 ]
 
@@ -128,24 +103,28 @@ FASTPharoMessageSend >> receiver: anObject [
 
 	<generated>
 	(self privateState attributeAt: #receiver ifAbsentPut: [nil]) == anObject ifTrue: [ ^ anObject ].
-	self privateState attributeAt: #receiver put: anObject.
-	anObject pharoMessageReceiver: self
+	anObject ifNil: [ | otherSide |
+		otherSide :=  self receiver.
+		self privateState attributeAt: #receiver put: anObject.
+		otherSide pharoMessageReceiver: nil ]
+	ifNotNil: [ 
+		self privateState attributeAt: #receiver put: anObject.
+		anObject pharoMessageReceiver: self ]
 ]
 
 { #category : #navigation }
 FASTPharoMessageSend >> receiverGroup [
-
 	<generated>
 	<navigation: 'Receiver'>
-	^ MooseGroup
-			with: (self receiver)
+	^ MooseGroup with: self receiver
 ]
 
 { #category : #accessing }
 FASTPharoMessageSend >> selector [
+	"Relation named: #selector type: #FASTPharoSelector opposite: #parentMessageSend"
 
 	<generated>
-	<MSEComment: 'The sent selector'>
+	<FMComment: 'The sent selector'>
 	^ selector
 ]
 
@@ -154,14 +133,11 @@ FASTPharoMessageSend >> selector: anObject [
 
 	<generated>
 	selector := anObject
-
 ]
 
 { #category : #navigation }
 FASTPharoMessageSend >> selectorGroup [
-
 	<generated>
 	<navigation: 'Selector'>
-	^ MooseGroup
-			with: (self selector)
+	^ MooseGroup with: self selector
 ]

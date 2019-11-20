@@ -7,45 +7,26 @@ Class {
 { #category : #meta }
 FASTPharoArrayLiteral class >> annotation [
 
-	<MSEClass: #ArrayLiteral super: #FASTLiteral>
+	<FMClass: #ArrayLiteral super: #FASTLiteral>
 	<package: #'FAST-Pharo-Model'>
 	<generated>
 	^self
 ]
 
-{ #category : #generator }
-FASTPharoArrayLiteral class >> generatedSlotNames [
-	<generated>
-	'FASTPharoArrayLiteral class>>#generatedSlotNames'.
-	^ #()
-]
-
-{ #category : #generator }
-FASTPharoArrayLiteral class >> generatedTraitNames [
-	<generated>
-	^ #()
-]
-
-{ #category : #meta }
-FASTPharoArrayLiteral class >> requirements [
-
-	<generated>
-	^ {  }
-]
-
 { #category : #adding }
-FASTPharoArrayLiteral >> addContents: anObject [
-			
+FASTPharoArrayLiteral >> addContent: anObject [
 	<generated>
 	^ self contents add: anObject
 ]
 
 { #category : #accessing }
 FASTPharoArrayLiteral >> contents [
+	"Relation named: #contents type: #FASTExpression opposite: #pharoArrayLiteralExpressionExpressionOwner"
 
 	<generated>
-	<MSEComment: 'The expression in the array'>
-	<MSEProperty: #contents type: #Object>
+	<FMComment: 'The expression in the array'>
+	<derived>
+	<FMProperty: #contents type: #FASTExpression opposite: #pharoArrayLiteralExpressionExpressionOwner>
 	^ self privateState attributeAt: #contents ifAbsentPut: [ FMMultivalueLink on: self opposite: #pharoArrayLiteralExpressionExpressionOwner: ]
 ]
 
@@ -58,9 +39,7 @@ FASTPharoArrayLiteral >> contents: anObject [
 
 { #category : #navigation }
 FASTPharoArrayLiteral >> contentsGroup [
-
 	<generated>
 	<navigation: 'Contents'>
-	^ MooseGroup
-			withAll: (self contents asSet)
+	^ MooseGroup withAll: self contents asSet
 ]

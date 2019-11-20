@@ -9,28 +9,8 @@ Class {
 { #category : #meta }
 FASTPharoSourceLanguage class >> annotation [
 
-	<MSEClass: #SourceLanguage super: #FASTEntity>
+	<FMClass: #SourceLanguage super: #FASTEntity>
 	<package: #'FAST-Pharo-Model'>
 	<generated>
 	^self
-]
-
-{ #category : #generator }
-FASTPharoSourceLanguage class >> generatedSlotNames [
-	<generated>
-	'FASTPharoSourceLanguage class>>#generatedSlotNames'.
-	^ #()
-]
-
-{ #category : #generator }
-FASTPharoSourceLanguage class >> generatedTraitNames [
-	<generated>
-	^ #(FamixTSourceLanguage)
-]
-
-{ #category : #meta }
-FASTPharoSourceLanguage class >> requirements [
-
-	<generated>
-	^ {  }
 ]

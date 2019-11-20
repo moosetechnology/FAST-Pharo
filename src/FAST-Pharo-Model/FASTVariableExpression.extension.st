@@ -2,11 +2,11 @@ Extension { #name : #FASTVariableExpression }
 
 { #category : #'*FAST-Pharo-Model-accessing' }
 FASTVariableExpression >> pharoBlockDefinitionVariableEntityOwner [
+	"Relation named: #pharoBlockDefinitionVariableEntityOwner type: #FASTPharoBlockDefinition opposite: #localVariables"
 
 	<generated>
 	<container>
-
-	<MSEProperty: #pharoBlockDefinitionVariableEntityOwner type: #Object>
+	<FMProperty: #pharoBlockDefinitionVariableEntityOwner type: #FASTPharoBlockDefinition opposite: #localVariables>
 	<package: #'FAST-Pharo-Model'>
 	^ self privateState attributeAt: #pharoBlockDefinitionVariableEntityOwner ifAbsent: [ nil ]
 ]
@@ -20,11 +20,11 @@ FASTVariableExpression >> pharoBlockDefinitionVariableEntityOwner: anObject [
 
 { #category : #'*FAST-Pharo-Model-accessing' }
 FASTVariableExpression >> pharoMethodVariableEntityOwner [
+	"Relation named: #pharoMethodVariableEntityOwner type: #FASTPharoMethodEntity opposite: #localVariables"
 
 	<generated>
 	<container>
-
-	<MSEProperty: #pharoMethodVariableEntityOwner type: #Object>
+	<FMProperty: #pharoMethodVariableEntityOwner type: #FASTPharoMethodEntity opposite: #localVariables>
 	<package: #'FAST-Pharo-Model'>
 	^ self privateState attributeAt: #pharoMethodVariableEntityOwner ifAbsent: [ nil ]
 ]

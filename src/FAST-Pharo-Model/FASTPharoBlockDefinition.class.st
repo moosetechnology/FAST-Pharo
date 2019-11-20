@@ -10,53 +10,32 @@ Class {
 { #category : #meta }
 FASTPharoBlockDefinition class >> annotation [
 
-	<MSEClass: #BlockDefinition super: #FASTBehaviouralEntity>
+	<FMClass: #BlockDefinition super: #FASTBehaviouralEntity>
 	<package: #'FAST-Pharo-Model'>
 	<generated>
 	^self
 ]
 
-{ #category : #generator }
-FASTPharoBlockDefinition class >> generatedSlotNames [
-	<generated>
-	'FASTPharoBlockDefinition class>>#generatedSlotNames'.
-	^ #(blockExpression)
-]
-
-{ #category : #generator }
-FASTPharoBlockDefinition class >> generatedTraitNames [
-	<generated>
-	^ #()
-]
-
-{ #category : #meta }
-FASTPharoBlockDefinition class >> requirements [
-
-	<generated>
-	^ { FASTPharoBlockExpression }
-]
-
 { #category : #adding }
-FASTPharoBlockDefinition >> addLocalVariables: anObject [
-			
+FASTPharoBlockDefinition >> addLocalVariable: anObject [
 	<generated>
 	^ self localVariables add: anObject
 ]
 
 { #category : #adding }
-FASTPharoBlockDefinition >> addStatements: anObject [
-			
+FASTPharoBlockDefinition >> addStatement: anObject [
 	<generated>
 	^ self statements add: anObject
 ]
 
 { #category : #accessing }
 FASTPharoBlockDefinition >> blockExpression [
+	"Relation named: #blockExpression type: #FASTPharoBlockExpression opposite: #block"
 
 	<generated>
-	<MSEComment: 'Expression entity that represents the block'>
+	<FMComment: 'Expression entity that represents the block'>
 	<container>
-
+	<derived>
 	^ blockExpression
 ]
 
@@ -65,24 +44,23 @@ FASTPharoBlockDefinition >> blockExpression: anObject [
 
 	<generated>
 	blockExpression := anObject
-
 ]
 
 { #category : #navigation }
 FASTPharoBlockDefinition >> blockExpressionGroup [
-
 	<generated>
 	<navigation: 'BlockExpression'>
-	^ MooseGroup
-			with: (self blockExpression)
+	^ MooseGroup with: self blockExpression
 ]
 
 { #category : #accessing }
 FASTPharoBlockDefinition >> localVariables [
+	"Relation named: #localVariables type: #FASTVariableExpression opposite: #pharoBlockDefinitionVariableEntityOwner"
 
 	<generated>
-	<MSEComment: 'The local variables of the block'>
-	<MSEProperty: #localVariables type: #Object>
+	<FMComment: 'The local variables of the block'>
+	<derived>
+	<FMProperty: #localVariables type: #FASTVariableExpression opposite: #pharoBlockDefinitionVariableEntityOwner>
 	^ self privateState attributeAt: #localVariables ifAbsentPut: [ FMMultivalueLink on: self opposite: #pharoBlockDefinitionVariableEntityOwner: ]
 ]
 
@@ -95,19 +73,19 @@ FASTPharoBlockDefinition >> localVariables: anObject [
 
 { #category : #navigation }
 FASTPharoBlockDefinition >> localVariablesGroup [
-
 	<generated>
 	<navigation: 'LocalVariables'>
-	^ MooseGroup
-			withAll: (self localVariables asSet)
+	^ MooseGroup withAll: self localVariables asSet
 ]
 
 { #category : #accessing }
 FASTPharoBlockDefinition >> statements [
+	"Relation named: #statements type: #FASTStatement opposite: #pharoBlockStatementOwner"
 
 	<generated>
-	<MSEComment: 'The statements of the method'>
-	<MSEProperty: #statements type: #Object>
+	<FMComment: 'The statements of the method'>
+	<derived>
+	<FMProperty: #statements type: #FASTStatement opposite: #pharoBlockStatementOwner>
 	^ self privateState attributeAt: #statements ifAbsentPut: [ FMMultivalueLink on: self opposite: #pharoBlockStatementOwner: ]
 ]
 
@@ -120,9 +98,7 @@ FASTPharoBlockDefinition >> statements: anObject [
 
 { #category : #navigation }
 FASTPharoBlockDefinition >> statementsGroup [
-
 	<generated>
 	<navigation: 'Statements'>
-	^ MooseGroup
-			withAll: (self statements asSet)
+	^ MooseGroup withAll: self statements asSet
 ]

@@ -30,9 +30,9 @@ SmalltalkImporterTestCase >> modelClasses [
 { #category : #running }
 SmalltalkImporterTestCase >> setUp [
 	super setUp.
-	model := MooseModel new.
+	model := FamixStModel new.
 	MoosePharoImporterTask new
-		factory: SmalltalkMetamodelFactory; 
+		factory: SmalltalkMetamodelFactory new; 
 		importerClass: SmalltalkImporter;
 		model: model;
 		addClasses: self modelClasses;

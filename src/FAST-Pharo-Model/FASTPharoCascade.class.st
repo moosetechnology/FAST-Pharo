@@ -10,44 +10,25 @@ Class {
 { #category : #meta }
 FASTPharoCascade class >> annotation [
 
-	<MSEClass: #Cascade super: #FASTPharoExpression>
+	<FMClass: #Cascade super: #FASTPharoExpression>
 	<package: #'FAST-Pharo-Model'>
 	<generated>
 	^self
 ]
 
-{ #category : #generator }
-FASTPharoCascade class >> generatedSlotNames [
-	<generated>
-	'FASTPharoCascade class>>#generatedSlotNames'.
-	^ #(messages)
-]
-
-{ #category : #generator }
-FASTPharoCascade class >> generatedTraitNames [
-	<generated>
-	^ #()
-]
-
-{ #category : #meta }
-FASTPharoCascade class >> requirements [
-
-	<generated>
-	^ {  }
-]
-
 { #category : #adding }
-FASTPharoCascade >> addMessages: anObject [
-			
+FASTPharoCascade >> addMessage: anObject [
 	<generated>
 	^ self messages add: anObject
 ]
 
 { #category : #accessing }
 FASTPharoCascade >> messages [
+	"Relation named: #messages type: #FASTPharoMessageSend opposite: #inCascade"
 
 	<generated>
-	<MSEComment: 'The messages of the cascade'>
+	<FMComment: 'The messages of the cascade'>
+	<derived>
 	^ messages
 ]
 
@@ -56,14 +37,11 @@ FASTPharoCascade >> messages: anObject [
 
 	<generated>
 	messages value: anObject
-
 ]
 
 { #category : #navigation }
 FASTPharoCascade >> messagesGroup [
-
 	<generated>
 	<navigation: 'Messages'>
-	^ MooseGroup
-			withAll: (self messages asSet)
+	^ MooseGroup withAll: self messages asSet
 ]

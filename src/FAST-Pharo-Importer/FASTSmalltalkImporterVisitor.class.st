@@ -103,7 +103,7 @@ FASTSmalltalkImporterVisitor >> currentFASTScope: anObject [
 FASTSmalltalkImporterVisitor >> ensureStatement: aFASTNode [
   	"Wraps top-level expressions into statements"
 	| stmt |
-	aFASTNode isFASTStatement
+	(aFASTNode isKindOf: FASTStatement)
 		ifFalse: [
 			stmt := self create: FASTExpressionStatement fromFASTNode: aFASTNode.
 			stmt expression: aFASTNode.
@@ -157,8 +157,7 @@ FASTSmalltalkImporterVisitor >> parser [
 { #category : #parsing }
 FASTSmalltalkImporterVisitor >> runWithSource: sourceAsString [
 	| parseTree |
-	self model: MooseModel new.
-	self model metamodel: FASTPharoMetamodelGenerator resetMetamodel.
+	self model: FASTPharoModel new.
 
 	parseTree := self parseTreeForSource: sourceAsString. 
 	parseTree ifNotNil: [self visitMethodNode: parseTree].
@@ -191,7 +190,7 @@ FASTSmalltalkImporterVisitor >> visitArrayNode: anArrayNode [
 	currentFASTEntity := self create: FASTPharoArrayExpression from: anArrayNode.
 
 	anArrayNode children do: [:each |
-		currentFASTEntity addContents: (self clone visitNode: each).
+		currentFASTEntity addContent: (self clone visitNode: each).
 	].
 	^ currentFASTEntity 
 ]
@@ -257,7 +256,7 @@ FASTSmalltalkImporterVisitor >> visitLiteralArrayNode: aLiteralArrayNode [
 									ifTrue: [ FASTPharoByteArrayLiteral ]
 									ifFalse: [ FASTPharoArrayLiteral ]) from: aLiteralArrayNode.
 	
-	aLiteralArrayNode contents do: [ :each | currentFASTEntity addContents: (self clone visitNode: each) ].
+	aLiteralArrayNode contents do: [ :each | currentFASTEntity addContent: (self clone visitNode: each) ].
 
 	^ currentFASTEntity
 ]
@@ -295,7 +294,7 @@ FASTSmalltalkImporterVisitor >> visitMessageNode: aMessageNode [
 
 	currentFASTEntity receiver: (self clone visitNode: aMessageNode receiver).
 
- 	aMessageNode arguments do: [:each | currentFASTEntity addArguments: (self clone visitNode: each) ].
+ 	aMessageNode arguments do: [:each | currentFASTEntity addArgument: (self clone visitNode: each) ].
 	
 	^ currentFASTEntity
 
@@ -363,11 +362,11 @@ FASTSmalltalkImporterVisitor >> visitSequenceNode: aSequenceNode [
 		do: [ :aVariableNode | 
 			| fastLocal |
 			fastLocal := self createVariable: aVariableNode.
-			self parentFASTEntity addLocalVariables: fastLocal.
+			self parentFASTEntity addLocalVariable: fastLocal.
 	].
 
 	aSequenceNode statements do: [ :each |
-		self parentFASTEntity addStatements: ( self ensureStatement: (self clone visitNode: each) ).
+		self parentFASTEntity addStatement: ( self ensureStatement: (self clone visitNode: each) ).
 	].
 	^ currentFASTEntity
 ]
