@@ -1,8 +1,8 @@
 Class {
 	#name : #FASTPharoSelector,
 	#superclass : #FASTEntity,
-	#traits : 'FamixTNamed',
-	#classTraits : 'FamixTNamed classTrait',
+	#traits : 'FamixTNamedEntity + FamixTNamed',
+	#classTraits : 'FamixTNamedEntity classTrait + FamixTNamed classTrait',
 	#instVars : [
 		'#parentMessageSend => FMOne type: #FASTPharoMessageSend opposite: #selector'
 	],

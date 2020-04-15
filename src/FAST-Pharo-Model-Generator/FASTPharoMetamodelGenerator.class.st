@@ -12,7 +12,7 @@ DONE
 "
 Class {
 	#name : #FASTPharoMetamodelGenerator,
-	#superclass : #FamixBasicInfrastructureGenerator,
+	#superclass : #FamixMetamodelGenerator,
 	#instVars : [
 		'arrayLiteral',
 		'blockDefinition',
@@ -33,18 +33,11 @@ Class {
 		'pharoExpression',
 		'variableEntity',
 		'statement',
-		'variableExpression'
+		'variableExpression',
+		'entity'
 	],
 	#category : #'FAST-Pharo-Model-Generator'
 }
-
-{ #category : #accessing }
-FASTPharoMetamodelGenerator class >> modifyMetamodel: aMetamodel [
-
-	super modifyMetamodel: aMetamodel.
-	
-	self fixRemoteMetamodelRelationsIn: aMetamodel.
-]
 
 { #category : #accessing }
 FASTPharoMetamodelGenerator class >> packageName [
@@ -62,7 +55,7 @@ FASTPharoMetamodelGenerator class >> prefix [
 
 { #category : #accessing }
 FASTPharoMetamodelGenerator class >> submetamodels [
-	^ { FASTMetamodelGenerator }
+	^ { FASTMetamodelGenerator . FamixGenerator }
 ]
 
 { #category : #definition }
@@ -105,10 +98,10 @@ FASTPharoMetamodelGenerator >> defineHierarchy [
 	cascade --|> pharoExpression.
 	messageSend --|> expression.
 	methodEntity --|> namedBehaviouralEntity.
-	methodEntity --|> #TWithImmediateSource.
+	methodEntity --|> #THasImmediateSource.
 	numberLiteral --|> literal.
 	selector --|> entity.
-	selector --|> #TNamed.
+	selector --|> #TNamedEntity.
 	symbolLiteral --|> literal.
 	
 ]

@@ -1,8 +1,8 @@
 Class {
 	#name : #FASTPharoMethodEntity,
 	#superclass : #FASTNamedBehaviouralEntity,
-	#traits : 'FamixTWithImmediateSource',
-	#classTraits : 'FamixTWithImmediateSource classTrait',
+	#traits : 'FamixTHasImmediateSource + FamixTWithImmediateSource',
+	#classTraits : 'FamixTHasImmediateSource classTrait + FamixTWithImmediateSource classTrait',
 	#category : #'FAST-Pharo-Model-Entities'
 }
 
