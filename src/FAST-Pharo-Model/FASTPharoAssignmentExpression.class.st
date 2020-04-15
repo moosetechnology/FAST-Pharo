@@ -46,11 +46,11 @@ FASTPharoAssignmentExpression >> expressionGroup [
 
 { #category : #accessing }
 FASTPharoAssignmentExpression >> variable [
-	"Relation named: #variable type: #FASTVariableEntity opposite: #pharoParentAssignmentExpression"
+	"Relation named: #variable type: #FASTVariableExpression opposite: #pharoParentAssignmentExpression"
 
 	<generated>
 	<FMComment: 'An assigned variable (lhs of assignement)'>
-	<FMProperty: #variable type: #FASTVariableEntity opposite: #pharoParentAssignmentExpression>
+	<FMProperty: #variable type: #FASTVariableExpression opposite: #pharoParentAssignmentExpression>
 	^ self privateState attributeAt: #variable ifAbsent: [ nil ]
 ]
 
