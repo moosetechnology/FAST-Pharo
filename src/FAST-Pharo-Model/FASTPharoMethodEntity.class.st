@@ -1,8 +1,8 @@
 Class {
 	#name : #FASTPharoMethodEntity,
 	#superclass : #FASTNamedBehaviouralEntity,
-	#traits : 'FamixTHasImmediateSource + FamixTWithImmediateSource',
-	#classTraits : 'FamixTHasImmediateSource classTrait + FamixTWithImmediateSource classTrait',
+	#traits : 'FamixTHasImmediateSource',
+	#classTraits : 'FamixTHasImmediateSource classTrait',
 	#category : #'FAST-Pharo-Model-Entities'
 }
 
@@ -35,7 +35,7 @@ FASTPharoMethodEntity >> localVariables [
 	<FMComment: 'The local variables of the method'>
 	<derived>
 	<FMProperty: #localVariables type: #FASTVariableExpression opposite: #pharoMethodVariableEntityOwner>
-	^ self privateState attributeAt: #localVariables ifAbsentPut: [ FMMultivalueLink on: self opposite: #pharoMethodVariableEntityOwner: ]
+	^ self attributeAt: #localVariables ifAbsentPut: [ FMMultivalueLink on: self opposite: #pharoMethodVariableEntityOwner: ]
 ]
 
 { #category : #accessing }
@@ -49,7 +49,7 @@ FASTPharoMethodEntity >> localVariables: anObject [
 FASTPharoMethodEntity >> localVariablesGroup [
 	<generated>
 	<navigation: 'LocalVariables'>
-	^ MooseGroup withAll: self localVariables asSet
+	^ MooseSpecializedGroup withAll: self localVariables asSet
 ]
 
 { #category : #accessing }
@@ -60,7 +60,7 @@ FASTPharoMethodEntity >> statements [
 	<FMComment: 'The statements of the method'>
 	<derived>
 	<FMProperty: #statements type: #FASTStatement opposite: #pharoMethodStatementOwner>
-	^ self privateState attributeAt: #statements ifAbsentPut: [ FMMultivalueLink on: self opposite: #pharoMethodStatementOwner: ]
+	^ self attributeAt: #statements ifAbsentPut: [ FMMultivalueLink on: self opposite: #pharoMethodStatementOwner: ]
 ]
 
 { #category : #accessing }
@@ -74,5 +74,5 @@ FASTPharoMethodEntity >> statements: anObject [
 FASTPharoMethodEntity >> statementsGroup [
 	<generated>
 	<navigation: 'Statements'>
-	^ MooseGroup withAll: self statements asSet
+	^ MooseSpecializedGroup withAll: self statements asSet
 ]

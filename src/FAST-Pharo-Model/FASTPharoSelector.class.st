@@ -1,8 +1,8 @@
 Class {
 	#name : #FASTPharoSelector,
 	#superclass : #FASTEntity,
-	#traits : 'FamixTNamedEntity + FamixTNamed',
-	#classTraits : 'FamixTNamedEntity classTrait + FamixTNamed classTrait',
+	#traits : 'FamixTNamedEntity',
+	#classTraits : 'FamixTNamedEntity classTrait',
 	#instVars : [
 		'#parentMessageSend => FMOne type: #FASTPharoMessageSend opposite: #selector'
 	],
@@ -40,5 +40,5 @@ FASTPharoSelector >> parentMessageSend: anObject [
 FASTPharoSelector >> parentMessageSendGroup [
 	<generated>
 	<navigation: 'ParentMessageSend'>
-	^ MooseGroup with: self parentMessageSend
+	^ MooseSpecializedGroup with: self parentMessageSend
 ]

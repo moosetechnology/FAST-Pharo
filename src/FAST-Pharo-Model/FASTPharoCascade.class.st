@@ -43,5 +43,5 @@ FASTPharoCascade >> messages: anObject [
 FASTPharoCascade >> messagesGroup [
 	<generated>
 	<navigation: 'Messages'>
-	^ MooseGroup withAll: self messages asSet
+	^ MooseSpecializedGroup withAll: self messages asSet
 ]

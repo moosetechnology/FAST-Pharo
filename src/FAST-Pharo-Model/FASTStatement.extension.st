@@ -8,14 +8,14 @@ FASTStatement >> pharoBlockStatementOwner [
 	<container>
 	<FMProperty: #pharoBlockStatementOwner type: #FASTPharoBlockDefinition opposite: #statements>
 	<package: #'FAST-Pharo-Model'>
-	^ self privateState attributeAt: #pharoBlockStatementOwner ifAbsent: [ nil ]
+	^ self attributeAt: #pharoBlockStatementOwner ifAbsent: [ nil ]
 ]
 
 { #category : #'*FAST-Pharo-Model-accessing' }
 FASTStatement >> pharoBlockStatementOwner: anObject [
 
 	<generated>
-	self privateState attributeAt: #pharoBlockStatementOwner put: (FMMultivalueLink on: self update: #statements from: self pharoBlockStatementOwner to: anObject).
+	self attributeAt: #pharoBlockStatementOwner put: (FMMultivalueLink on: self update: #statements from: self pharoBlockStatementOwner to: anObject).
 ]
 
 { #category : #'*FAST-Pharo-Model-accessing' }
@@ -26,12 +26,12 @@ FASTStatement >> pharoMethodStatementOwner [
 	<container>
 	<FMProperty: #pharoMethodStatementOwner type: #FASTPharoMethodEntity opposite: #statements>
 	<package: #'FAST-Pharo-Model'>
-	^ self privateState attributeAt: #pharoMethodStatementOwner ifAbsent: [ nil ]
+	^ self attributeAt: #pharoMethodStatementOwner ifAbsent: [ nil ]
 ]
 
 { #category : #'*FAST-Pharo-Model-accessing' }
 FASTStatement >> pharoMethodStatementOwner: anObject [
 
 	<generated>
-	self privateState attributeAt: #pharoMethodStatementOwner put: (FMMultivalueLink on: self update: #statements from: self pharoMethodStatementOwner to: anObject).
+	self attributeAt: #pharoMethodStatementOwner put: (FMMultivalueLink on: self update: #statements from: self pharoMethodStatementOwner to: anObject).
 ]

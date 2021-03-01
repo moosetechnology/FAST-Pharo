@@ -2,9 +2,9 @@ Class {
 	#name : #FASTPharoMessageSend,
 	#superclass : #FASTExpression,
 	#instVars : [
-		'#inCascade => FMOne type: #FASTPharoCascade opposite: #messages',
-		'#kind',
-		'#selector => FMOne type: #FASTPharoSelector opposite: #parentMessageSend'
+		'#kind => FMProperty',
+		'#selector => FMOne type: #FASTPharoSelector opposite: #parentMessageSend',
+		'#inCascade => FMOne type: #FASTPharoCascade opposite: #messages'
 	],
 	#category : #'FAST-Pharo-Model-Entities'
 }
@@ -32,7 +32,7 @@ FASTPharoMessageSend >> arguments [
 	<FMComment: 'The arguments of the message'>
 	<derived>
 	<FMProperty: #arguments type: #FASTExpression opposite: #pharoMessageArgumentOwner>
-	^ self privateState attributeAt: #arguments ifAbsentPut: [ FMMultivalueLink on: self opposite: #pharoMessageArgumentOwner: ]
+	^ self attributeAt: #arguments ifAbsentPut: [ FMMultivalueLink on: self opposite: #pharoMessageArgumentOwner: ]
 ]
 
 { #category : #accessing }
@@ -46,7 +46,7 @@ FASTPharoMessageSend >> arguments: anObject [
 FASTPharoMessageSend >> argumentsGroup [
 	<generated>
 	<navigation: 'Arguments'>
-	^ MooseGroup withAll: self arguments asSet
+	^ MooseSpecializedGroup withAll: self arguments asSet
 ]
 
 { #category : #accessing }
@@ -70,7 +70,7 @@ FASTPharoMessageSend >> inCascade: anObject [
 FASTPharoMessageSend >> inCascadeGroup [
 	<generated>
 	<navigation: 'InCascade'>
-	^ MooseGroup with: self inCascade
+	^ MooseSpecializedGroup with: self inCascade
 ]
 
 { #category : #accessing }
@@ -95,20 +95,20 @@ FASTPharoMessageSend >> receiver [
 	<generated>
 	<FMComment: 'The receiver of the selector'>
 	<FMProperty: #receiver type: #FASTExpression opposite: #pharoMessageReceiver>
-	^ self privateState attributeAt: #receiver ifAbsent: [ nil ]
+	^ self attributeAt: #receiver ifAbsent: [ nil ]
 ]
 
 { #category : #accessing }
 FASTPharoMessageSend >> receiver: anObject [
 
 	<generated>
-	(self privateState attributeAt: #receiver ifAbsentPut: [nil]) == anObject ifTrue: [ ^ anObject ].
+	(self attributeAt: #receiver ifAbsentPut: [nil]) == anObject ifTrue: [ ^ anObject ].
 	anObject ifNil: [ | otherSide |
 		otherSide :=  self receiver.
-		self privateState attributeAt: #receiver put: anObject.
+		self attributeAt: #receiver put: anObject.
 		otherSide pharoMessageReceiver: nil ]
 	ifNotNil: [ 
-		self privateState attributeAt: #receiver put: anObject.
+		self attributeAt: #receiver put: anObject.
 		anObject pharoMessageReceiver: self ]
 ]
 
@@ -116,7 +116,7 @@ FASTPharoMessageSend >> receiver: anObject [
 FASTPharoMessageSend >> receiverGroup [
 	<generated>
 	<navigation: 'Receiver'>
-	^ MooseGroup with: self receiver
+	^ MooseSpecializedGroup with: self receiver
 ]
 
 { #category : #accessing }
@@ -139,5 +139,5 @@ FASTPharoMessageSend >> selector: anObject [
 FASTPharoMessageSend >> selectorGroup [
 	<generated>
 	<navigation: 'Selector'>
-	^ MooseGroup with: self selector
+	^ MooseSpecializedGroup with: self selector
 ]
