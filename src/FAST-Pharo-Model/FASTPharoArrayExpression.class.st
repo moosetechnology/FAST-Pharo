@@ -27,7 +27,7 @@ FASTPharoArrayExpression >> contents [
 	<FMComment: 'The expression in the array'>
 	<derived>
 	<FMProperty: #contents type: #FASTExpression opposite: #pharoArrayExpressionExpressionOwner>
-	^ self privateState attributeAt: #contents ifAbsentPut: [ FMMultivalueLink on: self opposite: #pharoArrayExpressionExpressionOwner: ]
+	^ self attributeAt: #contents ifAbsentPut: [ FMMultivalueLink on: self opposite: #pharoArrayExpressionExpressionOwner: ]
 ]
 
 { #category : #accessing }
@@ -41,5 +41,5 @@ FASTPharoArrayExpression >> contents: anObject [
 FASTPharoArrayExpression >> contentsGroup [
 	<generated>
 	<navigation: 'Contents'>
-	^ MooseGroup withAll: self contents asSet
+	^ MooseSpecializedGroup withAll: self contents asSet
 ]

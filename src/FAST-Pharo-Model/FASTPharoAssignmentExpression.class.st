@@ -20,20 +20,20 @@ FASTPharoAssignmentExpression >> expression [
 	<generated>
 	<FMComment: 'Assigned expression (rhs of assignement)'>
 	<FMProperty: #expression type: #FASTExpression opposite: #pharoParentAssignmentExpression>
-	^ self privateState attributeAt: #expression ifAbsent: [ nil ]
+	^ self attributeAt: #expression ifAbsent: [ nil ]
 ]
 
 { #category : #accessing }
 FASTPharoAssignmentExpression >> expression: anObject [
 
 	<generated>
-	(self privateState attributeAt: #expression ifAbsentPut: [nil]) == anObject ifTrue: [ ^ anObject ].
+	(self attributeAt: #expression ifAbsentPut: [nil]) == anObject ifTrue: [ ^ anObject ].
 	anObject ifNil: [ | otherSide |
 		otherSide :=  self expression.
-		self privateState attributeAt: #expression put: anObject.
+		self attributeAt: #expression put: anObject.
 		otherSide pharoParentAssignmentExpression: nil ]
 	ifNotNil: [ 
-		self privateState attributeAt: #expression put: anObject.
+		self attributeAt: #expression put: anObject.
 		anObject pharoParentAssignmentExpression: self ]
 ]
 
@@ -41,7 +41,7 @@ FASTPharoAssignmentExpression >> expression: anObject [
 FASTPharoAssignmentExpression >> expressionGroup [
 	<generated>
 	<navigation: 'Expression'>
-	^ MooseGroup with: self expression
+	^ MooseSpecializedGroup with: self expression
 ]
 
 { #category : #accessing }
@@ -51,20 +51,20 @@ FASTPharoAssignmentExpression >> variable [
 	<generated>
 	<FMComment: 'An assigned variable (lhs of assignement)'>
 	<FMProperty: #variable type: #FASTVariableExpression opposite: #pharoParentAssignmentExpression>
-	^ self privateState attributeAt: #variable ifAbsent: [ nil ]
+	^ self attributeAt: #variable ifAbsent: [ nil ]
 ]
 
 { #category : #accessing }
 FASTPharoAssignmentExpression >> variable: anObject [
 
 	<generated>
-	(self privateState attributeAt: #variable ifAbsentPut: [nil]) == anObject ifTrue: [ ^ anObject ].
+	(self attributeAt: #variable ifAbsentPut: [nil]) == anObject ifTrue: [ ^ anObject ].
 	anObject ifNil: [ | otherSide |
 		otherSide :=  self variable.
-		self privateState attributeAt: #variable put: anObject.
+		self attributeAt: #variable put: anObject.
 		otherSide pharoParentAssignmentExpression: nil ]
 	ifNotNil: [ 
-		self privateState attributeAt: #variable put: anObject.
+		self attributeAt: #variable put: anObject.
 		anObject pharoParentAssignmentExpression: self ]
 ]
 
@@ -72,5 +72,5 @@ FASTPharoAssignmentExpression >> variable: anObject [
 FASTPharoAssignmentExpression >> variableGroup [
 	<generated>
 	<navigation: 'Variable'>
-	^ MooseGroup with: self variable
+	^ MooseSpecializedGroup with: self variable
 ]

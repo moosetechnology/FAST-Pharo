@@ -50,7 +50,7 @@ FASTPharoBlockDefinition >> blockExpression: anObject [
 FASTPharoBlockDefinition >> blockExpressionGroup [
 	<generated>
 	<navigation: 'BlockExpression'>
-	^ MooseGroup with: self blockExpression
+	^ MooseSpecializedGroup with: self blockExpression
 ]
 
 { #category : #accessing }
@@ -61,7 +61,7 @@ FASTPharoBlockDefinition >> localVariables [
 	<FMComment: 'The local variables of the block'>
 	<derived>
 	<FMProperty: #localVariables type: #FASTVariableExpression opposite: #pharoBlockDefinitionVariableEntityOwner>
-	^ self privateState attributeAt: #localVariables ifAbsentPut: [ FMMultivalueLink on: self opposite: #pharoBlockDefinitionVariableEntityOwner: ]
+	^ self attributeAt: #localVariables ifAbsentPut: [ FMMultivalueLink on: self opposite: #pharoBlockDefinitionVariableEntityOwner: ]
 ]
 
 { #category : #accessing }
@@ -75,7 +75,7 @@ FASTPharoBlockDefinition >> localVariables: anObject [
 FASTPharoBlockDefinition >> localVariablesGroup [
 	<generated>
 	<navigation: 'LocalVariables'>
-	^ MooseGroup withAll: self localVariables asSet
+	^ MooseSpecializedGroup withAll: self localVariables asSet
 ]
 
 { #category : #accessing }
@@ -86,7 +86,7 @@ FASTPharoBlockDefinition >> statements [
 	<FMComment: 'The statements of the method'>
 	<derived>
 	<FMProperty: #statements type: #FASTStatement opposite: #pharoBlockStatementOwner>
-	^ self privateState attributeAt: #statements ifAbsentPut: [ FMMultivalueLink on: self opposite: #pharoBlockStatementOwner: ]
+	^ self attributeAt: #statements ifAbsentPut: [ FMMultivalueLink on: self opposite: #pharoBlockStatementOwner: ]
 ]
 
 { #category : #accessing }
@@ -100,5 +100,5 @@ FASTPharoBlockDefinition >> statements: anObject [
 FASTPharoBlockDefinition >> statementsGroup [
 	<generated>
 	<navigation: 'Statements'>
-	^ MooseGroup withAll: self statements asSet
+	^ MooseSpecializedGroup withAll: self statements asSet
 ]

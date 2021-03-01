@@ -36,5 +36,5 @@ FASTPharoBlockExpression >> block: anObject [
 FASTPharoBlockExpression >> blockGroup [
 	<generated>
 	<navigation: 'Block'>
-	^ MooseGroup with: self block
+	^ MooseSpecializedGroup with: self block
 ]
