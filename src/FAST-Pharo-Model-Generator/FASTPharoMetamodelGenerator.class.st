@@ -34,6 +34,7 @@ Class {
 		'variableEntity',
 		'statement',
 		'variableExpression',
+		'tEntity',
 		'entity'
 	],
 	#category : #'FAST-Pharo-Model-Generator'
@@ -81,8 +82,8 @@ FASTPharoMetamodelGenerator >> defineClasses [
 	behaviouralEntity := self remoteEntity: #BehaviouralEntity withPrefix: #FAST.
 	expression := self remoteEntity: #Expression withPrefix: #FAST.
 	namedBehaviouralEntity := self remoteEntity: #NamedBehaviouralEntity withPrefix: #FAST.
+	statement := self remoteEntity: #Statement withPrefix: #FAST.
 	entity := self remoteEntity: #Entity withPrefix: #FAST.
-	statement := self remoteEntity: #Statement withPrefix: #FAST
 ]
 
 { #category : #definition }
@@ -100,6 +101,7 @@ FASTPharoMetamodelGenerator >> defineHierarchy [
 	methodEntity --|> namedBehaviouralEntity.
 	methodEntity --|> #THasImmediateSource.
 	numberLiteral --|> literal.
+	selector --|> tEntity.
 	selector --|> entity.
 	selector --|> #TNamedEntity.
 	symbolLiteral --|> literal.
@@ -140,4 +142,10 @@ FASTPharoMetamodelGenerator >> defineRelations [
 	(((arrayLiteral property: #contents) comment: 'The expression in the array') <>-* ((expression property: #pharoArrayLiteralExpressionExpressionOwner) comment: '')) .	
 	(((byteArrayLiteral property: #contents) comment: 'The expression in the array') <>-* ((expression property: #pharoByteArrayLiteralExpressionExpressionOwner) comment: '')) .	
 	
+]
+
+{ #category : #definition }
+FASTPharoMetamodelGenerator >> defineTraits [
+	super defineTraits.
+	tEntity := self remoteTrait: #TEntity withPrefix: #FAST.
 ]
