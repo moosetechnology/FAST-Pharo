@@ -1,6 +1,10 @@
 Class {
 	#name : #FASTPharoAssignmentExpression,
 	#superclass : #FASTPharoExpression,
+	#instVars : [
+		'#expression => FMOne type: #FASTPharoExpression opposite: #pharoParentAssignmentExpression',
+		'#variable => FMOne type: #FASTPharoVariableExpression opposite: #pharoParentAssignmentExpression'
+	],
 	#category : #'FAST-Pharo-Model-Entities'
 }
 
@@ -15,26 +19,18 @@ FASTPharoAssignmentExpression class >> annotation [
 
 { #category : #accessing }
 FASTPharoAssignmentExpression >> expression [
-	"Relation named: #expression type: #FASTExpression opposite: #pharoParentAssignmentExpression"
+	"Relation named: #expression type: #FASTPharoExpression opposite: #pharoParentAssignmentExpression"
 
 	<generated>
 	<FMComment: 'Assigned expression (rhs of assignement)'>
-	<FMProperty: #expression type: #FASTExpression opposite: #pharoParentAssignmentExpression>
-	^ self attributeAt: #expression ifAbsent: [ nil ]
+	^ expression
 ]
 
 { #category : #accessing }
 FASTPharoAssignmentExpression >> expression: anObject [
 
 	<generated>
-	(self attributeAt: #expression ifAbsentPut: [nil]) == anObject ifTrue: [ ^ anObject ].
-	anObject ifNil: [ | otherSide |
-		otherSide :=  self expression.
-		self attributeAt: #expression put: anObject.
-		otherSide pharoParentAssignmentExpression: nil ]
-	ifNotNil: [ 
-		self attributeAt: #expression put: anObject.
-		anObject pharoParentAssignmentExpression: self ]
+	expression := anObject
 ]
 
 { #category : #navigation }
@@ -46,26 +42,18 @@ FASTPharoAssignmentExpression >> expressionGroup [
 
 { #category : #accessing }
 FASTPharoAssignmentExpression >> variable [
-	"Relation named: #variable type: #FASTVariableExpression opposite: #pharoParentAssignmentExpression"
+	"Relation named: #variable type: #FASTPharoVariableExpression opposite: #pharoParentAssignmentExpression"
 
 	<generated>
 	<FMComment: 'An assigned variable (lhs of assignement)'>
-	<FMProperty: #variable type: #FASTVariableExpression opposite: #pharoParentAssignmentExpression>
-	^ self attributeAt: #variable ifAbsent: [ nil ]
+	^ variable
 ]
 
 { #category : #accessing }
 FASTPharoAssignmentExpression >> variable: anObject [
 
 	<generated>
-	(self attributeAt: #variable ifAbsentPut: [nil]) == anObject ifTrue: [ ^ anObject ].
-	anObject ifNil: [ | otherSide |
-		otherSide :=  self variable.
-		self attributeAt: #variable put: anObject.
-		otherSide pharoParentAssignmentExpression: nil ]
-	ifNotNil: [ 
-		self attributeAt: #variable put: anObject.
-		anObject pharoParentAssignmentExpression: self ]
+	variable := anObject
 ]
 
 { #category : #navigation }

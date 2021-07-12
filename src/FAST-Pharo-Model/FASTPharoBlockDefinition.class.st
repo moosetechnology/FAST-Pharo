@@ -1,8 +1,12 @@
 Class {
 	#name : #FASTPharoBlockDefinition,
-	#superclass : #FASTBehaviouralEntity,
+	#superclass : #FASTPharoEntity,
+	#traits : 'FASTTBehaviouralEntity',
+	#classTraits : 'FASTTBehaviouralEntity classTrait',
 	#instVars : [
-		'#blockExpression => FMOne type: #FASTPharoBlockExpression opposite: #block'
+		'#blockExpression => FMOne type: #FASTPharoBlockExpression opposite: #block',
+		'#localVariables => FMMany type: #FASTPharoVariableExpression opposite: #pharoBlockDefinitionVariableEntityOwner',
+		'#statements => FMMany type: #FASTPharoStatement opposite: #pharoBlockStatementOwner'
 	],
 	#category : #'FAST-Pharo-Model-Entities'
 }
@@ -10,7 +14,7 @@ Class {
 { #category : #meta }
 FASTPharoBlockDefinition class >> annotation [
 
-	<FMClass: #BlockDefinition super: #FASTBehaviouralEntity>
+	<FMClass: #BlockDefinition super: #FASTPharoEntity>
 	<package: #'FAST-Pharo-Model'>
 	<generated>
 	^self
@@ -55,20 +59,19 @@ FASTPharoBlockDefinition >> blockExpressionGroup [
 
 { #category : #accessing }
 FASTPharoBlockDefinition >> localVariables [
-	"Relation named: #localVariables type: #FASTVariableExpression opposite: #pharoBlockDefinitionVariableEntityOwner"
+	"Relation named: #localVariables type: #FASTPharoVariableExpression opposite: #pharoBlockDefinitionVariableEntityOwner"
 
 	<generated>
 	<FMComment: 'The local variables of the block'>
 	<derived>
-	<FMProperty: #localVariables type: #FASTVariableExpression opposite: #pharoBlockDefinitionVariableEntityOwner>
-	^ self attributeAt: #localVariables ifAbsentPut: [ FMMultivalueLink on: self opposite: #pharoBlockDefinitionVariableEntityOwner: ]
+	^ localVariables
 ]
 
 { #category : #accessing }
 FASTPharoBlockDefinition >> localVariables: anObject [
 
 	<generated>
-	self localVariables value: anObject
+	localVariables value: anObject
 ]
 
 { #category : #navigation }
@@ -80,20 +83,19 @@ FASTPharoBlockDefinition >> localVariablesGroup [
 
 { #category : #accessing }
 FASTPharoBlockDefinition >> statements [
-	"Relation named: #statements type: #FASTStatement opposite: #pharoBlockStatementOwner"
+	"Relation named: #statements type: #FASTPharoStatement opposite: #pharoBlockStatementOwner"
 
 	<generated>
 	<FMComment: 'The statements of the method'>
 	<derived>
-	<FMProperty: #statements type: #FASTStatement opposite: #pharoBlockStatementOwner>
-	^ self attributeAt: #statements ifAbsentPut: [ FMMultivalueLink on: self opposite: #pharoBlockStatementOwner: ]
+	^ statements
 ]
 
 { #category : #accessing }
 FASTPharoBlockDefinition >> statements: anObject [
 
 	<generated>
-	self statements value: anObject
+	statements value: anObject
 ]
 
 { #category : #navigation }

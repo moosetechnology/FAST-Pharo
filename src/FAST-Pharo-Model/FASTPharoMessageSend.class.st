@@ -1,10 +1,14 @@
 Class {
 	#name : #FASTPharoMessageSend,
-	#superclass : #FASTExpression,
+	#superclass : #FASTPharoEntity,
+	#traits : 'FASTTInvocation',
+	#classTraits : 'FASTTInvocation classTrait',
 	#instVars : [
+		'#arguments => FMMany type: #FASTPharoExpression opposite: #pharoMessageArgumentOwner',
+		'#inCascade => FMOne type: #FASTPharoCascade opposite: #messages',
 		'#kind => FMProperty',
-		'#selector => FMOne type: #FASTPharoSelector opposite: #parentMessageSend',
-		'#inCascade => FMOne type: #FASTPharoCascade opposite: #messages'
+		'#receiver => FMOne type: #FASTPharoExpression opposite: #pharoMessageReceiver',
+		'#selector => FMOne type: #FASTPharoSelector opposite: #parentMessageSend'
 	],
 	#category : #'FAST-Pharo-Model-Entities'
 }
@@ -12,7 +16,7 @@ Class {
 { #category : #meta }
 FASTPharoMessageSend class >> annotation [
 
-	<FMClass: #MessageSend super: #FASTExpression>
+	<FMClass: #MessageSend super: #FASTPharoEntity>
 	<package: #'FAST-Pharo-Model'>
 	<generated>
 	^self
@@ -26,20 +30,19 @@ FASTPharoMessageSend >> addArgument: anObject [
 
 { #category : #accessing }
 FASTPharoMessageSend >> arguments [
-	"Relation named: #arguments type: #FASTExpression opposite: #pharoMessageArgumentOwner"
+	"Relation named: #arguments type: #FASTPharoExpression opposite: #pharoMessageArgumentOwner"
 
 	<generated>
 	<FMComment: 'The arguments of the message'>
 	<derived>
-	<FMProperty: #arguments type: #FASTExpression opposite: #pharoMessageArgumentOwner>
-	^ self attributeAt: #arguments ifAbsentPut: [ FMMultivalueLink on: self opposite: #pharoMessageArgumentOwner: ]
+	^ arguments
 ]
 
 { #category : #accessing }
 FASTPharoMessageSend >> arguments: anObject [
 
 	<generated>
-	self arguments value: anObject
+	arguments value: anObject
 ]
 
 { #category : #navigation }
@@ -90,26 +93,18 @@ FASTPharoMessageSend >> kind: anObject [
 
 { #category : #accessing }
 FASTPharoMessageSend >> receiver [
-	"Relation named: #receiver type: #FASTExpression opposite: #pharoMessageReceiver"
+	"Relation named: #receiver type: #FASTPharoExpression opposite: #pharoMessageReceiver"
 
 	<generated>
 	<FMComment: 'The receiver of the selector'>
-	<FMProperty: #receiver type: #FASTExpression opposite: #pharoMessageReceiver>
-	^ self attributeAt: #receiver ifAbsent: [ nil ]
+	^ receiver
 ]
 
 { #category : #accessing }
 FASTPharoMessageSend >> receiver: anObject [
 
 	<generated>
-	(self attributeAt: #receiver ifAbsentPut: [nil]) == anObject ifTrue: [ ^ anObject ].
-	anObject ifNil: [ | otherSide |
-		otherSide :=  self receiver.
-		self attributeAt: #receiver put: anObject.
-		otherSide pharoMessageReceiver: nil ]
-	ifNotNil: [ 
-		self attributeAt: #receiver put: anObject.
-		anObject pharoMessageReceiver: self ]
+	receiver := anObject
 ]
 
 { #category : #navigation }

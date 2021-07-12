@@ -1,8 +1,8 @@
 Class {
 	#name : #FASTPharoSelector,
-	#superclass : #FASTEntity,
-	#traits : 'FamixTNamedEntity',
-	#classTraits : 'FamixTNamedEntity classTrait',
+	#superclass : #FASTPharoEntity,
+	#traits : 'FASTTNamedEntity',
+	#classTraits : 'FASTTNamedEntity classTrait',
 	#instVars : [
 		'#parentMessageSend => FMOne type: #FASTPharoMessageSend opposite: #selector'
 	],
@@ -12,7 +12,7 @@ Class {
 { #category : #meta }
 FASTPharoSelector class >> annotation [
 
-	<FMClass: #Selector super: #FASTEntity>
+	<FMClass: #Selector super: #FASTPharoEntity>
 	<package: #'FAST-Pharo-Model'>
 	<generated>
 	^self
