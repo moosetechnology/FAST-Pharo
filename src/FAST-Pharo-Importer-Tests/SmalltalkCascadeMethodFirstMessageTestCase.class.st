@@ -45,10 +45,10 @@ SmalltalkCascadeMethodFirstMessageTestCase >> testFirstMessageParametersCount [
 
 { #category : #tests }
 SmalltalkCascadeMethodFirstMessageTestCase >> testFirstMessageSelectorName [
-	self assert: message selector name equals: '<=>'
+	self assert: message invoked name equals: '<=>'
 ]
 
 { #category : #tests }
 SmalltalkCascadeMethodFirstMessageTestCase >> testFirstMessageSelectorParent [
-	self assert: message selector parentNode equals: message
+	self assert: message invoked invokedIn equals: message
 ]
