@@ -40,12 +40,12 @@ SmalltalkCascadeMethodFourthMessageTestCase >> testFourthMessageParametersCount 
 
 { #category : #tests }
 SmalltalkCascadeMethodFourthMessageTestCase >> testFourthMessageSelectorName [
-	self assert: (cascadeMethod statements first expression messages at: 4) selector name equals: 'yourself'
+	self assert: (cascadeMethod statements first expression messages at: 4) invoked name equals: 'yourself'
 ]
 
 { #category : #tests }
 SmalltalkCascadeMethodFourthMessageTestCase >> testFourthMessageSelectorParent [
 	self
-		assert: (cascadeMethod statements first expression messages at: 4) selector parentNode
+		assert: (cascadeMethod statements first expression messages at: 4) invoked invokedIn
 		equals: (cascadeMethod statements first expression messages at: 4)
 ]
