@@ -40,7 +40,7 @@ SmalltalkCascadeMethodSecondMessageTestCase >> testSecondMessageParameterParent 
 
 { #category : #tests }
 SmalltalkCascadeMethodSecondMessageTestCase >> testSecondMessageParameterType [
-	self assert: (message arguments first isMemberOf: FASTVariableExpression)
+	self assert: (message arguments first isMemberOf: FASTPharoVariableExpression)
 ]
 
 { #category : #tests }
