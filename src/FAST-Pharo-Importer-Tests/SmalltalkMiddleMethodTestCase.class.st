@@ -4,6 +4,20 @@ Class {
 	#category : #'FAST-Pharo-Importer-Tests'
 }
 
+{ #category : #running }
+SmalltalkMiddleMethodTestCase >> setUpMethods [
+	"returnMethod      := self getFastMethodFromModelByName: 'return:'.
+	literalMethod     := self getFastMethodFromModelByName: 'lotsOfLiterals'.
+	sendMessageMethod := self getFastMethodFromModelByName: 'sendMessage'."
+	middleMethod      := self getFastMethodFromModelByName: 'middleOf:and:'.
+	"spaceshipMethod   := self getFastMethodFromModelByName: '<=>'.
+	cascadeMethod     := self getFastMethodFromModelByName: 'cascade'.
+	scopeMethod       := self getFastMethodFromModelByName: 'scope'.
+	nestMethod        := self getFastMethodFromModelByName: 'nest:in:within:with:'."
+	
+	allMethods := {"literalMethod . sendMessageMethod . spaceshipMethod . returnMethod ." middleMethod ". cascadeMethod . scopeMethod . nestMethod"}
+]
+
 { #category : #tests }
 SmalltalkMiddleMethodTestCase >> testAssignmentExpressionAssigneeName [
 	self assert: middleMethod statements first expression variable name equals: 'sum'
@@ -12,29 +26,29 @@ SmalltalkMiddleMethodTestCase >> testAssignmentExpressionAssigneeName [
 { #category : #tests }
 SmalltalkMiddleMethodTestCase >> testAssignmentExpressionAssigneeParent [
 	self
-		assert: middleMethod statements first expression variable parentNode
+		assert: middleMethod statements first expression variable parentAssignmentExpression
 		equals: middleMethod statements first expression
 ]
 
 { #category : #tests }
 SmalltalkMiddleMethodTestCase >> testAssignmentExpressionAssigneeType [
-	self assert: (middleMethod statements first expression variable isMemberOf: FASTVariableExpression )
+	self assert: (middleMethod statements first expression variable isMemberOf: FASTPharoVariableEntity )
 ]
 
 { #category : #tests }
 SmalltalkMiddleMethodTestCase >> testAssignmentExpressionParent [
-	self assert: middleMethod statements first expression parentNode equals: middleMethod statements first 
+	self assert: middleMethod statements first expression expressionStatementOwner equals: middleMethod statements first 
 ]
 
 { #category : #tests }
 SmalltalkMiddleMethodTestCase >> testAssignmentExpressionType [
-	self assert: (middleMethod statements first expression isMemberOf: FASTPharoAssignmentExpression)
+	self assert: (middleMethod statements first expression isMemberOf: FASTPharoAssignment)
 ]
 
 { #category : #tests }
 SmalltalkMiddleMethodTestCase >> testDivisionExpressionParameterParent [
 	self
-		assert: middleMethod statements last expression arguments first parentNode
+		assert: middleMethod statements last expression arguments first argumentOwner
 		equals: middleMethod statements last expression
 ]
 
@@ -55,12 +69,12 @@ SmalltalkMiddleMethodTestCase >> testDivisionExpressionParametersCount [
 
 { #category : #tests }
 SmalltalkMiddleMethodTestCase >> testDivisionExpressionParent [
-	self assert: middleMethod statements last expression parentNode equals: middleMethod statements last
+	self assert: middleMethod statements last expression returnOwner equals: middleMethod statements last
 ]
 
 { #category : #tests }
 SmalltalkMiddleMethodTestCase >> testDivisionExpressionRecepientType [
-	self assert: (middleMethod statements last expression receiver isMemberOf: FASTVariableExpression)
+	self assert: (middleMethod statements last expression receiver isMemberOf: FASTPharoVariableExpression)
 ]
 
 { #category : #tests }
@@ -71,18 +85,18 @@ SmalltalkMiddleMethodTestCase >> testDivisionExpressionRecepientVariableName [
 { #category : #tests }
 SmalltalkMiddleMethodTestCase >> testDivisionExpressionRecepientVariableParent [
 	self
-		assert: middleMethod statements last expression receiver parentNode
+		assert: middleMethod statements last expression receiver pharoMessageReceiver
 		equals: middleMethod statements last expression
 ]
 
 { #category : #tests }
 SmalltalkMiddleMethodTestCase >> testDivisionExpressionSelector [
-	self assert: middleMethod statements last expression selector name equals: '/'
+	self assert: middleMethod statements last expression invoked name equals: '/'
 ]
 
 { #category : #tests }
 SmalltalkMiddleMethodTestCase >> testDivisionExpressionSelectorParent [
-	self assert: middleMethod statements last expression selector parentNode equals: middleMethod statements last expression 
+	self assert: middleMethod statements last expression invoked invokedIn equals: middleMethod statements last expression 
 ]
 
 { #category : #tests }
@@ -97,29 +111,29 @@ SmalltalkMiddleMethodTestCase >> testStatementsCount [
 
 { #category : #tests }
 SmalltalkMiddleMethodTestCase >> testStatementsParent [
-	middleMethod statements do: [ :each | self assert: each parentNode equals: middleMethod ]
+	middleMethod statements do: [ :each | self assert: each statementContainer equals: middleMethod statementBlock]
 ]
 
 { #category : #tests }
 SmalltalkMiddleMethodTestCase >> testStatementsType [
 	self
-		assert: (middleMethod statements first isMemberOf: FASTExpressionStatement);
-		assert: (middleMethod statements last isMemberOf: FASTReturnStatement)
+		assert: (middleMethod statements first isMemberOf: FASTPharoExpressionStatement);
+		assert: (middleMethod statements last isMemberOf: FASTPharoReturnStatement)
 ]
 
 { #category : #tests }
 SmalltalkMiddleMethodTestCase >> testSumExpressionParameterParent [
-	self assert: middleMethod statements first expression expression arguments first parentNode equals: middleMethod statements first expression expression
+	self assert: middleMethod statements first expression expression arguments first argumentOwner equals: middleMethod statements first expression expression
 ]
 
 { #category : #tests }
 SmalltalkMiddleMethodTestCase >> testSumExpressionParameterType [
-	self assert: (middleMethod statements first expression expression arguments first isMemberOf: FASTVariableExpression)
+	self assert: (middleMethod statements first expression expression arguments first isMemberOf: FASTPharoVariableExpression)
 ]
 
 { #category : #tests }
 SmalltalkMiddleMethodTestCase >> testSumExpressionParameterVariableName [
-	self assert: (middleMethod statements first expression  expression arguments first isKindOf: FASTVariableExpression).
+	self assert: (middleMethod statements first expression  expression arguments first isKindOf: FASTPharoVariableExpression).
 	self assert: middleMethod statements first expression expression arguments first name equals: 'b'
 ]
 
@@ -131,34 +145,34 @@ SmalltalkMiddleMethodTestCase >> testSumExpressionParametersCount [
 { #category : #tests }
 SmalltalkMiddleMethodTestCase >> testSumExpressionParent [
 	self
-		assert: middleMethod statements first expression expression parentNode
+		assert: middleMethod statements first expression expression assignedIn
 		equals: middleMethod statements first expression
 ]
 
 { #category : #tests }
 SmalltalkMiddleMethodTestCase >> testSumExpressionReceiverParent [
-	self assert: middleMethod statements first expression expression receiver parentNode equals: middleMethod statements first expression expression
+	self assert: middleMethod statements first expression expression receiver pharoMessageReceiver equals: middleMethod statements first expression expression
 ]
 
 { #category : #tests }
 SmalltalkMiddleMethodTestCase >> testSumExpressionReceiverType [
-	self assert: (middleMethod statements first expression expression receiver isMemberOf: FASTVariableExpression)
+	self assert: (middleMethod statements first expression expression receiver isMemberOf: FASTPharoVariableExpression)
 ]
 
 { #category : #tests }
 SmalltalkMiddleMethodTestCase >> testSumExpressionReceiverVariableName [
-	self assert: (middleMethod statements first expression expression receiver isKindOf: FASTVariableExpression).
+	self assert: (middleMethod statements first expression expression receiver isKindOf: FASTPharoVariableExpression).
 	self assert: middleMethod statements first expression expression receiver name equals: 'a'
 ]
 
 { #category : #tests }
 SmalltalkMiddleMethodTestCase >> testSumExpressionSelectorName [
-	self assert: middleMethod statements first expression expression selector name equals: '+'
+	self assert: middleMethod statements first expression expression invoked name equals: '+'
 ]
 
 { #category : #tests }
 SmalltalkMiddleMethodTestCase >> testSumExpressionSelectorParent [
-	self assert: middleMethod statements first expression expression selector parentNode equals: middleMethod statements first expression expression
+	self assert: middleMethod statements first expression expression invoked invokedIn equals: middleMethod statements first expression expression
 ]
 
 { #category : #tests }

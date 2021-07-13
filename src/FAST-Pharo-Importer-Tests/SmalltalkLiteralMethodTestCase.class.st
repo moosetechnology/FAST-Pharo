@@ -22,12 +22,12 @@ SmalltalkLiteralMethodTestCase >> setUpMethods [
 SmalltalkLiteralMethodTestCase >> testBooleanLiteralParent [
 	| assignment |
 	assignment := (literalMethod statements at: 6) expression.
-	self assert: assignment expression parentNode equals: assignment
+	self assert: assignment expression assignedIn equals: assignment
 ]
 
 { #category : #tests }
 SmalltalkLiteralMethodTestCase >> testBooleanLiteralType [
-	self assert: (literalMethod statements at: 6) expression expression class equals: FASTBooleanLiteral
+	self assert: (literalMethod statements at: 6) expression expression class equals: FASTPharoBooleanLiteral
 ]
 
 { #category : #tests }
@@ -38,21 +38,21 @@ SmalltalkLiteralMethodTestCase >> testBooleanLiteralValue [
 { #category : #tests }
 SmalltalkLiteralMethodTestCase >> testByLastExpressionsParent [
 	literalMethod statements asArray allButLast do: [ :statement |
-		self assert: statement expression class equals: FASTPharoAssignmentExpression ]
+		self assert: statement expression class equals: FASTPharoAssignment ]
 
 ]
 
 { #category : #tests }
 SmalltalkLiteralMethodTestCase >> testByLastExpressionsType [
 	literalMethod statements asArray allButLast do: [ :statement |
-		self assert: statement expression class equals: FASTPharoAssignmentExpression ]
+		self assert: statement expression class equals: FASTPharoAssignment ]
 
 ]
 
 { #category : #tests }
 SmalltalkLiteralMethodTestCase >> testByLastStatementsType [
 	literalMethod statements asArray allButLast do: [ :statement |
-		self assert: statement class equals: FASTExpressionStatement ]
+		self assert: statement class equals: FASTPharoExpressionStatement ]
 ]
 
 { #category : #tests }
@@ -62,14 +62,17 @@ SmalltalkLiteralMethodTestCase >> testByteArrayContentsCount [
 
 { #category : #tests }
 SmalltalkLiteralMethodTestCase >> testByteArrayContentsParent [
-	(literalMethod statements at: 8) expression expression contents
-		do: [ :node | self assert: node parentNode equals: (literalMethod statements at: 8) expression expression ]
+
+	| assignementStatement |
+	assignementStatement := (literalMethod statements at: 8) expression.
+	assignementStatement expression contents do: [ :node | 
+		self assert: node pharoByteArrayLiteralExpressionExpressionOwner equals: assignementStatement expression ]
 ]
 
 { #category : #tests }
 SmalltalkLiteralMethodTestCase >> testByteArrayLiteralContentsParent [
 	(literalMethod statements at: 8) expression expression contents
-		do: [ :each | self assert: each parentNode equals: (literalMethod statements at: 8) expression expression ]
+		do: [ :each | self assert: each pharoByteArrayLiteralExpressionExpressionOwner equals: (literalMethod statements at: 8) expression expression ]
 ]
 
 { #category : #tests }
@@ -90,7 +93,7 @@ SmalltalkLiteralMethodTestCase >> testByteArrayLiteralContentsValues [
 { #category : #tests }
 SmalltalkLiteralMethodTestCase >> testByteArrayLiteralParent [
 	self
-		assert: (literalMethod statements at: 8) expression expression parentNode
+		assert: (literalMethod statements at: 8) expression expression assignedIn
 		equals: (literalMethod statements at: 8) expression 
 ]
 
@@ -102,19 +105,19 @@ SmalltalkLiteralMethodTestCase >> testByteArrayLiteralType [
 { #category : #tests }
 SmalltalkLiteralMethodTestCase >> testByteArrayLiteralValueParent [
 	(literalMethod statements at: 8) expression expression contents
-		do: [ :node | self assert: node parentNode equals: (literalMethod statements at: 8) expression expression ]
+		do: [ :node | self assert: node pharoByteArrayLiteralExpressionExpressionOwner equals: (literalMethod statements at: 8) expression expression ]
 ]
 
 { #category : #tests }
 SmalltalkLiteralMethodTestCase >> testCharacterLiteralParent [
 	self
-		assert: (literalMethod statements at: 3) expression expression parentNode
+		assert: (literalMethod statements at: 3) expression expression assignedIn 
 		equals: (literalMethod statements at: 3) expression
 ]
 
 { #category : #tests }
 SmalltalkLiteralMethodTestCase >> testCharacterLiteralType [
-		self assert: (literalMethod statements at: 3) expression expression class equals: FASTCharacterLiteral
+		self assert: (literalMethod statements at: 3) expression expression class equals: FASTPharoCharacterLiteral
 ]
 
 { #category : #tests }
@@ -124,7 +127,7 @@ SmalltalkLiteralMethodTestCase >> testCharacterLiteralValue [
 
 { #category : #tests }
 SmalltalkLiteralMethodTestCase >> testLastExpressionParent [
-	self assert: literalMethod statements last expression parentNode equals: literalMethod statements last 
+	self assert: literalMethod statements last expression returnOwner equals: literalMethod statements last 
 
 ]
 
@@ -135,13 +138,13 @@ SmalltalkLiteralMethodTestCase >> testLastExpressionType [
 
 { #category : #tests }
 SmalltalkLiteralMethodTestCase >> testLastStatementType [
-	self assert: literalMethod statements last class equals: FASTReturnStatement
+	self assert: literalMethod statements last class equals: FASTPharoReturnStatement
 ]
 
 { #category : #tests }
 SmalltalkLiteralMethodTestCase >> testNumberLiteralParent [
 	self
-		assert: (literalMethod statements at: 2) expression expression parentNode
+		assert: (literalMethod statements at: 2) expression expression assignedIn
 		equals: (literalMethod statements at: 2) expression
 ]
 
@@ -163,19 +166,19 @@ SmalltalkLiteralMethodTestCase >> testStatementsCount [
 { #category : #tests }
 SmalltalkLiteralMethodTestCase >> testStatementsParent [
 	literalMethod statements do: [ :statement |
-		self assert: statement parentNode equals: literalMethod ]
+		self assert: statement statementContainer equals: literalMethod statementBlock ]
 ]
 
 { #category : #tests }
 SmalltalkLiteralMethodTestCase >> testStringLiteralParent [
 	self
-		assert: (literalMethod statements at: 5) expression expression parentNode
+		assert: (literalMethod statements at: 5) expression expression assignedIn
 		equals: (literalMethod statements at: 5) expression
 ]
 
 { #category : #tests }
 SmalltalkLiteralMethodTestCase >> testStringLiteralType [
-		self assert: (literalMethod statements at: 5) expression expression class equals: FASTStringLiteral
+		self assert: (literalMethod statements at: 5) expression expression class equals: FASTPharoStringLiteral
 ]
 
 { #category : #tests }
@@ -186,7 +189,7 @@ SmalltalkLiteralMethodTestCase >> testStringLiteralValue [
 { #category : #tests }
 SmalltalkLiteralMethodTestCase >> testSymbolLiteralParent [
 	self
-		assert: (literalMethod statements at: 4) expression expression parentNode
+		assert: (literalMethod statements at: 4) expression expression assignedIn
 		equals: (literalMethod statements at: 4) expression
 ]
 
@@ -202,12 +205,12 @@ SmalltalkLiteralMethodTestCase >> testSymbolLiteralValue [
 
 { #category : #tests }
 SmalltalkLiteralMethodTestCase >> testUndefinedLiteralParent [
-		self assert: (literalMethod statements at: 1) expression expression parentNode equals: (literalMethod statements at: 1) expression 
+		self assert: (literalMethod statements at: 1) expression expression assignedIn equals: (literalMethod statements at: 1) expression 
 ]
 
 { #category : #tests }
 SmalltalkLiteralMethodTestCase >> testUndefinedLiteralType [
-		self assert: (literalMethod statements at: 1) expression expression class equals: FASTNullPointerLiteral
+		self assert: (literalMethod statements at: 1) expression expression class equals: FASTPharoNilLiteral
 ]
 
 { #category : #tests }

@@ -196,15 +196,21 @@ FASTSmalltalkImporterVisitor >> visitArrayNode: anArrayNode [
 ]
 
 { #category : #'visitor-double dispatching' }
-FASTSmalltalkImporterVisitor >> visitAssignmentNode: anAssignmentNode [ 
-	| assignt |
-	currentFASTEntity := self create: FASTPharoAssignment from: anAssignmentNode.
+FASTSmalltalkImporterVisitor >> visitAssignmentNode: anAssignmentNode [
+
+	| assignedExpression |
+	currentFASTEntity := self
+		                     create: FASTPharoAssignment
+		                     from: anAssignmentNode.
+
+	currentFASTEntity variable:
+		(self clone visitVariableEntityNode: anAssignmentNode variable).
 	
-	currentFASTEntity variable: (self clone visitVariableEntityNode: anAssignmentNode variable).
+	assignedExpression := self clone visitNode: anAssignmentNode value.
+	currentFASTEntity expression: assignedExpression.
+	assignedExpression assignedIn: currentFASTEntity.
 
-	currentFASTEntity expression: (self clone visitNode: anAssignmentNode value).
-
-  	^ currentFASTEntity
+	^ currentFASTEntity
 ]
 
 { #category : #'visitor-double dispatching' }
@@ -321,7 +327,7 @@ FASTSmalltalkImporterVisitor >> visitMethodNode: aMethodNode [
 	currentFASTEntity := (self create: FASTPharoMethodEntity from: aMethodNode)
 		name: aMethodNode selector;
 		yourself.
-	aMethodNode arguments do: [ :argument | currentFASTEntity parameters add: (self clone accept: argument) ].
+	aMethodNode arguments do: [ :argument | currentFASTEntity parameters add: (self clone visitVariableEntityNode: argument) ].
 
 	currentFASTEntity statementBlock: (self clone visitNode: aMethodNode body).
 

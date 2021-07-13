@@ -20,12 +20,12 @@ SmalltalkLiteralMethodLiteralArrTestCase >> testArrayContentsCount [
 
 { #category : #tests }
 SmalltalkLiteralMethodLiteralArrTestCase >> testArrayFifthElementParent [
-		self assert: (array contents at: 5) parentNode equals: array
+		self assert: (array contents at: 5) pharoArrayLiteralExpressionExpressionOwner equals: array
 ]
 
 { #category : #tests }
 SmalltalkLiteralMethodLiteralArrTestCase >> testArrayFifthElementType [
-		self assert: (array contents at: 5) class equals: FASTBooleanLiteral
+		self assert: (array contents at: 5) class equals: FASTPharoBooleanLiteral
 ]
 
 { #category : #tests }
@@ -35,7 +35,7 @@ SmalltalkLiteralMethodLiteralArrTestCase >> testArrayFifthElementValue [
 
 { #category : #tests }
 SmalltalkLiteralMethodLiteralArrTestCase >> testArrayFirstElementParent [
-		self assert: (array contents at: 1) parentNode equals: array 
+		self assert: (array contents at: 1) pharoArrayLiteralExpressionExpressionOwner equals: array 
 ]
 
 { #category : #tests }
@@ -50,7 +50,7 @@ SmalltalkLiteralMethodLiteralArrTestCase >> testArrayFirstElementValue [
 
 { #category : #tests }
 SmalltalkLiteralMethodLiteralArrTestCase >> testArrayFourthElementContentTypes [
-	(array contents at: 4) contents do: [ :each | self assert: each class equals: FASTCharacterLiteral ]
+	(array contents at: 4) contents do: [ :each | self assert: each class equals: FASTPharoCharacterLiteral ]
 ]
 
 { #category : #tests }
@@ -60,7 +60,7 @@ SmalltalkLiteralMethodLiteralArrTestCase >> testArrayFourthElementContentsCount 
 
 { #category : #tests }
 SmalltalkLiteralMethodLiteralArrTestCase >> testArrayFourthElementContentsParent [
-	(array contents at: 4) contents do: [ :each | self assert: each parentNode equals: (array contents at: 4) ]
+	(array contents at: 4) contents do: [ :each | self assert: each pharoArrayLiteralExpressionExpressionOwner equals: (array contents at: 4) ]
 ]
 
 { #category : #tests }
@@ -72,7 +72,7 @@ SmalltalkLiteralMethodLiteralArrTestCase >> testArrayFourthElementContentsValues
 
 { #category : #tests }
 SmalltalkLiteralMethodLiteralArrTestCase >> testArrayFourthElementParent [
-		self assert: (array contents at: 4) parentNode equals: array
+		self assert: (array contents at: 4) pharoArrayLiteralExpressionExpressionOwner equals: array
 ]
 
 { #category : #tests }
@@ -87,12 +87,12 @@ SmalltalkLiteralMethodLiteralArrTestCase >> testArrayLiteralType [
 
 { #category : #tests }
 SmalltalkLiteralMethodLiteralArrTestCase >> testArraySecondElementParent [
-		self assert: (array contents at: 2) parentNode equals: array
+		self assert: (array contents at: 2) pharoArrayLiteralExpressionExpressionOwner equals: array
 ]
 
 { #category : #tests }
 SmalltalkLiteralMethodLiteralArrTestCase >> testArraySecondElementType [
-		self assert: (array contents at: 2) class equals: FASTStringLiteral
+		self assert: (array contents at: 2) class equals: FASTPharoStringLiteral
 ]
 
 { #category : #tests }
@@ -112,7 +112,7 @@ SmalltalkLiteralMethodLiteralArrTestCase >> testArraySixthElementContentsCount [
 
 { #category : #tests }
 SmalltalkLiteralMethodLiteralArrTestCase >> testArraySixthElementContentsParent [
-	(array contents at: 6) contents do: [ :each | self assert: each parentNode equals: (array contents at: 6) ]
+	(array contents at: 6) contents do: [ :each | self assert: each pharoByteArrayLiteralExpressionExpressionOwner equals: (array contents at: 6) ]
 ]
 
 { #category : #tests }
@@ -124,7 +124,7 @@ SmalltalkLiteralMethodLiteralArrTestCase >> testArraySixthElementContentsValues 
 
 { #category : #tests }
 SmalltalkLiteralMethodLiteralArrTestCase >> testArraySixthElementParent [
-		self assert: (array contents at: 6) parentNode equals: array
+		self assert: (array contents at: 6) pharoArrayLiteralExpressionExpressionOwner equals: array
 ]
 
 { #category : #tests }
@@ -134,7 +134,7 @@ SmalltalkLiteralMethodLiteralArrTestCase >> testArraySixthElementType [
 
 { #category : #tests }
 SmalltalkLiteralMethodLiteralArrTestCase >> testArrayThirdElementParent [
-		self assert: (array contents at: 3) parentNode equals: array
+		self assert: (array contents at: 3) pharoArrayLiteralExpressionExpressionOwner equals: array
 ]
 
 { #category : #tests }
