@@ -17,5 +17,5 @@ SmalltalkGeneralizedMethodTestCase >> testMethodType [
 { #category : #tests }
 SmalltalkGeneralizedMethodTestCase >> testStatementsMethodReference [
 	allMethods do: [ :method |
-		self assert: (method statements allSatisfy: [ :statement | statement parentNode == method ]) ] 
+		self assert: (method statements allSatisfy: [ :statement | statement statementContainer == method statementBlock]) ] 
 ]
