@@ -13,8 +13,3 @@ SmalltalkFastMethodTestCase >> testMethodName [
 		assert: middleMethod name		equals: 'middleOf:and:';
 		assert: cascadeMethod name		equals: 'cascade'
 ]
-
-{ #category : #tests }
-SmalltalkFastMethodTestCase >> testMethodParent [
-	self assert: returnMethod parentNode isNil
-]
