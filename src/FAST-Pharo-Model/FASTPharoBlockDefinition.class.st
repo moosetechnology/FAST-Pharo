@@ -73,3 +73,10 @@ FASTPharoBlockDefinition >> localVariablesGroup [
 	<navigation: 'LocalVariables'>
 	^ MooseSpecializedGroup withAll: self localVariables asSet
 ]
+
+{ #category : #accessing }
+FASTPharoBlockDefinition >> statements [
+	"Syntatic sugar"
+
+	^ statementBlock statements
+]

@@ -55,7 +55,7 @@ FASTPharoMethodEntity >> localVariablesGroup [
 
 { #category : #accessing }
 FASTPharoMethodEntity >> statements [
-	"Relation named: #statements type: #FASTPharoStatement opposite: #pharoMethodStatementOwner"
+	"Syntatic sugar"
 
 	^ statementBlock statements
 ]

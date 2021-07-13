@@ -231,7 +231,7 @@ FASTSmalltalkImporterVisitor >> visitBlockNode: aBlockNode [
 					currentFASTEntity parameters add: fastParam.
 					"uses the method's poolOfLocalVariables"
 					"self putVarInScope: fastParam" ] ].
-	self clone visitNode: aBlockNode body.
+	currentFASTEntity statementBlock: (self clone visitNode: aBlockNode body).
 	^ blockExpression
 ]
 
