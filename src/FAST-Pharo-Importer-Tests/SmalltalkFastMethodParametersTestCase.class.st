@@ -18,7 +18,7 @@ SmalltalkFastMethodParametersTestCase >> testMiddleMethodParametersCount [
 
 { #category : #tests }
 SmalltalkFastMethodParametersTestCase >> testMiddleMethodParametersParent [
-	middleMethod parameters do: [ :each | self assert: each parentNode equals: middleMethod ]
+	middleMethod parameters do: [ :each | self assert: each parameterOwner equals: middleMethod ]
 ]
 
 { #category : #tests }
@@ -33,7 +33,7 @@ SmalltalkFastMethodParametersTestCase >> testReturnMethodParametersCount [
 
 { #category : #tests }
 SmalltalkFastMethodParametersTestCase >> testReturnMethodParametersParent [
-	returnMethod parameters do: [ :each | self assert: each parentNode equals: returnMethod ]
+	returnMethod parameters do: [ :each | self assert: each parameterOwner equals: returnMethod ]
 ]
 
 { #category : #tests }
@@ -53,5 +53,5 @@ SmalltalkFastMethodParametersTestCase >> testSpaceshipMethodParametersCount [
 
 { #category : #tests }
 SmalltalkFastMethodParametersTestCase >> testSpaceshipMethodParametersParent [
-	spaceshipMethod parameters do: [ :each | self assert: each parentNode equals: spaceshipMethod ]
+	spaceshipMethod parameters do: [ :each | self assert: each parameterOwner equals: spaceshipMethod ]
 ]
