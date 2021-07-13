@@ -4,8 +4,7 @@ Class {
 	#traits : 'FASTTNamedBehaviouralEntity + FamixTHasImmediateSource',
 	#classTraits : 'FASTTNamedBehaviouralEntity classTrait + FamixTHasImmediateSource classTrait',
 	#instVars : [
-		'#localVariables => FMMany type: #FASTPharoVariableExpression opposite: #pharoMethodVariableEntityOwner',
-		'#statements => FMMany type: #FASTPharoStatement opposite: #pharoMethodStatementOwner'
+		'#localVariables => FMMany type: #FASTPharoVariableExpression opposite: #pharoMethodVariableEntityOwner'
 	],
 	#category : #'FAST-Pharo-Model-Entities'
 }
@@ -26,9 +25,8 @@ FASTPharoMethodEntity >> addLocalVariable: anObject [
 ]
 
 { #category : #adding }
-FASTPharoMethodEntity >> addStatement: anObject [
-	<generated>
-	^ self statements add: anObject
+FASTPharoMethodEntity >> addStatement: aStatement [
+	^ self statements add: aStatement
 ]
 
 { #category : #accessing }
@@ -59,22 +57,11 @@ FASTPharoMethodEntity >> localVariablesGroup [
 FASTPharoMethodEntity >> statements [
 	"Relation named: #statements type: #FASTPharoStatement opposite: #pharoMethodStatementOwner"
 
-	<generated>
-	<FMComment: 'The statements of the method'>
-	<derived>
-	^ statements
+	^ statementBlock statements
 ]
 
 { #category : #accessing }
 FASTPharoMethodEntity >> statements: anObject [
 
-	<generated>
-	statements value: anObject
-]
-
-{ #category : #navigation }
-FASTPharoMethodEntity >> statementsGroup [
-	<generated>
-	<navigation: 'Statements'>
-	^ MooseSpecializedGroup withAll: self statements asSet
+	self statements value: anObject
 ]

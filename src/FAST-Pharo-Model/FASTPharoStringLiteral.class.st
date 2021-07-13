@@ -1,6 +1,6 @@
 Class {
 	#name : #FASTPharoStringLiteral,
-	#superclass : #FASTPharoEntity,
+	#superclass : #FASTPharoExpression,
 	#traits : 'FASTTStringLiteral',
 	#classTraits : 'FASTTStringLiteral classTrait',
 	#category : #'FAST-Pharo-Model-Entities'
@@ -9,7 +9,7 @@ Class {
 { #category : #meta }
 FASTPharoStringLiteral class >> annotation [
 
-	<FMClass: #StringLiteral super: #FASTPharoEntity>
+	<FMClass: #StringLiteral super: #FASTPharoExpression>
 	<package: #'FAST-Pharo-Model'>
 	<generated>
 	^self

@@ -69,7 +69,7 @@ FASTSmalltalkImporterVisitor >> createLiteral: aFASTLiteral from: aNode withValu
 
 { #category : #'entity-creation' }
 FASTSmalltalkImporterVisitor >> createVariable: aVariableNode [ 
- 	^ (self create: FASTVariableExpression from: aVariableNode)
+ 	^ (self create: FASTPharoVariableExpression from: aVariableNode)
 		name: aVariableNode name;
 		yourself
 
@@ -103,9 +103,9 @@ FASTSmalltalkImporterVisitor >> currentFASTScope: anObject [
 FASTSmalltalkImporterVisitor >> ensureStatement: aFASTNode [
   	"Wraps top-level expressions into statements"
 	| stmt |
-	(aFASTNode isKindOf: FASTStatement)
+	(aFASTNode isStatement)
 		ifFalse: [
-			stmt := self create: FASTExpressionStatement fromFASTNode: aFASTNode.
+			stmt := self create: FASTPharoExpressionStatement fromFASTNode: aFASTNode.
 			stmt expression: aFASTNode.
 			^ stmt
 		]
@@ -198,9 +198,9 @@ FASTSmalltalkImporterVisitor >> visitArrayNode: anArrayNode [
 { #category : #'visitor-double dispatching' }
 FASTSmalltalkImporterVisitor >> visitAssignmentNode: anAssignmentNode [ 
 	| assignt |
-	currentFASTEntity := self create: FASTPharoAssignmentExpression from: anAssignmentNode.
+	currentFASTEntity := self create: FASTPharoAssignment from: anAssignmentNode.
 	
-	currentFASTEntity variable: (self clone visitNode: anAssignmentNode variable).
+	currentFASTEntity variable: (self clone visitVariableEntityNode: anAssignmentNode variable).
 
 	currentFASTEntity expression: (self clone visitNode: anAssignmentNode value).
 
@@ -231,7 +231,7 @@ FASTSmalltalkImporterVisitor >> visitBlockNode: aBlockNode [
 
 { #category : #'visitor-literal double dispatching' }
 FASTSmalltalkImporterVisitor >> visitBooleanLiteralNode: literalNode [
-	^ self createLiteral: FASTBooleanLiteral from: literalNode withValue: literalNode value
+	^ self createLiteral: FASTPharoBooleanLiteral from: literalNode withValue: literalNode value
 
 ]
 
@@ -246,7 +246,7 @@ FASTSmalltalkImporterVisitor >> visitCascadeNode: aCascadeNode [
 
 { #category : #'visitor-literal double dispatching' }
 FASTSmalltalkImporterVisitor >> visitCharacterLiteralNode: literalNode [
-	^ self createLiteral: FASTCharacterLiteral from: literalNode withValue: literalNode value
+	^ self createLiteral: FASTPharoCharacterLiteral from: literalNode withValue: literalNode value
 
 ]
 
@@ -289,7 +289,7 @@ FASTSmalltalkImporterVisitor >> visitMessageNode: aMessageNode [
 					ifTrue: [ #binary ]
 					ifFalse: [ #keyword ] ]).
 	
- 	currentFASTEntity selector: 
+ 	currentFASTEntity invoked: 
 		(self visitPharoSelector: aMessageNode).
 
 	currentFASTEntity receiver: (self clone visitNode: aMessageNode receiver).
@@ -344,7 +344,7 @@ FASTSmalltalkImporterVisitor >> visitPharoSelector: aMessageNode [
 { #category : #'visitor-double dispatching' }
 FASTSmalltalkImporterVisitor >> visitReturnNode: aReturnNode [
 
-	currentFASTEntity := self create: FASTReturnStatement from: aReturnNode.
+	currentFASTEntity := self create: FASTPharoReturnStatement from: aReturnNode.
 	currentFASTEntity expression: (self clone visitNode: aReturnNode value).
 	^ currentFASTEntity
 	
@@ -357,7 +357,7 @@ FASTSmalltalkImporterVisitor >> visitSelfNode: aSelfNode [
 
 { #category : #'visitor-double dispatching' }
 FASTSmalltalkImporterVisitor >> visitSequenceNode: aSequenceNode [
-	
+	currentFASTEntity := self create: FASTPharoStatementBlock.
 	aSequenceNode temporaries
 		do: [ :aVariableNode | 
 			| fastLocal |
@@ -366,14 +366,14 @@ FASTSmalltalkImporterVisitor >> visitSequenceNode: aSequenceNode [
 	].
 
 	aSequenceNode statements do: [ :each |
-		self parentFASTEntity addStatement: ( self ensureStatement: (self clone visitNode: each) ).
+		currentFASTEntity addStatement: ( self ensureStatement: (self clone visitNode: each) ).
 	].
 	^ currentFASTEntity
 ]
 
 { #category : #'visitor-literal double dispatching' }
 FASTSmalltalkImporterVisitor >> visitStringLiteralNode: literalNode [
-	^ self createLiteral: FASTStringLiteral from: literalNode withValue: literalNode value
+	^ self createLiteral: FASTPharoStringLiteral from: literalNode withValue: literalNode value
 ]
 
 { #category : #'visitor-literal double dispatching' }
@@ -383,13 +383,22 @@ FASTSmalltalkImporterVisitor >> visitSymbolLiteralNode: literalNode [
 
 { #category : #'visitor-literal double dispatching' }
 FASTSmalltalkImporterVisitor >> visitUndefinedLiteralNode: literalNode [
-	^ self createLiteral: FASTNullPointerLiteral from: literalNode withValue: literalNode value
+	^ self createLiteral: FASTPharoNilLiteral from: literalNode withValue: literalNode value
+]
+
+{ #category : #'visitor-double dispatching' }
+FASTSmalltalkImporterVisitor >> visitVariableEntityNode: aVariableNode [ 
+
+ 	currentFASTEntity := self create: FASTPharoVariableEntity from: aVariableNode.
+ 	currentFASTEntity name: aVariableNode name.
+
+ 	^ currentFASTEntity
 ]
 
 { #category : #'visitor-double dispatching' }
 FASTSmalltalkImporterVisitor >> visitVariableNode: aVariableNode [ 
 
- 	currentFASTEntity := self create: FASTVariableExpression from: aVariableNode.
+ 	currentFASTEntity := self create: FASTPharoVariableExpression from: aVariableNode.
  	currentFASTEntity name: aVariableNode name.
 
  	^ currentFASTEntity

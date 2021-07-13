@@ -4,9 +4,25 @@ Class {
 	#category : #'FAST-Pharo-Importer-Tests'
 }
 
+{ #category : #running }
+SmalltalkLiteralMethodTestCase >> setUpMethods [
+	"returnMethod      := self getFastMethodFromModelByName: 'return:'."
+	literalMethod     := self getFastMethodFromModelByName: 'lotsOfLiterals'.
+	"sendMessageMethod := self getFastMethodFromModelByName: 'sendMessage'.
+	middleMethod      := self getFastMethodFromModelByName: 'middleOf:and:'.
+	spaceshipMethod   := self getFastMethodFromModelByName: '<=>'.
+	cascadeMethod     := self getFastMethodFromModelByName: 'cascade'.
+	scopeMethod       := self getFastMethodFromModelByName: 'scope'.
+	nestMethod        := self getFastMethodFromModelByName: 'nest:in:within:with:'."
+	
+	allMethods := {literalMethod ". sendMessageMethod . spaceshipMethod . returnMethod . middleMethod . cascadeMethod . scopeMethod . nestMethod"}
+]
+
 { #category : #tests }
 SmalltalkLiteralMethodTestCase >> testBooleanLiteralParent [
-	self assert: (literalMethod statements at: 6) expression expression parentNode equals: (literalMethod statements at: 6) expression
+	| assignment |
+	assignment := (literalMethod statements at: 6) expression.
+	self assert: assignment expression parentNode equals: assignment
 ]
 
 { #category : #tests }

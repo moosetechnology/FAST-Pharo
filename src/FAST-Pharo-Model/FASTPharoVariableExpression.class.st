@@ -1,12 +1,11 @@
 Class {
 	#name : #FASTPharoVariableExpression,
-	#superclass : #FASTPharoEntity,
+	#superclass : #FASTPharoExpression,
 	#traits : 'FASTTVariableExpression',
 	#classTraits : 'FASTTVariableExpression classTrait',
 	#instVars : [
-		'#pharoParentAssignmentExpression => FMOne type: #FASTPharoAssignmentExpression opposite: #variable',
-		'#pharoMethodVariableEntityOwner => FMOne type: #FASTPharoMethodEntity opposite: #localVariables',
-		'#pharoBlockDefinitionVariableEntityOwner => FMOne type: #FASTPharoBlockDefinition opposite: #localVariables'
+		'#pharoBlockDefinitionVariableEntityOwner => FMOne type: #FASTPharoBlockDefinition opposite: #localVariables',
+		'#pharoMethodVariableEntityOwner => FMOne type: #FASTPharoMethodEntity opposite: #localVariables'
 	],
 	#category : #'FAST-Pharo-Model-Entities'
 }
@@ -14,7 +13,7 @@ Class {
 { #category : #meta }
 FASTPharoVariableExpression class >> annotation [
 
-	<FMClass: #VariableExpression super: #FASTPharoEntity>
+	<FMClass: #VariableExpression super: #FASTPharoExpression>
 	<package: #'FAST-Pharo-Model'>
 	<generated>
 	^self
@@ -64,28 +63,4 @@ FASTPharoVariableExpression >> pharoMethodVariableEntityOwnerGroup [
 	<generated>
 	<navigation: 'PharoMethodVariableEntityOwner'>
 	^ MooseSpecializedGroup with: self pharoMethodVariableEntityOwner
-]
-
-{ #category : #accessing }
-FASTPharoVariableExpression >> pharoParentAssignmentExpression [
-	"Relation named: #pharoParentAssignmentExpression type: #FASTPharoAssignmentExpression opposite: #variable"
-
-	<generated>
-	<container>
-	<derived>
-	^ pharoParentAssignmentExpression
-]
-
-{ #category : #accessing }
-FASTPharoVariableExpression >> pharoParentAssignmentExpression: anObject [
-
-	<generated>
-	pharoParentAssignmentExpression := anObject
-]
-
-{ #category : #navigation }
-FASTPharoVariableExpression >> pharoParentAssignmentExpressionGroup [
-	<generated>
-	<navigation: 'PharoParentAssignmentExpression'>
-	^ MooseSpecializedGroup with: self pharoParentAssignmentExpression
 ]

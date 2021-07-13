@@ -7,9 +7,7 @@ Class {
 		'#pharoArrayExpressionExpressionOwner => FMOne type: #FASTPharoArrayExpression opposite: #contents',
 		'#pharoArrayLiteralExpressionExpressionOwner => FMOne type: #FASTPharoArrayLiteral opposite: #contents',
 		'#pharoByteArrayLiteralExpressionExpressionOwner => FMOne type: #FASTPharoByteArrayLiteral opposite: #contents',
-		'#pharoMessageArgumentOwner => FMOne type: #FASTPharoMessageSend opposite: #arguments',
-		'#pharoMessageReceiver => FMOne type: #FASTPharoMessageSend opposite: #receiver',
-		'#pharoParentAssignmentExpression => FMOne type: #FASTPharoAssignmentExpression opposite: #expression'
+		'#pharoMessageReceiver => FMOne type: #FASTPharoMessageSend opposite: #receiver'
 	],
 	#category : #'FAST-Pharo-Model-Entities'
 }
@@ -93,30 +91,6 @@ FASTPharoExpression >> pharoByteArrayLiteralExpressionExpressionOwnerGroup [
 ]
 
 { #category : #accessing }
-FASTPharoExpression >> pharoMessageArgumentOwner [
-	"Relation named: #pharoMessageArgumentOwner type: #FASTPharoMessageSend opposite: #arguments"
-
-	<generated>
-	<FMComment: 'The message which own this argument'>
-	<container>
-	^ pharoMessageArgumentOwner
-]
-
-{ #category : #accessing }
-FASTPharoExpression >> pharoMessageArgumentOwner: anObject [
-
-	<generated>
-	pharoMessageArgumentOwner := anObject
-]
-
-{ #category : #navigation }
-FASTPharoExpression >> pharoMessageArgumentOwnerGroup [
-	<generated>
-	<navigation: 'PharoMessageArgumentOwner'>
-	^ MooseSpecializedGroup with: self pharoMessageArgumentOwner
-]
-
-{ #category : #accessing }
 FASTPharoExpression >> pharoMessageReceiver [
 	"Relation named: #pharoMessageReceiver type: #FASTPharoMessageSend opposite: #receiver"
 
@@ -139,28 +113,4 @@ FASTPharoExpression >> pharoMessageReceiverGroup [
 	<generated>
 	<navigation: 'PharoMessageReceiver'>
 	^ MooseSpecializedGroup with: self pharoMessageReceiver
-]
-
-{ #category : #accessing }
-FASTPharoExpression >> pharoParentAssignmentExpression [
-	"Relation named: #pharoParentAssignmentExpression type: #FASTPharoAssignmentExpression opposite: #expression"
-
-	<generated>
-	<container>
-	<derived>
-	^ pharoParentAssignmentExpression
-]
-
-{ #category : #accessing }
-FASTPharoExpression >> pharoParentAssignmentExpression: anObject [
-
-	<generated>
-	pharoParentAssignmentExpression := anObject
-]
-
-{ #category : #navigation }
-FASTPharoExpression >> pharoParentAssignmentExpressionGroup [
-	<generated>
-	<navigation: 'PharoParentAssignmentExpression'>
-	^ MooseSpecializedGroup with: self pharoParentAssignmentExpression
 ]

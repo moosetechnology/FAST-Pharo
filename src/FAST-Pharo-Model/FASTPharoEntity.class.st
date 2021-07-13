@@ -19,3 +19,10 @@ FASTPharoEntity class >> metamodel [
 	<generated>
 	^ FASTPharoModel metamodel
 ]
+
+{ #category : #testing }
+FASTPharoEntity >> isStatement [
+
+	<generated>
+	^ false
+]
