@@ -1,13 +1,18 @@
 Class {
 	#name : #FASTPharoArrayLiteral,
-	#superclass : #FASTLiteral,
+	#superclass : #FASTPharoExpression,
+	#traits : 'FASTTLiteral',
+	#classTraits : 'FASTTLiteral classTrait',
+	#instVars : [
+		'#contents => FMMany type: #FASTPharoExpression opposite: #pharoArrayLiteralExpressionExpressionOwner'
+	],
 	#category : #'FAST-Pharo-Model-Entities'
 }
 
 { #category : #meta }
 FASTPharoArrayLiteral class >> annotation [
 
-	<FMClass: #ArrayLiteral super: #FASTLiteral>
+	<FMClass: #ArrayLiteral super: #FASTPharoExpression>
 	<package: #'FAST-Pharo-Model'>
 	<generated>
 	^self
@@ -21,20 +26,19 @@ FASTPharoArrayLiteral >> addContent: anObject [
 
 { #category : #accessing }
 FASTPharoArrayLiteral >> contents [
-	"Relation named: #contents type: #FASTExpression opposite: #pharoArrayLiteralExpressionExpressionOwner"
+	"Relation named: #contents type: #FASTPharoExpression opposite: #pharoArrayLiteralExpressionExpressionOwner"
 
 	<generated>
 	<FMComment: 'The expression in the array'>
 	<derived>
-	<FMProperty: #contents type: #FASTExpression opposite: #pharoArrayLiteralExpressionExpressionOwner>
-	^ self attributeAt: #contents ifAbsentPut: [ FMMultivalueLink on: self opposite: #pharoArrayLiteralExpressionExpressionOwner: ]
+	^ contents
 ]
 
 { #category : #accessing }
 FASTPharoArrayLiteral >> contents: anObject [
 
 	<generated>
-	self contents value: anObject
+	contents value: anObject
 ]
 
 { #category : #navigation }

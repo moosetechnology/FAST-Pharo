@@ -35,12 +35,12 @@ SmalltalkCascadeMethodSecondMessageTestCase >> testSecondMessageKind [
 
 { #category : #tests }
 SmalltalkCascadeMethodSecondMessageTestCase >> testSecondMessageParameterParent [
-	self assert: message arguments first parentNode equals: message
+	self assert: message arguments first argumentOwner equals: message
 ]
 
 { #category : #tests }
 SmalltalkCascadeMethodSecondMessageTestCase >> testSecondMessageParameterType [
-	self assert: (message arguments first isMemberOf: FASTVariableExpression)
+	self assert: (message arguments first isMemberOf: FASTPharoVariableExpression)
 ]
 
 { #category : #tests }

@@ -4,6 +4,20 @@ Class {
 	#category : #'FAST-Pharo-Importer-Tests'
 }
 
+{ #category : #running }
+SmalltalkCascadeMethodTestCase >> setUpMethods [
+	"returnMethod      := self getFastMethodFromModelByName: 'return:'.
+	literalMethod     := self getFastMethodFromModelByName: 'lotsOfLiterals'.
+	sendMessageMethod := self getFastMethodFromModelByName: 'sendMessage'.
+	middleMethod      := self getFastMethodFromModelByName: 'middleOf:and:'.
+	spaceshipMethod   := self getFastMethodFromModelByName: '<=>'."
+	cascadeMethod     := self getFastMethodFromModelByName: 'cascade'.
+	"scopeMethod       := self getFastMethodFromModelByName: 'scope'.
+	nestMethod        := self getFastMethodFromModelByName: 'nest:in:within:with:'."
+	
+	allMethods := {"literalMethod . sendMessageMethod . spaceshipMethod . returnMethod . middleMethod ." cascadeMethod ". scopeMethod . nestMethod"}
+]
+
 { #category : #tests }
 SmalltalkCascadeMethodTestCase >> testAsStringMessageParametersCount [
 	self assert: (cascadeMethod statements first expression messages at: 1) arguments first arguments isEmpty
@@ -12,25 +26,25 @@ SmalltalkCascadeMethodTestCase >> testAsStringMessageParametersCount [
 { #category : #tests }
 SmalltalkCascadeMethodTestCase >> testAsStringMessageReceiverParent [
 	self
-		assert: (cascadeMethod statements first expression messages at: 1) arguments first receiver parentNode
+		assert: (cascadeMethod statements first expression messages at: 1) arguments first receiver pharoMessageReceiver
 		equals: (cascadeMethod statements first expression messages at: 1) arguments first
 ]
 
 { #category : #tests }
 SmalltalkCascadeMethodTestCase >> testAsStringMessageReceiverSelectorName [
-	self assert: (cascadeMethod statements first expression messages at: 1) arguments first selector name equals: 'asString'
+	self assert: (cascadeMethod statements first expression messages at: 1) arguments first invoked name equals: 'asString'
 ]
 
 { #category : #tests }
 SmalltalkCascadeMethodTestCase >> testAsStringMessageReceiverSelectorParent [
 	self
-		assert: (cascadeMethod statements first expression messages at: 1) arguments first selector parentNode
+		assert: (cascadeMethod statements first expression messages at: 1) arguments first invoked invokedIn
 		equals: (cascadeMethod statements first expression messages at: 1) arguments first
 ]
 
 { #category : #tests }
 SmalltalkCascadeMethodTestCase >> testAsStringMessageReceiverType [
-	self assert: ((cascadeMethod statements first expression messages at: 1) arguments first receiver isMemberOf: FASTVariableExpression)
+	self assert: ((cascadeMethod statements first expression messages at: 1) arguments first receiver isMemberOf: FASTPharoVariableExpression)
 ]
 
 { #category : #tests }
@@ -59,7 +73,7 @@ SmalltalkCascadeMethodTestCase >> testCascadeChildrenCount [
 SmalltalkCascadeMethodTestCase >> testCascadeChildrenDereference [
 	| cascade |
 	cascade := cascadeMethod statements first expression.
-	self assert: (cascade messages allSatisfy: [ :message | message parentNode == cascade ])
+	self assert: (cascade messages allSatisfy: [ :message | message inCascade == cascade ])
 ]
 
 { #category : #tests }
@@ -77,13 +91,13 @@ SmalltalkCascadeMethodTestCase >> testCascadeChildrenType [
 { #category : #tests }
 SmalltalkCascadeMethodTestCase >> testCascadeReceiverParent [
 	self
-		assert: cascadeMethod statements first expression receiver parentNode parentNode
+		assert: cascadeMethod statements first expression receiver pharoMessageReceiver inCascade
 		equals: cascadeMethod statements first expression
 ]
 
 { #category : #tests }
 SmalltalkCascadeMethodTestCase >> testCascadeReceiverType [
-	self assert: (cascadeMethod statements first expression receiver isMemberOf: FASTVariableExpression)
+	self assert: (cascadeMethod statements first expression receiver isMemberOf: FASTPharoVariableExpression)
 ]
 
 { #category : #tests }
@@ -93,7 +107,7 @@ SmalltalkCascadeMethodTestCase >> testCascadeReceiverVariableName [
 
 { #category : #tests }
 SmalltalkCascadeMethodTestCase >> testExpressionParent [
-	self assert: cascadeMethod statements first"=FASTExpressionStatement" expression"=FASTPharoCascade" parentNode
+	self assert: cascadeMethod statements first"=FASTExpressionStatement" expression"=FASTPharoCascade" expressionStatementOwner
 		  equals: cascadeMethod statements first
 ]
 
@@ -104,24 +118,24 @@ SmalltalkCascadeMethodTestCase >> testExpressionType [
 
 { #category : #tests }
 SmalltalkCascadeMethodTestCase >> testSecondMessageSelectorName [
-	self assert: (cascadeMethod statements first expression messages at: 2) selector name equals: 'return:'
+	self assert: (cascadeMethod statements first expression messages at: 2) invoked name equals: 'return:'
 ]
 
 { #category : #tests }
 SmalltalkCascadeMethodTestCase >> testSecondMessageSelectorParent [
 	self
-		assert: (cascadeMethod statements first expression messages at: 2) selector parentNode
+		assert: (cascadeMethod statements first expression messages at: 2) invoked invokedIn
 		equals: (cascadeMethod statements first expression messages at: 2)
 ]
 
 { #category : #tests }
 SmalltalkCascadeMethodTestCase >> testStatementParent [
-	self assert: cascadeMethod statements first parentNode equals: cascadeMethod
+	self assert: cascadeMethod statements first statementContainer equals: cascadeMethod statementBlock
 ]
 
 { #category : #tests }
 SmalltalkCascadeMethodTestCase >> testStatementType [
-	self assert: (cascadeMethod statements first isMemberOf: FASTExpressionStatement)
+	self assert: (cascadeMethod statements first isMemberOf: FASTPharoExpressionStatement)
 ]
 
 { #category : #tests }

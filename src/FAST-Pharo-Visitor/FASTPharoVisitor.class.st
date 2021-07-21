@@ -6,7 +6,7 @@ Class {
 
 { #category : #visiting }
 FASTPharoVisitor >> visitArrayLiteral: anArrayLiteral [
-	^ self visitFASTLiteral: anArrayLiteral
+	^ self visitFASTTLiteral: anArrayLiteral
 ]
 
 { #category : #visiting }
@@ -21,7 +21,7 @@ FASTPharoVisitor >> visitPharoAssignmentExpression: aPharoAssignmentExpression [
 
 { #category : #visiting }
 FASTPharoVisitor >> visitPharoBlockDefinition: aPharoBlockDefinition [
-	^ self visitFASTBehaviouralEntity: aPharoBlockDefinition
+	^ self visitFASTTBehaviouralEntity: aPharoBlockDefinition
 ]
 
 { #category : #visiting }
@@ -31,7 +31,7 @@ FASTPharoVisitor >> visitPharoBlockExpression: aPharoBlockExpression [
 
 { #category : #visiting }
 FASTPharoVisitor >> visitPharoByteArrayLiteral: aPharoByteArrayLiteral [
-	^ self visitFASTLiteral: aPharoByteArrayLiteral
+	^ self visitFASTTLiteral: aPharoByteArrayLiteral
 ]
 
 { #category : #visiting }
@@ -41,7 +41,7 @@ FASTPharoVisitor >> visitPharoCascade: aPharoCascade [
 
 { #category : #visiting }
 FASTPharoVisitor >> visitPharoExpression: aPharoExpression [
-	^ self visitFASTExpression: aPharoExpression
+	^ self visitFASTTExpression: aPharoExpression
 ]
 
 { #category : #visiting }
@@ -51,12 +51,12 @@ FASTPharoVisitor >> visitPharoMessageSend: aPharoMessageSend [
 
 { #category : #visiting }
 FASTPharoVisitor >> visitPharoMethodEntity: aPharoMethodEntity [
-	^ self visitFASTNamedBehaviouralEntity: aPharoMethodEntity
+	^ self visitFASTTNamedBehaviouralEntity: aPharoMethodEntity
 ]
 
 { #category : #visiting }
 FASTPharoVisitor >> visitPharoNumberLiteral: aPharoNumberLiteral [
-	^ self visitFASTLiteral: aPharoNumberLiteral
+	^ self visitFASTTLiteral: aPharoNumberLiteral
 ]
 
 { #category : #visiting }
@@ -66,5 +66,5 @@ FASTPharoVisitor >> visitPharoSelector: aPharoSelector [
 
 { #category : #visiting }
 FASTPharoVisitor >> visitPharoSymbolLiteral: aPharoSymbolLiteral [
-	^ self visitFASTLiteral: aPharoSymbolLiteral
+	^ self visitFASTTLiteral: aPharoSymbolLiteral
 ]

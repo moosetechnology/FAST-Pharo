@@ -1,6 +1,9 @@
 Class {
 	#name : #FASTPharoArrayExpression,
 	#superclass : #FASTPharoExpression,
+	#instVars : [
+		'#contents => FMMany type: #FASTPharoExpression opposite: #pharoArrayExpressionExpressionOwner'
+	],
 	#category : #'FAST-Pharo-Model-Entities'
 }
 
@@ -21,20 +24,19 @@ FASTPharoArrayExpression >> addContent: anObject [
 
 { #category : #accessing }
 FASTPharoArrayExpression >> contents [
-	"Relation named: #contents type: #FASTExpression opposite: #pharoArrayExpressionExpressionOwner"
+	"Relation named: #contents type: #FASTPharoExpression opposite: #pharoArrayExpressionExpressionOwner"
 
 	<generated>
 	<FMComment: 'The expression in the array'>
 	<derived>
-	<FMProperty: #contents type: #FASTExpression opposite: #pharoArrayExpressionExpressionOwner>
-	^ self attributeAt: #contents ifAbsentPut: [ FMMultivalueLink on: self opposite: #pharoArrayExpressionExpressionOwner: ]
+	^ contents
 ]
 
 { #category : #accessing }
 FASTPharoArrayExpression >> contents: anObject [
 
 	<generated>
-	self contents value: anObject
+	contents value: anObject
 ]
 
 { #category : #navigation }

@@ -1,26 +1,12 @@
-"
-TODO
-
-- FASTPharoMethodEntity
-
-DONE
-
-- FASTPharoSelector
-- FASTPharoSymbolLiteral
-- FASTPharoNumberLiteral
-- FASTPharoMessageSend
-"
 Class {
 	#name : #FASTPharoMetamodelGenerator,
 	#superclass : #FamixMetamodelGenerator,
 	#instVars : [
+		'arrayExpression',
 		'arrayLiteral',
 		'blockDefinition',
-		'byteArrayLiteral',
-		'expression',
-		'arrayExpression',
-		'assignmentExpression',
 		'blockExpression',
+		'byteArrayLiteral',
 		'cascade',
 		'messageSend',
 		'methodEntity',
@@ -28,13 +14,40 @@ Class {
 		'selector',
 		'symbolLiteral',
 		'literal',
-		'behaviouralEntity',
-		'namedBehaviouralEntity',
-		'pharoExpression',
 		'variableEntity',
-		'statement',
 		'variableExpression',
-		'entity'
+		'behaviouralEntity',
+		'expression',
+		'namedBehaviouralEntity',
+		'entity',
+		'statement',
+		'tNamedEntity',
+		'tLiteral',
+		'tBehaviouralEntity',
+		'tNumericalLiteral',
+		'nilLiteral',
+		'tNullPointerLiteral',
+		'stringLiteral',
+		'tStringLiteral',
+		'characterLiteral',
+		'tCharaterLiteral',
+		'booleanLiteral',
+		'tBooleanLiteral',
+		'tExpression',
+		'tInvocation',
+		'tNamedBehaviouralEntity',
+		'tEntity',
+		'tVariableExpression',
+		'returnStatement',
+		'tReturnStatement',
+		'tExpressionStatement',
+		'expressionStatement',
+		'tWithParameters',
+		'tAssignment',
+		'assignment',
+		'tVariableEntity',
+		'statementBlock',
+		'tStatementBlock'
 	],
 	#category : #'FAST-Pharo-Model-Generator'
 }
@@ -55,7 +68,7 @@ FASTPharoMetamodelGenerator class >> prefix [
 
 { #category : #accessing }
 FASTPharoMetamodelGenerator class >> submetamodels [
-	^ { FASTMetamodelGenerator . FamixGenerator }
+	^ { FASTMetamodelGenerator }
 ]
 
 { #category : #definition }
@@ -63,47 +76,67 @@ FASTPharoMetamodelGenerator >> defineClasses [
 	super defineClasses.
 	arrayExpression := builder newClassNamed: #ArrayExpression.
 	arrayLiteral := builder newClassNamed: #ArrayLiteral.
-	assignmentExpression := builder newClassNamed: #AssignmentExpression.
+	byteArrayLiteral := builder newClassNamed: #ByteArrayLiteral.
+	numberLiteral := builder newClassNamed: #NumberLiteral.
+	symbolLiteral := builder newClassNamed: #SymbolLiteral.
+	nilLiteral := builder newClassNamed: #NilLiteral.
+	booleanLiteral := builder newClassNamed: #BooleanLiteral.
+	characterLiteral := builder newClassNamed: #CharacterLiteral.
+	stringLiteral := builder newClassNamed: #StringLiteral.
 	blockDefinition := builder newClassNamed: #BlockDefinition.
 	blockExpression := builder newClassNamed: #BlockExpression.
-	byteArrayLiteral := builder newClassNamed: #ByteArrayLiteral.
 	cascade := builder newClassNamed: #Cascade.
-	pharoExpression := builder newClassNamed: #Expression.
+	expression := builder newClassNamed: #Expression.
 	messageSend := builder newClassNamed: #MessageSend.
 	methodEntity := builder newClassNamed: #MethodEntity.
-	numberLiteral := builder newClassNamed: #NumberLiteral.
 	selector := builder newClassNamed: #Selector.
-	symbolLiteral := builder newClassNamed: #SymbolLiteral.
-	
-	literal := self remoteEntity: #Literal withPrefix: #FAST.
-	variableEntity := self remoteEntity: #VariableEntity withPrefix: #FAST.
-	variableExpression := self remoteEntity: #VariableExpression withPrefix: #FAST.
-	behaviouralEntity := self remoteEntity: #BehaviouralEntity withPrefix: #FAST.
-	expression := self remoteEntity: #Expression withPrefix: #FAST.
-	namedBehaviouralEntity := self remoteEntity: #NamedBehaviouralEntity withPrefix: #FAST.
-	entity := self remoteEntity: #Entity withPrefix: #FAST.
-	statement := self remoteEntity: #Statement withPrefix: #FAST
+	namedBehaviouralEntity := builder newClassNamed: #NamedBehaviouralEntity.
+	statement := builder newClassNamed: #Statement.
+	variableExpression := builder newClassNamed: #VariableExpression.
+	returnStatement := builder newClassNamed: #ReturnStatement.
+	expressionStatement := builder newClassNamed: #ExpressionStatement.
+	assignment := builder newClassNamed: #Assignment.
+	variableEntity := builder newClassNamed: #VariableEntity.
+	statementBlock := builder newClassNamed: #StatementBlock.
 ]
 
 { #category : #definition }
 FASTPharoMetamodelGenerator >> defineHierarchy [
 	super defineHierarchy.
-	arrayLiteral --|> literal.
-	blockDefinition --|> behaviouralEntity.
-	byteArrayLiteral --|> literal.
-	pharoExpression --|> expression.
-	arrayExpression --|> pharoExpression.
-	assignmentExpression --|> pharoExpression.
-	blockExpression --|> pharoExpression.
-	cascade --|> pharoExpression.
-	messageSend --|> expression.
-	methodEntity --|> namedBehaviouralEntity.
-	methodEntity --|> #THasImmediateSource.
-	numberLiteral --|> literal.
-	selector --|> entity.
-	selector --|> #TNamedEntity.
-	symbolLiteral --|> literal.
+	blockDefinition --|> tBehaviouralEntity.
 	
+	arrayLiteral --|> tLiteral.
+	arrayLiteral --|> expression.
+	byteArrayLiteral --|> tLiteral.
+	byteArrayLiteral --|> expression.
+	symbolLiteral --|> tLiteral.
+	symbolLiteral --|> expression.
+	numberLiteral --|> tNumericalLiteral.
+	numberLiteral --|> expression.
+	nilLiteral --|> tNullPointerLiteral.
+	nilLiteral --|> expression.
+	stringLiteral --|> tStringLiteral.
+	stringLiteral --|> expression.
+	characterLiteral --|> tCharaterLiteral.
+	characterLiteral --|> expression.
+	booleanLiteral --|> tBooleanLiteral.
+	booleanLiteral --|> expression.
+	expression --|> tExpression.
+	arrayExpression --|> expression.
+	assignment --|> tAssignment.
+	blockExpression --|> expression.
+	cascade --|> expression.
+	messageSend --|> tInvocation.
+	messageSend --|> expression.
+	methodEntity --|> tNamedBehaviouralEntity.
+	methodEntity --|> #THasImmediateSource.
+	selector --|> tNamedEntity.
+	variableExpression --|> tVariableExpression.
+	variableExpression --|> expression.
+	returnStatement --|> tReturnStatement.
+	expressionStatement --|> tExpressionStatement.
+	variableEntity --|> tVariableEntity.
+	statementBlock --|> tStatementBlock.
 ]
 
 { #category : #definition }
@@ -115,29 +148,44 @@ FASTPharoMetamodelGenerator >> defineProperties [
 { #category : #definition }
 FASTPharoMetamodelGenerator >> defineRelations [
 	super defineRelations.
+	
+	(((messageSend property: #receiver) comment: 'The receiver of the selector') <>- ((expression property: #pharoMessageReceiver) comment: 'The receiver of the pharo message')) .
+	(((messageSend property: #inCascade) comment: 'Optional cascade including this message') *-<> ((cascade property: #messages) comment: 'The messages of the cascade')) .	
 	 
-	(((messageSend property: #selector) comment: 'The sent selector') <>- ((selector property: #parentMessageSend) comment: 'The sended of this selector')) withoutPrimaryContainer.
-	(((messageSend property: #receiver) comment: 'The receiver of the selector') <>- ((expression property: #pharoMessageReceiver) comment: 'The receiver of the pharo message')) withoutPrimaryContainer.
-	(((messageSend property: #inCascade) comment: 'Optional cascade including this message') *-<> ((cascade property: #messages) comment: 'The messages of the cascade')) withoutPrimaryContainer.	
+	(((blockExpression property: #block) comment: 'Behavioural entity that represents the block') <>- ((blockDefinition property: #blockExpression) comment: 'Expression entity that represents the block')) .	
+	self flag: #TODO , 'Remonter localVariable dans FASTCore'.
+	(((methodEntity property: #localVariables) comment: 'The local variables of the method') <>-* ((variableExpression property: #pharoMethodVariableEntityOwner) comment: '')) .	
 	
-	(((messageSend property: #arguments) comment: 'The arguments of the message') <>-* ((expression property: #pharoMessageArgumentOwner) comment: 'The message which own this argument')) withoutPrimaryContainer.	
-	
-	(((blockExpression property: #block) comment: 'Behavioural entity that represents the block') <>- ((blockDefinition property: #blockExpression) comment: 'Expression entity that represents the block')) withoutPrimaryContainer.
-	
-	(((assignmentExpression property: #variable) comment: 'An assigned variable (lhs of assignement)') <>- ((variableExpression property: #pharoParentAssignmentExpression) comment: '')) withoutPrimaryContainer.
-	(((assignmentExpression property: #expression) comment: 'Assigned expression (rhs of assignement)') <>- ((expression property: #pharoParentAssignmentExpression) comment: '')) withoutPrimaryContainer.	
-	
-	(((methodEntity property: #statements) comment: 'The statements of the method') <>-* ((statement property: #pharoMethodStatementOwner) comment: '')) withoutPrimaryContainer.	
-	(((methodEntity property: #localVariables) comment: 'The local variables of the method') <>-* ((variableExpression property: #pharoMethodVariableEntityOwner) comment: '')) withoutPrimaryContainer.	
-	
-	
-	(((blockDefinition property: #statements) comment: 'The statements of the method') <>-* ((statement property: #pharoBlockStatementOwner) comment: '')) withoutPrimaryContainer.	
-	(((blockDefinition property: #localVariables) comment: 'The local variables of the block') <>-* ((variableExpression property: #pharoBlockDefinitionVariableEntityOwner) comment: '')) withoutPrimaryContainer.	
+	(((blockDefinition property: #localVariables) comment: 'The local variables of the block') <>-* ((variableExpression property: #pharoBlockDefinitionVariableEntityOwner) comment: '')) .	
 
 
-	(((arrayExpression property: #contents) comment: 'The expression in the array') <>-* ((expression property: #pharoArrayExpressionExpressionOwner) comment: '')) withoutPrimaryContainer.	
+	(((arrayExpression property: #contents) comment: 'The expression in the array') <>-* ((expression property: #pharoArrayExpressionExpressionOwner) comment: '')) .	
 
-	(((arrayLiteral property: #contents) comment: 'The expression in the array') <>-* ((expression property: #pharoArrayLiteralExpressionExpressionOwner) comment: '')) withoutPrimaryContainer.	
-	(((byteArrayLiteral property: #contents) comment: 'The expression in the array') <>-* ((expression property: #pharoByteArrayLiteralExpressionExpressionOwner) comment: '')) withoutPrimaryContainer.	
+	(((arrayLiteral property: #contents) comment: 'The expression in the array') <>-* ((expression property: #pharoArrayLiteralExpressionExpressionOwner) comment: '')) .	
+	(((byteArrayLiteral property: #contents) comment: 'The expression in the array') <>-* ((expression property: #pharoByteArrayLiteralExpressionExpressionOwner) comment: '')) .	
 	
+]
+
+{ #category : #definition }
+FASTPharoMetamodelGenerator >> defineTraits [
+	super defineTraits.
+	tLiteral := self remoteTrait: #TLiteral withPrefix: #FAST.
+	tNumericalLiteral := self remoteTrait: #TNumericalLiteral withPrefix: #FAST.
+	tNullPointerLiteral := self remoteTrait: #TNullPointerLiteral withPrefix: #FAST.
+	tStringLiteral := self remoteTrait: #TStringLiteral withPrefix: #FAST.
+	tCharaterLiteral := self remoteTrait: #TCharacterLiteral withPrefix: #FAST.
+	tBooleanLiteral := self remoteTrait: #TBooleanLiteral withPrefix: #FAST.
+	
+	tExpression := self remoteTrait: #TExpression withPrefix: #FAST.
+	tNamedEntity := self remoteTrait: #TNamedEntity withPrefix: #FAST.
+	tBehaviouralEntity := self remoteTrait: #TBehaviouralEntity withPrefix: #FAST.
+	tNamedBehaviouralEntity := self remoteTrait: #TNamedBehaviouralEntity withPrefix: #FAST.
+	tInvocation := self remoteTrait: #TInvocation withPrefix: #FAST.
+	tVariableExpression := self remoteTrait: #TVariableExpression withPrefix: #FAST.
+	tReturnStatement := self remoteTrait: #TReturnStatement withPrefix: #FAST.
+	tExpressionStatement := self remoteTrait: #TExpressionStatement withPrefix: #FAST.
+	tWithParameters := self remoteTrait: #TWithParameters withPrefix: #FAST.
+	tAssignment := self remoteTrait: #TAssignment withPrefix: #FAST.
+	tVariableEntity := self remoteTrait: #TVariableEntity withPrefix: #FAST.
+	tStatementBlock := self remoteTrait: #TStatementBlock withPrefix: #FAST.
 ]

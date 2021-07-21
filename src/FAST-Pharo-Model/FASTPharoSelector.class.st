@@ -1,44 +1,16 @@
 Class {
 	#name : #FASTPharoSelector,
-	#superclass : #FASTEntity,
-	#traits : 'FamixTNamedEntity',
-	#classTraits : 'FamixTNamedEntity classTrait',
-	#instVars : [
-		'#parentMessageSend => FMOne type: #FASTPharoMessageSend opposite: #selector'
-	],
+	#superclass : #FASTPharoEntity,
+	#traits : 'FASTTNamedEntity',
+	#classTraits : 'FASTTNamedEntity classTrait',
 	#category : #'FAST-Pharo-Model-Entities'
 }
 
 { #category : #meta }
 FASTPharoSelector class >> annotation [
 
-	<FMClass: #Selector super: #FASTEntity>
+	<FMClass: #Selector super: #FASTPharoEntity>
 	<package: #'FAST-Pharo-Model'>
 	<generated>
 	^self
-]
-
-{ #category : #accessing }
-FASTPharoSelector >> parentMessageSend [
-	"Relation named: #parentMessageSend type: #FASTPharoMessageSend opposite: #selector"
-
-	<generated>
-	<FMComment: 'The sended of this selector'>
-	<container>
-	<derived>
-	^ parentMessageSend
-]
-
-{ #category : #accessing }
-FASTPharoSelector >> parentMessageSend: anObject [
-
-	<generated>
-	parentMessageSend := anObject
-]
-
-{ #category : #navigation }
-FASTPharoSelector >> parentMessageSendGroup [
-	<generated>
-	<navigation: 'ParentMessageSend'>
-	^ MooseSpecializedGroup with: self parentMessageSend
 ]

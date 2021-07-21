@@ -40,10 +40,10 @@ SmalltalkCascadeMethodThirdMessageTestCase >> testThirdMessageParametersCount [
 
 { #category : #tests }
 SmalltalkCascadeMethodThirdMessageTestCase >> testThirdMessageSelectorName [
-	self assert: (cascadeMethod statements first expression messages at: 3) selector name equals: 'sendMessage'
+	self assert: (cascadeMethod statements first expression messages at: 3) invoked name equals: 'sendMessage'
 ]
 
 { #category : #tests }
 SmalltalkCascadeMethodThirdMessageTestCase >> testThirdMessageSelectorParent [
-	self assert: (cascadeMethod statements first expression messages at: 3) selector parentNode equals: (cascadeMethod statements first expression messages at: 3)
+	self assert: (cascadeMethod statements first expression messages at: 3) invoked invokedIn equals: (cascadeMethod statements first expression messages at: 3)
 ]

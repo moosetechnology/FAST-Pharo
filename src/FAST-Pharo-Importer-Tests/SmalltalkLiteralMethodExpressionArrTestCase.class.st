@@ -16,29 +16,29 @@ SmalltalkLiteralMethodExpressionArrTestCase >> setUp [
 
 { #category : #tests }
 SmalltalkLiteralMethodExpressionArrTestCase >> testArrayByLastContentsType [
-	array contents asArray allButLast do: [ :each | self assert: each class equals: FASTVariableExpression ]
+	array contents asArray allButLast do: [ :each | self assert: each class equals: FASTPharoVariableExpression ]
 ]
 
 { #category : #tests }
 SmalltalkLiteralMethodExpressionArrTestCase >> testArrayContentsParent [
-	array contents do: [ :each | self assert: each parentNode equals: array  ]
+	array contents do: [ :each | self assert: each pharoArrayExpressionExpressionOwner equals: array  ]
 ]
 
 { #category : #tests }
 SmalltalkLiteralMethodExpressionArrTestCase >> testArrayFifthVariableName [
-	self assert: ((array contents at: 5) isKindOf: FASTVariableExpression).
+	self assert: ((array contents at: 5) isKindOf: FASTPharoVariableExpression).
 	self assert: (array contents at: 5) name equals: 'character'
 ]
 
 { #category : #tests }
 SmalltalkLiteralMethodExpressionArrTestCase >> testArrayFirstVariableName [
-	self assert: ((array contents at: 1) isKindOf: FASTVariableExpression).
+	self assert: ((array contents at: 1) isKindOf: FASTPharoVariableExpression).
 	self assert: (array contents at: 1) name equals: 'undefined'
 ]
 
 { #category : #tests }
 SmalltalkLiteralMethodExpressionArrTestCase >> testArrayFourthVariableName [
-	self assert: ((array contents at: 4) isKindOf: FASTVariableExpression).
+	self assert: ((array contents at: 4) isKindOf: FASTPharoVariableExpression).
 	self assert: (array contents at: 4) name equals: 'number'
 ]
 
@@ -49,36 +49,36 @@ SmalltalkLiteralMethodExpressionArrTestCase >> testArrayLastContentType [
 
 { #category : #tests }
 SmalltalkLiteralMethodExpressionArrTestCase >> testArrayLastElementSelectorName [
-	self assert: array contents last selector name equals: '+'
+	self assert: array contents last invoked name equals: '+'
 	
 
 ]
 
 { #category : #tests }
 SmalltalkLiteralMethodExpressionArrTestCase >> testArrayLastElementSelectorParent [
-	self assert: array contents last selector parentNode equals: array contents last
+	self assert: array contents last invoked invokedIn equals: array contents last
 ]
 
 { #category : #tests }
 SmalltalkLiteralMethodExpressionArrTestCase >> testArrayParent [
-		self assert: array parentNode equals: (literalMethod statements at: 9)
+		self assert: array returnOwner equals: (literalMethod statements at: 9)
 ]
 
 { #category : #tests }
 SmalltalkLiteralMethodExpressionArrTestCase >> testArraySecondVariableName [
-	self assert: ((array contents at: 2) isKindOf: FASTVariableExpression).
+	self assert: ((array contents at: 2) isKindOf: FASTPharoVariableExpression).
 	self assert: (array contents at: 2) name equals: 'array'
 ]
 
 { #category : #tests }
 SmalltalkLiteralMethodExpressionArrTestCase >> testArraySixthVariableName [
-	self assert: ((array contents at: 6) isKindOf: FASTVariableExpression).
+	self assert: ((array contents at: 6) isKindOf: FASTPharoVariableExpression).
 	self assert: (array contents at: 6) name equals: 'symbol'
 ]
 
 { #category : #tests }
 SmalltalkLiteralMethodExpressionArrTestCase >> testArrayThirdVariableName [
-	self assert: ((array contents at: 3) isKindOf: FASTVariableExpression).
+	self assert: ((array contents at: 3) isKindOf: FASTPharoVariableExpression).
 	self assert: (array contents at: 3) name equals: 'byteArr'
 ]
 
