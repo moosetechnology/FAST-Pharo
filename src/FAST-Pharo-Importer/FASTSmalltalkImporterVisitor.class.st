@@ -68,6 +68,14 @@ FASTSmalltalkImporterVisitor >> createLiteral: aFASTLiteral from: aNode withValu
 ]
 
 { #category : #'entity-creation' }
+FASTSmalltalkImporterVisitor >> createParameter: aParameterNode [
+ 	^ (self create: FASTPharoVariableEntity from: aParameterNode)
+		name: aParameterNode name;
+		yourself
+
+]
+
+{ #category : #'entity-creation' }
 FASTSmalltalkImporterVisitor >> createVariable: aVariableNode [ 
  	^ (self create: FASTPharoVariableExpression from: aVariableNode)
 		name: aVariableNode name;
@@ -227,8 +235,8 @@ FASTSmalltalkImporterVisitor >> visitBlockNode: aBlockNode [
 			parameters
 				do: [ :param | 
 					| fastParam |
-					fastParam := self createVariable: param.
-					currentFASTEntity parameters add: fastParam.
+					fastParam := self createParameter: param.
+					currentFASTEntity addParameter: fastParam.
 					"uses the method's poolOfLocalVariables"
 					"self putVarInScope: fastParam" ] ].
 	currentFASTEntity statementBlock: (self clone visitNode: aBlockNode body).

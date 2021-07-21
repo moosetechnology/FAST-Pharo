@@ -21,5 +21,5 @@ SmalltalkFastMethodTemporariesTestCase >> testMethodWithTemporariesName [
 
 { #category : #tests }
 SmalltalkFastMethodTemporariesTestCase >> testMethodWithTemporariesParent [
-	self assert: middleMethod localVariables first pharoArrayLiteralExpressionExpressionOwner equals: middleMethod
+	self assert: middleMethod localVariables first pharoMethodVariableEntityOwner equals: middleMethod
 ]

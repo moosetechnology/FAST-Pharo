@@ -20,7 +20,7 @@ SmalltalkReturnMethodTestCase >> setUpMethods [
 
 { #category : #tests }
 SmalltalkReturnMethodTestCase >> testExpressionParent [
-	self assert: returnMethod statements first expression argumentOwner equals: returnMethod statements first
+	self assert: returnMethod statements first expression returnOwner equals: returnMethod statements first
 ]
 
 { #category : #tests }
