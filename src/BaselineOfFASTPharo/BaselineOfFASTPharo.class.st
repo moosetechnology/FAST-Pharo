@@ -25,7 +25,7 @@ BaselineOfFASTPharo >> defineDependencies: spec [
 		baseline: 'FAST'
 		with: [ spec
 				loads: #('default');
-				repository: 'github://moosetechnology/FAST:master/src' ].
+				repository: 'github://moosetechnology/FAST:v2/src' ].
 	spec
 		baseline: 'PetitParser'
 		with: [ spec
