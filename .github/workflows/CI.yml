@@ -27,7 +27,7 @@ jobs:
       
       - name: Build meta-model planuml image
         run: |
-          $SMALLTALK_CI_VM  $SMALLTALK_CI_IMAGE eval "'fast-pharo.puml' asFileReference writeStreamDo: [ :stream | stream nextPutAll:  (FamixMMUMLDocumentor new model: FASTModel; withModel: FASTPharoModel andColor: Color lightBlue; generatePlantUMLModelWithout: { FASTModel. FASTPharoModel })]."
+          $SMALLTALK_CI_VM  $SMALLTALK_CI_IMAGE eval "'fast-pharo.puml' asFileReference writeStreamDo: [ :stream | stream nextPutAll:  (FamixMMUMLDocumentor new model: FASTModel; withModel: FASTPharoModel andColor: Color lightBlue; beWithStub; generatePlantUMLModelWithout: { FASTModel. FASTPharoModel })]."
       
       - name: Generate Coaster SVG Diagrams
         uses: cloudbees/plantuml-github-action@master
