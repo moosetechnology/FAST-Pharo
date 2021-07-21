@@ -63,7 +63,7 @@ FASTSmalltalkImporterVisitor >> create: class fromFASTNode: aFASTNode [
 { #category : #'entity-creation' }
 FASTSmalltalkImporterVisitor >> createLiteral: aFASTLiteral from: aNode withValue: aValue [
 	^ (self create: aFASTLiteral from: aNode)
-		value: aValue;
+		primitiveValue: aValue;
 		yourself
 ]
 

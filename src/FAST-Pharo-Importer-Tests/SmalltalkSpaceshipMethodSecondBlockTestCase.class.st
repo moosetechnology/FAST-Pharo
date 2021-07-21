@@ -25,7 +25,7 @@ SmalltalkSpaceshipMethodSecondBlockTestCase >> testExpressionType [
 
 { #category : #tests }
 SmalltalkSpaceshipMethodSecondBlockTestCase >> testLiteralValue [
-	self assert: block statements first expression value equals: 1
+	self assert: block statements first expression primitiveValue equals: 1
 ]
 
 { #category : #tests }

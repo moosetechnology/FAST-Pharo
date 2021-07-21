@@ -59,7 +59,7 @@ SmalltalkMiddleMethodTestCase >> testDivisionExpressionParameterType [
 
 { #category : #tests }
 SmalltalkMiddleMethodTestCase >> testDivisionExpressionParameterValue [
-	self assert: middleMethod statements last expression arguments first value equals: 2
+	self assert: middleMethod statements last expression arguments first primitiveValue equals: 2
 ]
 
 { #category : #tests }
