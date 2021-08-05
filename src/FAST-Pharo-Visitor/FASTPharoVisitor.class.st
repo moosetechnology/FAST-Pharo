@@ -46,7 +46,7 @@ FASTPharoVisitor >> visitPharoExpression: aPharoExpression [
 
 { #category : #visiting }
 FASTPharoVisitor >> visitPharoMessageSend: aPharoMessageSend [
-	^ self visitExpression: aPharoMessageSend
+	^ self visitFASTTExpression: aPharoMessageSend
 ]
 
 { #category : #visiting }
