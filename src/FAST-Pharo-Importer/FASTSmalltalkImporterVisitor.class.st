@@ -162,7 +162,7 @@ FASTSmalltalkImporterVisitor >> parser [
 	^ PPSmalltalkParser
 ]
 
-{ #category : #parsing }
+{ #category : #API }
 FASTSmalltalkImporterVisitor >> runWithSource: sourceAsString [
 	| parseTree |
 	self model: FASTPharoModel new.
@@ -174,7 +174,7 @@ FASTSmalltalkImporterVisitor >> runWithSource: sourceAsString [
  
 ]
 
-{ #category : #parsing }
+{ #category : #API }
 FASTSmalltalkImporterVisitor >> runWithSource: sourceAsString and: aFamixMethod [
 	| parseTree |
 	currentFASTEntity := FASTPharoMethodEntity new
