@@ -200,9 +200,9 @@ FASTSmalltalkImporterVisitor >> visitAssignmentNode: anAssignmentNode [
 	| assignt |
 	currentFASTEntity := self create: FASTPharoAssignmentExpression from: anAssignmentNode.
 	
-	currentFASTEntity variable: (self clone visitNode: anAssignmentNode variable).
-
+	self flag: 'the order is important because of a bug in the metamodel, see https://github.com/moosetechnology/FAST-Pharo/issues/5'.
 	currentFASTEntity expression: (self clone visitNode: anAssignmentNode value).
+	currentFASTEntity variable: (self clone visitNode: anAssignmentNode variable).
 
   	^ currentFASTEntity
 ]
